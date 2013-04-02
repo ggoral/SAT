@@ -19,7 +19,11 @@ $(document).ready(function() {// INICIO DOCUMENT READY
         yearSuffix: ''};
     $.datepicker.setDefaults($.datepicker.regional['es']);
 
-    $("#fechaturno").datepicker(); //HABILITA EL DATE PICKER
+    var añoAct = new Date().getFullYear();
+    var mesAct = new Date().getMonth();
+    var diaAct = new Date().getDate();
+    $("#fechaturno").datepicker({minDate: new Date( añoAct, mesAct, diaAct)}); //HABILITA EL DATE PICKER    //
+    
     
     //AJAX PARA TRARME TODOS LOS TURNOS DE UN MEDICO
     $("#fechaturno").change(function() {
