@@ -10,7 +10,20 @@
   </head>
   <body>
 	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner"><div class="container"><a href="#" class="brand">unTexto</a></div></div>
+		<div class="navbar-inner">
+                    <div class="container">
+                        <a href="#" class="brand">SAT</a>
+                        <div class="nav-collapse" collapse>
+                            <a class="btn"href="#">Pulsar</a>
+                            <ul class="nav pull-right">
+                                <li class="active"><a href="#">INICIO</a></li>
+                                <li><a href="#">Item2</a></li>
+                                <li><a href="#">Item3</a></li>
+                                <li><a href="#">Item4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 	</div>
   </body>
   
