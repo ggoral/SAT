@@ -1,69 +1,45 @@
-<?php include "paginas/conectar" ?>
+<?php include "../paginas/conectar.php" ?>
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
+    <?php include "../paginas/modulos/head.php" ?>  
     <title>Secretaria</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen"> 
-    <link href="../css/bootstrap-responsive.css" rel="stylesheet" media="screen"> 
   </head>
-    <body>
-        <h1>Sección secretaria</h1>
-        
-<table class="table">  
+  <body>
+    <h1>Sección secretaria</h1>      
+    <table class="table table-striped">  
         <thead>  
-          <tr>  
-            <th>ID</th>  
+          <tr>   
             <th>Paciente</th>  
             <th>Médico</th>  
             <th>Horario</th>
             <th>Asistencia</th> 
           </tr>  
         </thead>  
-        <tbody>  
-          <tr>  
-            <td>01</td>  
-            <td>Christian Tracy</td>  
-            <td>Doctor calzado</td>  
-            <td>------</td>
-            <td>Pendiente</td>  
-          </tr>    
+        <tbody>   
           <?php 
-          $query = "SELECT * FROM turno ORDER BY id";
+          $query = "SELECT p2.nombre as nomPaciente,p1.nombre as nomMedico,
+                    p2.apellido as apePaciente, p1.apellido as apeMedico,
+                    t.fecha_desde, t.asistencia, t.id  
+                    FROM Turno t
+                    INNER JOIN Medico AS m ON ( m.id = t.medico_id ) 
+                    INNER JOIN Paciente AS pa ON ( pa.id = t.paciente_id ) 
+                    INNER JOIN Persona AS p1 ON ( p1.id = m.id ) 
+                    INNER JOIN Persona AS p2 ON ( p2.id = pa.id ) 
+                    ORDER BY t.fecha_desde";
           $result=  mysql_query($query);
-          while ($row = mysql_fetch_array($result)) {?>
+          while ($row = mysql_fetch_array($result)) {
+              $fechayhora= new \DateTime($row["fecha_desde"]);?>
             <tr>  
-            <td><?php echo $row["id"]?></td>  
-            <td><?php echo $row["medico_id"]?></td>  
-            <td><?php echo $row["paciente_id"]?></td>  
-            <td><?php echo $row["fecha_desde"]?></td>
-            <td><?php echo $row["asistencia"]?></td>  
-          </tr>  
-          <?php }?>
+            <td><?php echo $row["nomMedico"]." ".$row["apeMedico"]?></td>  
+            <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>  
+            <td><?php echo $fechayhora->format("H:i:s")?></td>
+            <td><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>  
+          </tr><?php }?>
         </tbody>  
       </table>  
-
-    </body>
-    
-    <footer>
-    
+    </body>  
+    <footer>   
 </footer>
-<script src="js/jquery-1.9.1"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="../assets/js/jquery.js"></script>
-<script src="../assets/js/bootstrap-transition.js"></script>
-<script src="../assets/js/bootstrap-alert.js"></script>
-<script src="../assets/js/bootstrap-modal.js"></script>
-<script src="../assets/js/bootstrap-dropdown.js"></script>
-<script src="../assets/js/bootstrap-scrollspy.js"></script>
-<script src="../assets/js/bootstrap-tab.js"></script>
-<script src="../assets/js/bootstrap-tooltip.js"></script>
-<script src="../assets/js/bootstrap-popover.js"></script>
-<script src="../assets/js/bootstrap-button.js"></script>
-<script src="../assets/js/bootstrap-collapse.js"></script>
-<script src="../assets/js/bootstrap-carousel.js"></script>
-<script src="../assets/js/bootstrap-typeahead.js"></script>
+<?php include "../paginas/modulos/scripts.php" ?>
 </html>
