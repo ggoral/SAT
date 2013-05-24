@@ -9,6 +9,6 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <h1>Sección secretaria...</h1>
+        <h1>Sección secretar</h1>
     </body>
 </html>
