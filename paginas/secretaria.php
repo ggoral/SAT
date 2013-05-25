@@ -52,6 +52,7 @@
         fila=$("#lista");
     }
 </script> 
+
     <footer>   
 </footer>
 <?php include "../paginas/modulos/scripts.php" ?>
