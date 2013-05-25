@@ -7,13 +7,14 @@
   </head>
   <body>
     <h1>Sección secretaria</h1>      
-    <table class="table table-striped">  
+    <table class="table table-striped table-bordered table-condensed">  
         <thead>  
           <tr>   
-            <th>Paciente</th>  
-            <th>Médico</th>  
-            <th>Horario</th>
-            <th>Asistencia</th> 
+            <th>Paciente <a href="#"><i class="icon-chevron-down"></i></a></th>  
+            <th>Médico <a href="#"><i class="icon-chevron-down"></i></a></th>  
+            <th>Horario <a href="#"><i class="icon-chevron-down"></i></a></th>
+            <th>Asistencia</th>
+            <th>Acciones</th> 
           </tr>  
         </thead>  
         <tbody>   
@@ -30,15 +31,27 @@
           $result=  mysql_query($query);
           while ($row = mysql_fetch_array($result)) {
               $fechayhora= new \DateTime($row["fecha_desde"]);?>
-            <tr>  
+            <tr id="lista" class=""> 
+            <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>     
             <td><?php echo $row["nomMedico"]." ".$row["apeMedico"]?></td>  
-            <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>  
             <td><?php echo $fechayhora->format("H:i:s")?></td>
-            <td><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>  
+            <td id="asistencia"><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>
+            <td align="center">
+                <a href="#"><i class="icon-remove"></i></a>
+                <a href="#"><i class="icon-ok"></i></a>
+            </td>
           </tr><?php }?>
         </tbody>  
       </table>  
-    </body>  
+    </body>
+<script type="text/javascript">
+    $document.ready(setear());
+    function setear(){
+        var fila, asistencia;
+        asistencia=$("#asistencia");
+        fila=$("#lista");
+    }
+</script> 
     <footer>   
 </footer>
 <?php include "../paginas/modulos/scripts.php" ?>
