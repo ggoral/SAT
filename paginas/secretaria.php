@@ -4,56 +4,96 @@
   <head>
     <?php include "../paginas/modulos/head.php" ?>  
     <title>Secretaria</title>
+    <style type="text/css"> 
+body { 
+background: url('../img/background.png');
+background-repeat: repeat;
+} 
+</style> 
   </head>
-  <body>
-    <h1>Sección secretaria</h1>      
-    <table class="table table-striped table-bordered table-condensed">  
-        <thead>  
-          <tr>   
-            <th>Paciente <a href="#"><i class="icon-chevron-down"></i></a></th>  
-            <th>Médico <a href="#"><i class="icon-chevron-down"></i></a></th>  
-            <th>Horario <a href="#"><i class="icon-chevron-down"></i></a></th>
-            <th>Asistencia</th>
-            <th>Acciones</th> 
-          </tr>  
-        </thead>  
-        <tbody>   
-          <?php 
-          $query = "SELECT p2.nombre as nomPaciente,p1.nombre as nomMedico,
-                    p2.apellido as apePaciente, p1.apellido as apeMedico,
-                    t.fecha_desde, t.asistencia, t.id  
-                    FROM Turno t
-                    INNER JOIN Medico AS m ON ( m.id = t.medico_id ) 
-                    INNER JOIN Paciente AS pa ON ( pa.id = t.paciente_id ) 
-                    INNER JOIN Persona AS p1 ON ( p1.id = m.id ) 
-                    INNER JOIN Persona AS p2 ON ( p2.id = pa.id ) 
-                    ORDER BY t.fecha_desde";
-          $result=  mysql_query($query);
-          while ($row = mysql_fetch_array($result)) {
-              $fechayhora= new \DateTime($row["fecha_desde"]);?>
-            <tr id="lista" class=""> 
-            <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>     
-            <td><?php echo $row["nomMedico"]." ".$row["apeMedico"]?></td>  
-            <td><?php echo $fechayhora->format("H:i:s")?></td>
-            <td id="asistencia"><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>
-            <td align="center">
-                <a href="#"><i class="icon-remove"></i></a>
-                <a href="#"><i class="icon-ok"></i></a>
-            </td>
-          </tr><?php }?>
-        </tbody>  
-      </table>  
+  <body>     
+     <!--NavBar-->
+	<div class="navbar navbar-static-top">
+		<div class="navbar-inner">
+                    <div class="container">
+                        <a href="#" class="brand">SAT - Sistema de Administración de Turnos</a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right"><li class="divider-vertical"></li>
+                                <li class="active"><a href="#">Turnos</a></li><li class="divider-vertical"></li>
+                                <li><a href="#">Pacientes</a></li><li class="divider-vertical"></li>
+                                <li><a href="#">Obras Sociales</a></li><li class="divider-vertical"></li>
+                                <li><a href="#">Especialidades</a></li><li class="divider-vertical"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+	</div>
+      <!-- Fin NavBar-->
+    <div class="container">
+            <h3>Administrar Turnos</h3> 
+        <table id="tabla" class="table table-striped table-bordered table-condensed">  
+            <thead>  
+              <tr>   
+                <th>Paciente <a href="#"><i class="icon-chevron-down"></i></a></th>  
+                <th>Médico <a href="#"><i class="icon-chevron-down"></i></a></th>  
+                <th>Horario <a href="#"><i class="icon-chevron-down"></i></a></th>
+                <th>Asistencia</th>
+                <th>Acciones</th> 
+              </tr>  
+            </thead>  
+            <tbody>   
+              <?php 
+              $query = "SELECT p2.nombre as nomPaciente,p1.nombre as nomMedico,
+                        p2.apellido as apePaciente, p1.apellido as apeMedico,
+                        t.fecha_desde, t.asistencia, t.id  
+                        FROM Turno t
+                        INNER JOIN Medico AS m ON ( m.id = t.medico_id ) 
+                        INNER JOIN Paciente AS pa ON ( pa.id = t.paciente_id ) 
+                        INNER JOIN Persona AS p1 ON ( p1.id = m.id ) 
+                        INNER JOIN Persona AS p2 ON ( p2.id = pa.id ) 
+                        ORDER BY t.fecha_desde";
+              $result=  mysql_query($query);
+              while ($row = mysql_fetch_array($result)) {
+                  $fechayhora= new \DateTime($row["fecha_desde"]);?>
+                <tr class='<?php $clase=($row["asistencia"] == false)?'info':'success';echo $clase; ?>'> 
+                <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>     
+                <td><?php echo $row["nomMedico"]." ".$row["apeMedico"]?></td>  
+                <td><?php echo $fechayhora->format("H:i:s")?></td>
+                <td id="asistencia"><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>
+                <td align="center">
+                    <?php if($row["asistencia"] == false){?>
+                    <a href="#"><i class="icon-remove"></i><span class="text-error">Cancelar</span></a>
+                    <a href="#"><i class="icon-ok"></i>Marcar Asistencia</a>
+                    <?php } else{?><i class="icon-ok icon-white"></i><?php }?>
+                </td>
+              </tr><?php }?>
+            </tbody>  
+          </table>
+            
+            <div class="pagination" align="center">
+              <ul>
+                <li><a href="#">Anterior</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">Siguiente</a></li>
+              </ul>
+            </div>
+            
+        </div>        <!--Fin Container-->
     </body>
-<script type="text/javascript">
-    $document.ready(setear());
-    function setear(){
-        var fila, asistencia;
-        asistencia=$("#asistencia");
-        fila=$("#lista");
-    }
-</script> 
-
     <footer>   
 </footer>
-<?php include "../paginas/modulos/scripts.php" ?>
+<!--<script>
+$(document).ready(function(){
+   $("tr").mouseover(function(){
+      $(this).addClass("info");
+   });
+   $("tr").mouseout(function(){
+      $(this).removeClass("info");
+   }); 
+});
+</script>
+-->
 </html>

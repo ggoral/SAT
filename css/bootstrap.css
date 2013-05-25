@@ -6156,3 +6156,8 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+body{
+    background-image:url('../img/background.png');
+    background-repeat: repeat;
+}
