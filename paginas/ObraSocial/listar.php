@@ -29,7 +29,7 @@
                         <a href="#" class="brand">SAT - Sistema de Administración de Turnos</a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right"><li class="divider-vertical"></li>
-                                <li><a href="#">Turnos</a></li><li class="divider-vertical"></li>
+                                <li><a href="/SAT/paginas/turnos/listarTurnosSecretaria.php">Turnos</a></li><li class="divider-vertical"></li>
                                 <li><a href="#">Pacientes</a></li><li class="divider-vertical"></li>
                                 <li class="active"><a href="#">Obras Sociales</a></li><li class="divider-vertical"></li>
                                 <li><a href="#">Especialidades</a></li><li class="divider-vertical"></li>

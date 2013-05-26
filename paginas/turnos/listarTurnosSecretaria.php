@@ -1,12 +1,12 @@
-<?php include "../paginas/conectar.php" ?>
+<?php include "../conectar.php" ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <?php include "../paginas/modulos/head.php" ?>  
+    <?php include "../modulos/head.php" ?>  
     <title>Secretaria</title>
     <style type="text/css"> 
 body { 
-background: url('../img/background.png');
+background: url('/SAT/img/background.png');
 background-repeat: repeat;
 } 
 </style> 
@@ -21,7 +21,7 @@ background-repeat: repeat;
                             <ul class="nav pull-right"><li class="divider-vertical"></li>
                                 <li class="active"><a href="#">Turnos</a></li><li class="divider-vertical"></li>
                                 <li><a href="#">Pacientes</a></li><li class="divider-vertical"></li>
-                                <li><a href="#">Obras Sociales</a></li><li class="divider-vertical"></li>
+                                <li><a href="/SAT/paginas/ObraSocial/listar.php">Obras Sociales</a></li><li class="divider-vertical"></li>
                                 <li><a href="#">Especialidades</a></li><li class="divider-vertical"></li>
                             </ul>
                         </div>
@@ -30,7 +30,14 @@ background-repeat: repeat;
 	</div>
       <!-- Fin NavBar-->
     <div class="container">
-            <h3>Administrar Turnos</h3> 
+            <h3>
+                Administrar Turnos <br>
+                <a href="#modal" data-toggle="modal">
+                    <button class="btn btn-warning btn-primary">
+                    Nuevo turno <i class="icon-plus icon-white"></i>
+                    </button>
+                </a>
+            </h3>
         <table id="tabla" class="table table-striped table-bordered table-condensed">  
             <thead>  
               <tr>   
@@ -45,7 +52,7 @@ background-repeat: repeat;
               <?php 
               $query = "SELECT p2.nombre as nomPaciente,p1.nombre as nomMedico,
                         p2.apellido as apePaciente, p1.apellido as apeMedico,
-                        t.fecha_desde, t.asistencia, t.id  
+                        t.fecha_desde, t.asistencia, t.id, t.eliminado  
                         FROM Turno t
                         INNER JOIN Medico AS m ON ( m.id = t.medico_id ) 
                         INNER JOIN Paciente AS pa ON ( pa.id = t.paciente_id ) 
@@ -54,7 +61,9 @@ background-repeat: repeat;
                         ORDER BY t.fecha_desde";
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {
-                  $fechayhora= new \DateTime($row["fecha_desde"]);?>
+                  $fechayhora= new \DateTime($row["fecha_desde"]);
+                  if($row["eliminado"] == 0){
+                  ?>
                 <tr class='<?php $clase=($row["asistencia"] == false)?'info':'success';echo $clase; ?>'> 
                 <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>     
                 <td><?php echo $row["nomMedico"]." ".$row["apeMedico"]?></td>  
@@ -62,11 +71,18 @@ background-repeat: repeat;
                 <td id="asistencia"><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>
                 <td align="center">
                     <?php if($row["asistencia"] == false){?>
-                    <a href="#"><i class="icon-remove"></i><span class="text-error">Cancelar</span></a>
-                    <a href="#"><i class="icon-ok"></i>Marcar Asistencia</a>
-                    <?php } else{?><i class="icon-ok icon-white"></i><?php }?>
+                    <a href="cancelar.php?id=<?php echo $row["id"]?>">
+                        <button class="btn btn-danger btn-small">Cancelar 
+                            <i class="icon-remove"></i>
+                        </button>
+                    </a>
+                    <a href="asistir.php?id=<?php echo $row["id"]?>">
+                        <button class="btn btn-success btn-small">Asistió 
+                            <i class="icon-ok"></i></button> 
+                    </a>
+                    <?php } else{?><button class="btn btn-danger btn-small disabled">Cancelar <i class="icon-remove"></i></button> <button class="btn btn-success btn-small disabled">Asistió <i class="icon-ok"></i></button><?php }?>
                 </td>
-              </tr><?php }?>
+                  </tr> <?php }}?>
             </tbody>  
           </table>
             
@@ -83,6 +99,10 @@ background-repeat: repeat;
             
         </div>        <!--Fin Container-->
     </body>
+        
+<?php include 'modalNuevoTurno.php' ?><!-- Ventana para agregar OCULTA -->
+
+    
     <footer>   
 </footer>
 <!--<script>
