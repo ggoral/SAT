@@ -75,7 +75,7 @@
               <tr>  
                 <td><?php echo $row["nombre"]; ?></td>  
                 <td align="center">
-                    <?php if($row["asistencia"] == false){?>
+        
                     <a href="alta.php?id=<?php echo $row["id"]?>">
                         <button class="btn btn-danger btn-small"> Borrar 
                             <i class="icon-remove"></i>
@@ -85,7 +85,7 @@
                         <button class="btn btn-success btn-small"> Modificar 
                             <i class="icon-ok"></i></button> 
                     </a>
-                    <?php } ?>
+        
                 </td>
 
               </tr>
