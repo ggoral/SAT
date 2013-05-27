@@ -30,7 +30,7 @@
 	</div>
       <!-- Fin NavBar-->
       <div class="container">
-        <form class="well span4" align="center" action="paginas/secretaria.php">
+        <form class="well span4" align="center" action="#">
             <h2 class="muted">Ingrese sus datos</h2>
             <input type="text" class="span2" placeholder="Usuario..."></input><br>
             <input type="password" class="span2" placeholder="Contraseña..."></input><br>

@@ -18,17 +18,19 @@
     <title>Obras Sociales</title>
  
     <?php include "../modulos/head.php" ?>
-    
+    <script type="text/javascript" src="../../js/funciones.js"></script>
+    <script>
+    $(document).ready(function(){
+        
+    });
+    </script>
     <style type="text/css"> 
     body { 
     background: url('../../img/background.png');
     background-repeat: repeat;
     } 
     
-    
-    
-    </style>
-    
+</style> 
   </head>
   <body>     
      <!--NavBar-->
@@ -74,11 +76,12 @@
                 <td><?php echo $row["nombre"]; ?></td>  
                 <td align="center">
         
-                    <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarOS.php?id=<?php echo $row["id"]?>" >
-                       Delete <i class="icon-trash"></i> 
+                    <a href="alta.php?id=<?php echo $row["id"]?>">
+                        <button class="btn btn-danger btn-small"> Borrar 
+                            <i class="icon-remove"></i>
+                        </button>
                     </a>
-                    
-                    <a href="modificar.php?id=<?php echo $row["id"]?>">
+                    <a href="borrar.php?id=<?php echo $row["id"]?>">
                         <button class="btn btn-success btn-small"> Modificar 
                             <i class="icon-ok"></i></button> 
                     </a>
