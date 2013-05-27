@@ -3,16 +3,27 @@
 <html>
   <head>
     
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
+     Bootstrap 
     <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="../../css/estilo.css" rel="stylesheet" media="screen"> 
     <link href="../../css/bootstrap-responsive.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="../../js/jquery-1.9.1.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>-->
+
+
+
     
     <title>Obras Sociales</title>
+ 
+    <?php include "../modulos/head.php" ?>
+    <script type="text/javascript" src="../../js/funciones.js"></script>
+    <script>
+    $(document).ready(function(){
+        
+    });
+    </script>
     <style type="text/css"> 
     body { 
     background: url('../../img/background.png');
@@ -40,24 +51,43 @@
 	</div>
       <!-- Fin NavBar-->
     <div class="container">
-            <h3>Administrar Turnos</h3> 
+            <h3> Obras Sociales <br>
+                <a href="/SAT/paginas/ObraSocial/alta.php">
+                    <button class="btn btn-warning btn-primary">
+                    Nueva Obra Social <i class="icon-plus icon-white"></i>
+                    </button>
+                </a>
+            </h3>
         <table id="tabla" class="table table-striped table-bordered table-condensed">  
             <thead>  
               <tr>   
                 <th>Nombre <a href="#"><i class="icon-chevron-down"></i></a></th>  
                 <th>Acciones</th> 
               </tr>  
-            </thead>  
+            </thead>
             <tbody>   
               <?php 
-              $query = "Select * from ObraSocial where eliminado = false";
+              $query = "Select * from obrasocial where eliminado = false";
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {
                 
               ?>
               <tr>  
                 <td><?php echo $row["nombre"]; ?></td>  
-                <td>Acciones</td>
+                <td align="center">
+                    <?php if($row["asistencia"] == false){?>
+                    <a href="alta.php?id=<?php echo $row["id"]?>">
+                        <button class="btn btn-danger btn-small"> Borrar 
+                            <i class="icon-remove"></i>
+                        </button>
+                    </a>
+                    <a href="borrar.php?id=<?php echo $row["id"]?>">
+                        <button class="btn btn-success btn-small"> Modificar 
+                            <i class="icon-ok"></i></button> 
+                    </a>
+                    <?php } ?>
+                </td>
+
               </tr>
               <?php 
               }
@@ -78,17 +108,7 @@
             
         </div>        <!--Fin Container-->
     </body>
+         
     <footer>   
 </footer>
-<!--<script>
-$(document).ready(function(){
-   $("tr").mouseover(function(){
-      $(this).addClass("info");
-   });
-   $("tr").mouseout(function(){
-      $(this).removeClass("info");
-   }); 
-});
-</script>
--->
 </html>
