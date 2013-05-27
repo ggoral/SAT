@@ -95,25 +95,11 @@ background-repeat: repeat;
                 <li><a href="#">4</a></li>
                 <li><a href="#">Siguiente</a></li>
               </ul>
-            </div>
-            
+            </div>        
         </div>        <!--Fin Container-->
-    </body>
-        
-<?php include 'modalNuevoTurno.php' ?><!-- Ventana para agregar OCULTA -->
-
+    </body>        
     
     <footer>   
 </footer>
-<!--<script>
-$(document).ready(function(){
-   $("tr").mouseover(function(){
-      $(this).addClass("info");
-   });
-   $("tr").mouseout(function(){
-      $(this).removeClass("info");
-   }); 
-});
-</script>
--->
+<?php include 'modalNuevoTurno.php' ?><!-- Ventana para agregar OCULTA -->
 </html>
