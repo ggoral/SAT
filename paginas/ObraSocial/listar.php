@@ -50,7 +50,7 @@
             </thead>  
             <tbody>   
               <?php 
-              $query = "Select * from ObraSocial where eliminado = false";
+              $query = "Select * from obraSocial where eliminado = false";
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {
                 
