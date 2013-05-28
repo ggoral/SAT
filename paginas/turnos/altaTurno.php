@@ -31,23 +31,27 @@ background-repeat: repeat;
       <!-- Fin NavBar-->
         <div class="container">
             <h3>CREAR TURNO</h3>
-            <form>
+            <form action="procesarAltaTurno.php">
                 <fieldset>
                     <label>DNI de paciente:</label>
-                    <input type="text" name="dni"></input><div id="mensajeErrorPaciente"></div><!--  mensaje de error cuando no esta el paciente-->
+                    <input id="dni" type="text" name="dni"></input><div id="verPaciente"></div><!--  mensaje de error cuando no esta el paciente-->
                      <label>Nombre del médico:</label>
-                    <input type="text" name="medico" onFocus="verificarPaciente();"></input>
-                    <br><a class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></a>
+                    <input id="medico" type="text" name="medico" onFocus="verificarPaciente();"></input>
+                    <br><button class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></button>
                 </fieldset>
             </form>
         </div>        <!--Fin Container-->
     </body>        
     <footer>   
-</footer>
-<?php include 'modalNuevoTurno.php';?><!-- Ventana para agregar OCULTA -->
-<script>
-    function verificarPaciente(){
-        $('#mensajeErrorPaciente').load('procesarAltaTurno.php');
-    }
-</script>
+    </footer>
+    
+    <script type="text/javascript">
+        $(document).ready(
+        function(){
+            $("#dni").blur( function(){
+               $("#verPaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
+            });
+        }    
+        );
+    </script>
 </html>
