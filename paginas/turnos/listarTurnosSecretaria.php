@@ -8,7 +8,7 @@
 body { 
 background: url('/SAT/img/background.png');
 background-repeat: repeat;
-} 
+}
 </style> 
   </head>
   <body>     
@@ -19,7 +19,7 @@ background-repeat: repeat;
                         <a href="#" class="brand">SAT - Sistema de Administración de Turnos</a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right"><li class="divider-vertical"></li>
-                                <li class="active"><a href="#">Turnos</a></li><li class="divider-vertical"></li>
+                                <li class="active"><a href="/SAT/paginas/turnos/listarTurnosSecretaria.php">Turnos</a></li><li class="divider-vertical"></li>
                                 <li><a href="#">Pacientes</a></li><li class="divider-vertical"></li>
                                 <li><a href="/SAT/paginas/ObraSocial/listar.php">Obras Sociales</a></li><li class="divider-vertical"></li>
                                 <li><a href="#">Especialidades</a></li><li class="divider-vertical"></li>
@@ -32,7 +32,7 @@ background-repeat: repeat;
     <div class="container">
             <h3>
                 Administrar Turnos <br>
-                <a href="#modalNuevoTurno" data-toggle="modal">
+                <a href="altaTurno.php">
                     <button class="btn btn-warning btn-primary">
                     Nuevo turno <i class="icon-plus icon-white"></i>
                     </button>
@@ -71,15 +71,9 @@ background-repeat: repeat;
                 <td class ="span2" id="centrado"><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>
                 <td class ="span3" id="centrado">
                   <?php if($row["asistencia"] == false){?>
-                    <a data-target="#modalCancelar" data-toggle="modal">
-                        <button class="btn btn-danger btn-small">Cancelar 
-                            <i class="icon-remove"></i>
-                        </button>
-                    </a>
-                    <a href="asistir.php?id=<?php echo $row["id"]?>">
-                        <button class="btn btn-success btn-small">Asistió 
-                            <i class="icon-ok"></i></button> 
-                    </a>
+                    <a href="cancelar.php?id=<?php echo $row["id"]?>" class="btn btn-danger btn-small">Cancelar <i class="icon-remove"></i></a></a>
+                    <a href="asistir.php?id=<?php echo $row["id"]?>" class="btn btn-success btn-small">Asistió <i class="icon-ok"></i>
+</a>
                   <?php } else{?><button class="btn btn-danger btn-small disabled">Cancelar <i class="icon-remove"></i></button> <button class="btn btn-success btn-small disabled">Asistió <i class="icon-ok"></i></button><?php }?>
                 </td>
                   </tr> <?php }}?>
@@ -101,5 +95,4 @@ background-repeat: repeat;
     
     <footer>   
 </footer>
-<?php include 'modalNuevoTurno.php';include 'modalCancelarTurno.php' ?><!-- Ventana para agregar OCULTA -->
 </html>
