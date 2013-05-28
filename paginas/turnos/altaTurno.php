@@ -34,9 +34,9 @@ background-repeat: repeat;
             <form action="procesarAltaTurno.php">
                 <fieldset>
                     <label>DNI de paciente:</label>
-                    <input id="dni" type="text" name="dni"></input><div id="verPaciente"></div><!--  mensaje de error cuando no esta el paciente-->
+                    <input id="dni" type="text" name="dni" ></input><div id="verPaciente"></div><!--  mensaje de error cuando no esta el paciente-->
                      <label>Nombre del médico:</label>
-                    <input id="medico" type="text" name="medico" onFocus="verificarPaciente();"></input>
+                    <input id="medico" type="text" name="medico" data-provide="typeahead" data-items="4"></input>
                     <br><button class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></button>
                 </fieldset>
             </form>
@@ -44,6 +44,7 @@ background-repeat: repeat;
     </body>        
     <footer>   
     </footer>
+    
     
     <script type="text/javascript">
         $(document).ready(
@@ -53,5 +54,23 @@ background-repeat: repeat;
             });
         }    
         );
+    </script>
+   
+    
+<!-- Mostrar los medicos-->
+    <div id="oculto" style="display:none">
+       <?php 
+       $query = "select * from persona";
+       $result = mysql_query($query);
+        while ($row = mysql_fetch_array($result)){
+            $nom= $row["nombre"];
+            $cadena = str_replace(" ","",$nom); 
+                    
+       ?>
+        '<?php echo $cadena?>',<?php }?>
+    </div>
+    <script>
+        $(document).ready( function(){var subjects = [$("#oculto").text()];   
+        $('#medico').typeahead({source: subjects});});
     </script>
 </html>
