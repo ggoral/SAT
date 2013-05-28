@@ -56,21 +56,4 @@ background-repeat: repeat;
         );
     </script>
    
-    
-<!-- Mostrar los medicos-->
-    <div id="oculto" style="display:none">
-       <?php 
-       $query = "select * from persona";
-       $result = mysql_query($query);
-        while ($row = mysql_fetch_array($result)){
-            $nom= $row["nombre"];
-            $cadena = str_replace(" ","",$nom); 
-                    
-       ?>
-        '<?php echo $cadena?>',<?php }?>
-    </div>
-    <script>
-        $(document).ready( function(){var subjects = [$("#oculto").text()];   
-        $('#medico').typeahead({source: subjects});});
-    </script>
 </html>
