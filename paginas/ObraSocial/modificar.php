@@ -57,8 +57,8 @@ if(!$dato){
           <fieldset>
                 <br>
                 <h3>Modificar Obra Social</h3>   
-                <form class="well" id="formulario" action="procesarModifcarOS.php" method="GET">
-                    <input id="nombre" type="text" placeholder="Nuevo nombre" name="nombre" value='<?php echo $dato['nombre']?>'><br>  
+                <form class="well" id="formulario" action="procesarModifcarOS.php" method="GET" onsubmit="return validarModificacionOS()">
+                    <input id="nombre" type="text" placeholder="Nuevo nombre" name="nombre" value='<?php echo $dato['nombre']?>' onKeyUp="this.value=this.value.toUpperCase();" ><br>  
                     <input name="idOS" type="hidden" value="<?php echo $dato['id']?>">
                     <br>
                     <button class="btn btn-success" type="submit">Modificar <i class="icon-ok icon-white"></i></button>

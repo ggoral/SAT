@@ -15,3 +15,14 @@ $(document).ready(function(){
        alert("Obra social agregada"); 
        return true;
     }
+    
+  //Funcion que valida que no se ingrese un campo en blanco en modificacion de obras sociales
+   function validarModificacionOS() {
+        miCampoTexto = document.getElementById("nombre").value;
+        if (miCampoTexto.length === 0 || /^\s+$/.test(miCampoTexto)) {       
+            alert ('Nombre vacio, debe ingresar un nombre');
+            return false;          
+        }
+       alert("Obra social modificada"); 
+       return true;
+    }
