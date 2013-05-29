@@ -1,10 +1,14 @@
 <?php
 
 include '../conectar.php';
-$idTipo = $_GET['id'];
-$sql = "Select * from Tipos where idTipo = $idTipo";
+$idOS = $_GET['id'];
+$sql = "Select * from obrasocial where id = $idOS and eliminado = false";
 $resultado = mysql_query($sql);
 $dato = mysql_fetch_array($resultado);
+
+if(!$dato){
+    header("location:listar.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -64,15 +68,15 @@ $dato = mysql_fetch_array($resultado);
           <fieldset>
                 <br>
                 <h3>Modificar Obra Social</h3>   
-               <form class="well" id="formulario" action="procesarModifcarTipo.php" method="GET "onsubmit="return validarFormTipo()">
-                <input id="nombre" type="text" placeholder="Nuevo nombre" name="nombre" value='<?php echo $dato['Tipo']?>'><br>  
-                <input name="idTipo" type="hidden" value="<?php echo $dato['idTipo']?>">
-                <br>
-                <button class="btn btn-success" type="submit">Modificar <i class="icon-ok icon-white"></i></button>
-                <a class="btn" href="/SAT/paginas/ObraSocial/listar.php">
-                    Cancelar
-                </a>
-             </form>
+                <form class="well" id="formulario" action="procesarModifcarOS.php" method="GET">
+                    <input id="nombre" type="text" placeholder="Nuevo nombre" name="nombre" value='<?php echo $dato['nombre']?>'><br>  
+                    <input name="idOS" type="hidden" value="<?php echo $dato['id']?>">
+                    <br>
+                    <button class="btn btn-success" type="submit">Modificar <i class="icon-ok icon-white"></i></button>
+                    <a class="btn" href="/SAT/paginas/ObraSocial/listar.php">
+                        Cancelar
+                    </a>
+                </form>
           </fieldset>     
       </div>
     </div>            
