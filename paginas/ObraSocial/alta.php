@@ -55,8 +55,8 @@
           <fieldset>
                 <br>
                 <h3>Alta de Obra Social</h3>   
-                <form class="well" id="formulario" action="procesarAltaOS.php" method="GET">
-                    <input id="nombre" type="text" name="nombre" placeholder="Nombre"><br>
+                <form class="well" id="formulario" action="procesarAltaOS.php" method="GET" onsubmit="return validarAltaOS()" >
+                    <input id="nombre" type="text" name="nombre" placeholder="Nombre"  onKeyUp="this.value=this.value.toUpperCase();"><br>
                     <br>
                     <button class="btn btn-warning" type="submit">Agregar <i class="icon-plus icon-white"></i></button>
                     <a class="btn" href="/SAT/paginas/ObraSocial/listar.php">
@@ -65,7 +65,7 @@
                 </form>
           </fieldset> 
         
-      </div>
+      </div>input
     </div>
     </body>
 </html>

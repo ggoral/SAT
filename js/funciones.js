@@ -4,3 +4,14 @@ $(document).ready(function(){
         return (confirm("¿Esta seguro que desea borrar este elemento?"));
     });
 });
+
+ //Funcion que valida que no se ingrese un campo en blanco en alta de obras sociales
+   function validarAltaOS() {
+        miCampoTexto = document.getElementById("nombre").value;
+        if (miCampoTexto.length === 0 || /^\s+$/.test(miCampoTexto)) {       
+            alert ('Nombre vacio, debe ingresar un nombre');
+            return false;          
+        }
+       alert("Obra social agregada"); 
+       return true;
+    }
