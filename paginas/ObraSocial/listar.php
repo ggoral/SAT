@@ -7,7 +7,6 @@
     <title>Obras Sociales</title>
  
     <?php include "../modulos/head.php" ?>
-    <script type="text/javascript" src="../../js/funciones.js"></script>
     <style type="text/css"> 
     body { 
     background: url('../../img/background.png');

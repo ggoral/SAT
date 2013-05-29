@@ -1,11 +1,6 @@
 $(document).ready(function(){
-
-$("a#borrar").click(function(){ 
-    
-    if(confirm("¿Esta seguro que desea borrar este elemento?")){
-        return true;
-    }
-    return false;
-});
-
+   //Funcion que despliega un alert para confirmar el borrado
+    $("a#borrar").click(function(){ 
+        return (confirm("¿Esta seguro que desea borrar este elemento?"));
+    });
 });
