@@ -65,7 +65,7 @@
                 </form>
           </fieldset> 
         
-      </div>input
+      </div>
     </div>
     </body>
 </html>
