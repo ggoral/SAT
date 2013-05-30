@@ -11,6 +11,11 @@ background-repeat: repeat;
 }
 </style> 
   </head>
+  <?php 
+  //Consultas MYSQL 
+  $queryEsp = "select * from especialidad";
+  $resultEsp = mysql_query($queryEsp);
+  ?>
   <body>     
      <!--NavBar-->
 	<div class="navbar navbar-static-top">
@@ -34,9 +39,15 @@ background-repeat: repeat;
             <form action="procesarAltaTurno.php">
                 <fieldset>
                     <label>DNI de paciente:</label>
-                    <input id="dni" type="text" name="dni" ></input><div id="verPaciente"></div><!--  mensaje de error cuando no esta el paciente-->
-                     <label>Nombre del médico:</label>
-                    <input id="medico" type="text" name="medico" data-provide="typeahead" data-items="4"></input>
+                    <input id="dni" type="text" name="dni" ></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
+                     <label>Seleccione especialidad del médico:</label>
+                    <select id="especialidad" name="especialidad">
+                        <option></option>
+                    <?php 
+                    while ($row = mysql_fetch_array($resultEsp)){
+                     ?><option><?php echo $row["nombre"]?></option>
+                     <?php }?>
+                    </select>
                     <br><button class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></button>
                 </fieldset>
             </form>
@@ -50,10 +61,19 @@ background-repeat: repeat;
         $(document).ready(
         function(){
             $("#dni").blur( function(){
-               $("#verPaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
+               $("#mensajePaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
             });
-        }    
+        
+
+        }
         );
+        
+        
+                $("#especialidad").change(function(){
+                    
+            var data = "especialidad=" + $("#especialida").val();
+
+         });
     </script>
    
 </html>
