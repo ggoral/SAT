@@ -4,10 +4,10 @@ include '../conectar.php';
 
 //print_r($_GET);exit;
 
-$id = $_GET["id"];
+$idOS = $_GET["idOS"];
 $nombre = $_GET["nombre"];
-$consulta = "UPDATE `ObraSocial` SET `Tipo`='$nombre' WHERE id = $id";
+$consulta = "UPDATE `obrasocial` SET `nombre`='$nombre' WHERE id = $idOS";
 mysql_query($consulta);
 
-header('location: altaOS.php');
+header('location: listar.php');
 ?>

@@ -3,27 +3,10 @@
 <html>
   <head>
     
-<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     Bootstrap 
-    <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../../css/estilo.css" rel="stylesheet" media="screen"> 
-    <link href="../../css/bootstrap-responsive.css" rel="stylesheet" media="screen">
-    <script type="text/javascript" src="../../js/jquery-1.9.1.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>-->
-
-
-
     
     <title>Obras Sociales</title>
  
     <?php include "../modulos/head.php" ?>
-    <script type="text/javascript" src="../../js/funciones.js"></script>
-    <script>
-    $(document).ready(function(){
-        
-    });
-    </script>
     <style type="text/css"> 
     body { 
     background: url('../../img/background.png');
@@ -42,7 +25,7 @@
                             <ul class="nav pull-right"><li class="divider-vertical"></li>
                                 <li><a href="/SAT/paginas/turnos/listarTurnosSecretaria.php">Turnos</a></li><li class="divider-vertical"></li>
                                 <li><a href="#">Pacientes</a></li><li class="divider-vertical"></li>
-                                <li class="active"><a href="#">Obras Sociales</a></li><li class="divider-vertical"></li>
+                                <li class="active"><a href="/SAT/paginas/ObraSocial/listar.php" >Obras Sociales</a></li><li class="divider-vertical"></li>
                                 <li><a href="#">Especialidades</a></li><li class="divider-vertical"></li>
                             </ul>
                         </div>
@@ -76,14 +59,11 @@
                 <td><?php echo $row["nombre"]; ?></td>  
                 <td align="center">
         
-                    <a href="alta.php?id=<?php echo $row["id"]?>">
-                        <button class="btn btn-danger btn-small"> Borrar 
-                            <i class="icon-remove"></i>
-                        </button>
+                    <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarOS.php?id=<?php echo $row["id"]?>">
+                        Borrar <i class="icon-remove"></i>
                     </a>
-                    <a href="borrar.php?id=<?php echo $row["id"]?>">
-                        <button class="btn btn-success btn-small"> Modificar 
-                            <i class="icon-ok"></i></button> 
+                    <a class="btn btn-success btn-small" href="modificar.php?id=<?php echo $row["id"]?>">
+                        Modificar <i class="icon-ok"></i> 
                     </a>
         
                 </td>
