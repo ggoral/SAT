@@ -5,16 +5,19 @@
     <?php include "../modulos/head.php" ?>  
     <title>Secretaria</title>
     <style type="text/css"> 
-body { 
-background: url('/SAT/img/background.png');
-background-repeat: repeat;
-}
+        body { 
+        background: url('/SAT/img/background.png');
+        background-repeat: repeat;
+        }
 </style> 
   </head>
   <?php 
   //Consultas MYSQL 
   $queryEsp = "select * from especialidad";
   $resultEsp = mysql_query($queryEsp);
+  
+ 
+  
   ?>
   <body>     
      <!--NavBar-->
@@ -42,12 +45,24 @@ background-repeat: repeat;
                     <input id="dni" type="text" name="dni" ></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
                      <label>Seleccione especialidad del médico:</label>
                     <select id="especialidad" name="especialidad">
-                        <option></option>
+                        <option value="">Seleccione Especialidad</option>
                     <?php 
-                    while ($row = mysql_fetch_array($resultEsp)){
-                     ?><option><?php echo $row["nombre"]?></option>
-                     <?php }?>
+                    
+                     while($especialidad = mysql_fetch_array($resultEsp)){
+                    ?>     
+                        <option value="<?php echo $especialidad["id"] ?>"> <?php echo $especialidad["nombre"]?></option>  
+                        
+                    <?php    
+                    }
+                    ?>
                     </select>
+                     
+                     <br>
+                     <label>Seleccione Medico</label>
+                     <select id="medico">
+                         <option value="">Ninguno</option>
+                     </select>
+                     
                     <br><button class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></button>
                 </fieldset>
             </form>
@@ -68,12 +83,22 @@ background-repeat: repeat;
         }
         );
         
-        
-                $("#especialidad").change(function(){
-                    
-            var data = "especialidad=" + $("#especialida").val();
 
-         });
+        $("#especialidad").change(function(){
+        var data = "especialidad=" + $("#especialidad").val();
+        
+        $.ajax({
+        type: "POST",
+        url: "procesarEspecialidad.php",
+        async: false,
+        data:data,
+        success: function(html){ 
+            $("#medico").empty();
+            $("#medico").append(html);
+            }
+        });
+        
+        });
     </script>
    
 </html>
