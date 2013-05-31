@@ -3,13 +3,15 @@
 <html>
   <head>
     <?php include "../modulos/head.php" ?>  
-    <title>Secretaria</title>
+    <script type="text/javascript" src="/SAT/js/turnosAlta.js"></script>
+    <title>Alta de turno</title>
+    
     <style type="text/css"> 
         body { 
         background: url('/SAT/img/background.png');
         background-repeat: repeat;
         }
-</style> 
+    </style> 
   </head>
   <?php 
   //Consultas MYSQL 
@@ -39,7 +41,7 @@
       <!-- Fin NavBar-->
         <div class="container">
             <h3>CREAR TURNO</h3>
-            <form action="procesarAltaTurno.php">
+            <form action="crearTurno.php" method="post">
                 <fieldset>
                     <label>DNI de paciente:</label>
                     <input id="dni" type="text" name="dni" ></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
@@ -59,9 +61,19 @@
                      
                      <br>
                      <label>Seleccione Medico</label>
-                     <select id="medico">
+                     <select id="medico" name="medico">
                          <option value="">Ninguno</option>
                      </select>
+                     <br>
+                     
+                     <label>Seleccione fecha turno</label>
+                        <input id="fechaturno" type="text" name="fechaturno">
+                     <br>
+                     <label>Seleccione turno</label>
+                     <select id="turno" name="turno">
+                         <option value="">Ninguno</option>
+                     </select>
+                     <br>
                      
                     <br><button class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></button>
                 </fieldset>
@@ -71,34 +83,4 @@
     <footer>   
     </footer>
     
-    
-    <script type="text/javascript">
-        $(document).ready(
-        function(){
-            $("#dni").blur( function(){
-               $("#mensajePaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
-            });
-        
-
-        }
-        );
-        
-
-        $("#especialidad").change(function(){
-        var data = "especialidad=" + $("#especialidad").val();
-        
-        $.ajax({
-        type: "POST",
-        url: "procesarEspecialidad.php",
-        async: false,
-        data:data,
-        success: function(html){ 
-            $("#medico").empty();
-            $("#medico").append(html);
-            }
-        });
-        
-        });
-    </script>
-   
 </html>

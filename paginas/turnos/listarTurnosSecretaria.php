@@ -67,7 +67,7 @@ background-repeat: repeat;
                 <tr class='<?php $clase=($row["asistencia"] == false)?'warning':'success';echo $clase; ?>'> 
                 <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>     
                 <td><?php echo $row["nomMedico"]." ".$row["apeMedico"]?></td>  
-                <td class ="span2" id="centrado"><?php echo $fechayhora->format("H:i:s")?></td>
+                <td class ="span2" id="centrado"><?php echo $fechayhora->format("d-m-Y H:i:s")?></td>
                 <td class ="span2" id="centrado"><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>
                 <td class ="span3" id="centrado">
                   <?php if($row["asistencia"] == false){?>
