@@ -4,7 +4,7 @@ $idmedico = $_POST["medico"];
 $query = "SELECT * 
 FROM medico AS m
 INNER JOIN diasatencion AS d ON ( d.`medico_id` = m.id ) 
-WHERE m.id =3
+WHERE m.id =$idmedico
         ";
 $result = mysql_query($query);
 
