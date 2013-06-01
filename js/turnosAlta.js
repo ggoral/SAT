@@ -71,7 +71,7 @@ $("#botonCrear").click(function(){
   $("#especialidad").removeAttr("disabled");
 });
     
-    $("#dni").blur(function() { // SE VALIDA QUE EL DNI EXISTA EN LA BASE DE DATOS
+    $("#dni").keyup(function() { // SE VALIDA QUE EL DNI EXISTA EN LA BASE DE DATOS
         $("#mensajePaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
     });
 

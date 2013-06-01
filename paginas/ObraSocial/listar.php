@@ -41,11 +41,12 @@
                     </button>
                 </a>
             </h3>
-        <table id="tabla" class="table table-striped table-bordered table-condensed">  
+        <div class="offset3">
+        <table id="tabla" class="table table-striped table-bordered table-condensed span5">  
             <thead>  
               <tr>   
-                <th>Nombre <a href="#"><i class="icon-chevron-down"></i></a></th>  
-                <th>Acciones</th> 
+                <th id="centrado">Nombre <a href="#"><i class="icon-chevron-down"></i></a></th>  
+                <th id="centrado">Acciones</th> 
               </tr>  
             </thead>
             <tbody>   
@@ -56,8 +57,8 @@
                 
               ?>
               <tr>  
-                <td><?php echo $row["nombre"]; ?></td>  
-                <td align="center">
+                <td id="centrado" class="span3"><?php echo $row["nombre"]; ?></td>  
+                <td id="centrado" class="span2">
         
                     <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarOS.php?id=<?php echo $row["id"]?>">
                         Borrar <i class="icon-remove"></i>
@@ -74,6 +75,7 @@
               ?>
             </tbody>  
           </table>
+        </div>
             <!--
             <div class="pagination" align="center">
               <ul>

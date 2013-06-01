@@ -8,12 +8,12 @@ WHERE m.id =$idmedico
         ";
 $result = mysql_query($query);
 
-?><p><span class="text-info">Atiende los dias:<?php
+?><p><span class="label label-info">Atiende los dias:<u><?php
 while ($row = mysql_fetch_array($result)){
     ?>
  <?php  echo $row["dia"]?> 
 <?php
     
 }
-?></span><i class="icon-exclamation-sign"></i></p><?php
+?></u><i class="icon-exclamation-sign icon-white"></i></span></p><?php
 ?>
