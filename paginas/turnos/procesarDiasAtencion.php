@@ -9,12 +9,12 @@ WHERE m.id =$idmedico
 $result = mysql_query($query);
 
 $c = 0;
-?><p><span class="label label-info">Atiende los dias:<u><?php
+?><p><span class="label label-info">Atiende los dias:<u> |<?php
 while ($row = mysql_fetch_array($result)){
     
     $c++?>
  
-    <?php  echo $row["dia"];
+    <?php  echo $row["dia"]; ?> | <?php
             if($c == 3){
                 echo "<br>";
             }
