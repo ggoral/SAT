@@ -1,3 +1,14 @@
+<?php 
+    if(isset($_GET["errornombre"])){
+        $nombre = $_GET["errornombre"];
+    }else{
+        $nombre = "";
+    }
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,12 +28,19 @@
     <title>Obras Sociales</title>
  
     <?php include "../modulos/head.php" ?>
-    <script type="text/javascript" src="../../js/funciones.js"></script>
+
     <script>
     $(document).ready(function(){
         
+        
+        <?php
+            if($nombre != "")
+                echo "alert('Esta obra social ya existe')";
+        ?>
+                
     });
     </script>
+    
     <style type="text/css"> 
     body { 
     background: url('../../img/background.png');
@@ -56,7 +74,7 @@
                 <br>
                 <h3>Alta de Obra Social</h3>   
                 <form class="well" id="formulario" action="procesarAltaOS.php" method="GET" onsubmit="return validarAltaOS()" >
-                    <input id="nombre" type="text" name="nombre" placeholder="Nombre"  onKeyUp="this.value=this.value.toUpperCase();"><br>
+                    <input id="nombre" type="text" name="nombre" placeholder="Nombre"  onKeyUp="this.value=this.value.toUpperCase();" value="<?php echo $nombre ?>"><br>
                     <br>
                     <button class="btn btn-warning" type="submit">Agregar <i class="icon-plus icon-white"></i></button>
                     <a class="btn" href="/SAT/paginas/ObraSocial/listar.php">

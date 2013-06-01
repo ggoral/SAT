@@ -11,8 +11,7 @@ $(document).ready(function(){
         if (miCampoTexto.length === 0 || /^\s+$/.test(miCampoTexto)) {       
             alert ('Nombre vacio, debe ingresar un nombre');
             return false;          
-        }
-       alert("Obra social agregada"); 
+        } 
        return true;
     }
     
@@ -22,7 +21,6 @@ $(document).ready(function(){
         if (miCampoTexto.length === 0 || /^\s+$/.test(miCampoTexto)) {       
             alert ('Nombre vacio, debe ingresar un nombre');
             return false;          
-        }
-       alert("Obra social modificada"); 
+        } 
        return true;
     }
