@@ -7,9 +7,17 @@ $("#fechaturno").attr("disabled","disabled");
 $("#turno").attr("disabled","disabled");
 //-----------------------
 //
-//VALIDAR QUE TODO TENGA VALOR
+//VALIDAR QUE TODO TENGA VALOR Y SUBMIT
 $("#botonCrear").click(function(){
-    alert("presiono!");
+    if(  ($("#dni").val() === "") || ($("#especialidad").val() === "") || ($("#medico").val() === "") 
+    || ($("#fechaturno").val() === "") || ($("#turno").val() === "")
+    ){
+            alert("Complete todos los campos");
+//            window.location = "altaTurno.php";
+    }
+    else {
+        $("#formAltaTurno").submit();
+    }
 });
 
 //-----------------------
