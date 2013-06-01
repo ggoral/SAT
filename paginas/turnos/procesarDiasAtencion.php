@@ -11,9 +11,9 @@ $result = mysql_query($query);
 ?><p><span class="text-info">Atiende los dias:<?php
 while ($row = mysql_fetch_array($result)){
     ?>
- <?php  echo $row["dia"]?>  
+ <?php  echo $row["dia"]?> 
 <?php
     
 }
-?></span></p><?php
+?></span><i class="icon-exclamation-sign"></i></p><?php
 ?>
