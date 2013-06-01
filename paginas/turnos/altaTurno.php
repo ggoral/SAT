@@ -41,7 +41,7 @@
       <!-- Fin NavBar-->
         <div class="container">
             <h3>CREAR TURNO</h3>
-            <form action="crearTurno.php" method="post">
+            <form id ="formAltaTurno" action="crearTurno.php" method="post">
                 <fieldset>
                     <label>DNI de paciente:</label>
                     <input id="dni" type="text" name="dni" autocomplete="off"></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
@@ -65,7 +65,7 @@
                          <option value="">Ninguno</option>
                      </select>
                      <br>
-                     
+                     <div id="diasAtencion"></div> <!--  Mensaje con dias de atencion-->
                      <label>Seleccione fecha turno</label>
                         <input id="fechaturno" type="text" name="fechaturno" autocomplete="off">
                      <br>
@@ -75,7 +75,7 @@
                      </select>
                      <br>
                      
-                    <br><button id="botonCrear"class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></button>
+                    <br><a id="botonCrear"class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></a>
                 </fieldset>
             </form>
         </div>        <!--Fin Container-->

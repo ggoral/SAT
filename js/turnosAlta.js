@@ -74,7 +74,9 @@ $("#botonCrear").click(function(){
     $("#dni").blur(function() { // SE VALIDA QUE EL DNI EXISTA EN LA BASE DE DATOS
         $("#mensajePaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
     });
+
 //-----------------------
+
 
     //FUNCION AJAX DE ESPECIALIDAD-MEDICO
     $("#especialidad").change(function() {
@@ -94,9 +96,21 @@ $("#botonCrear").click(function(){
     });
 
 //-----------------------
-$("#medico").change(function(){ // REACTIVA FECHAS 
+$("#medico").change(function(){ // REACTIVA FECHAS y muestra dias 
     $("#fechaturno").removeAttr("disabled");
-});
+        var data = "medico=" + $("#medico").val();
+        $.ajax({
+            type: "POST",
+            url: "procesarDiasAtencion.php",
+            async: false,
+            data: data,
+            success: function(html) {
+                $("#diasAtencion").empty();
+                $("#diasAtencion").append(html);
+            }
+        });
+
+    });
 //-----------------------
 
 }); //FIN DOCUMENT READY
