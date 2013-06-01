@@ -35,13 +35,17 @@
       <!-- Fin NavBar-->
     <div class="container">
             <h3> Obras Sociales <br>
-                <a href="/SAT/paginas/ObraSocial/alta.php">
+                
+            </h3>
+        <div class="offset3">
+            <div class="span5"id="centrado">
+            <a href="/SAT/paginas/ObraSocial/alta.php">
                     <button class="btn btn-warning btn-primary">
                     Nueva Obra Social <i class="icon-plus icon-white"></i>
                     </button>
                 </a>
-            </h3>
-        <div class="offset3">
+            </div>
+            <br><br>
         <table id="tabla" class="table table-striped table-bordered table-condensed span5">  
             <thead>  
               <tr>   
