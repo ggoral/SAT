@@ -40,8 +40,15 @@ $(document).ready(function() {// INICIO DOCUMENT READY
         });
     });
 
+
     //FUNCION QUE VALIDA EL PACIENTE
-    $("#dni").blur(function() {
+    
+    
+ $('#dni').keyup(function () { // EVITA QUE SE INGRESEN LETRAS
+  this.value = this.value.replace(/[^0-9]/g,''); 
+});
+    
+    $("#dni").blur(function() { // SE VALIDA QUE EL DNI EXISTA EN LA BASE DE DATOS
         $("#mensajePaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
     });
 
