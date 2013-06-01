@@ -44,7 +44,7 @@
             <form action="crearTurno.php" method="post">
                 <fieldset>
                     <label>DNI de paciente:</label>
-                    <input id="dni" type="text" name="dni" ></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
+                    <input id="dni" type="text" name="dni" autocomplete="off"></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
                      <label>Seleccione especialidad del médico:</label>
                     <select id="especialidad" name="especialidad">
                         <option value="">Seleccione Especialidad</option>
@@ -67,7 +67,7 @@
                      <br>
                      
                      <label>Seleccione fecha turno</label>
-                        <input id="fechaturno" type="text" name="fechaturno">
+                        <input id="fechaturno" type="text" name="fechaturno" autocomplete="off">
                      <br>
                      <label>Seleccione turno</label>
                      <select id="turno" name="turno">
@@ -75,7 +75,7 @@
                      </select>
                      <br>
                      
-                    <br><button class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></button>
+                    <br><button id="botonCrear"class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></button>
                 </fieldset>
             </form>
         </div>        <!--Fin Container-->
