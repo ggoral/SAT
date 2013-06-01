@@ -10,12 +10,12 @@ $query = "select * from persona
 $result=  mysql_query($query);
 if(mysql_num_rows($result) != 0){
 ?>
-<p><span class="text-success"> El DNI ingresado es correcto </span><i class="icon-ok"></i></p>
+<p><span class="label label-success"> El DNI ingresado es correcto <i class="icon-ok icon-white"></i></span></p>
 <?php
 }
 else{
 ?>
-    <span class="text-error">Ingrese un número de DNI valido!  </span><i class=" icon-warning-sign"></i>
+    <span class="label label-important">Ingrese un número de DNI valido!  <i class=" icon-warning-sign icon-white"></i></span>
     <!--<a class="btn btn-danger btn-small" href="#"> Agregar Paciente</a><p></p> -->
 <?php
 }

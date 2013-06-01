@@ -93,6 +93,6 @@ background-repeat: repeat;
         </div>        <!--Fin Container-->
     </body>        
     
-    <footer>   
-</footer>
+    <footer class="footer">   
+    </footer>
 </html>

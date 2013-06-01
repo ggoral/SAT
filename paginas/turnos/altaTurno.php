@@ -77,13 +77,13 @@
                          <br>
 
                         <br><a id="botonCrear"class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></a>
-                        <a class="btn" href="listarTurnosSecretaria.php">Volver</a>
+                        <a class="btn" href="listarTurnosSecretaria.php">Volver <i class="icon-arrow-left icon-white"></i></a>
                     </fieldset>
                 </form>
             </div>
         </div>        <!--Fin Container-->
     </body>        
-    <footer>   
+    <footer class="footer">
     </footer>
     
 </html>
