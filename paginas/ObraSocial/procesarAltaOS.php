@@ -4,12 +4,9 @@ include '../conectar.php';
 
 $nombre = $_GET["nombre"];
 
-$sqlExiste = "Select * from obrasocial where nombre ='".$nombre."'";
+$sqlExiste = "Select * from obrasocial where nombre ='".$nombre."' and eliminado = false";
 $resultadoExiste = mysql_query($sqlExiste);
 $obrasocial = mysql_fetch_array($resultadoExiste);
-
-
-print_r($obrasocial);
 
 
 if($obrasocial){
