@@ -61,7 +61,13 @@ $arrayTurnos = array_diff($arrayTurnos, $turnosAsignados);
 
 ?>
 
-<?php foreach ($arrayTurnos as $turno) { // ACA CREO TODOS LOS OPTIOS CORRESPONDIENTES PARA ASIGNAR UN TURNO?>
+<?php 
+    
+    if(!$arrayTurnos){
+        echo "<option value=''> No hay horarios disponibles </option>";
+    }
+    
+  foreach ($arrayTurnos as $turno) { // ACA CREO TODOS LOS OPTIOS CORRESPONDIENTES PARA ASIGNAR UN TURNO?>
     <option value="<?php echo $turno ?>"> <?php echo $turno ?> </option>
 <?php } ?>
 
