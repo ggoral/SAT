@@ -74,7 +74,7 @@
               ?>
             </tbody>  
           </table>
-            
+            <!--
             <div class="pagination" align="center">
               <ul>
                 <li><a href="#">Anterior</a></li>
@@ -85,7 +85,7 @@
                 <li><a href="#">Siguiente</a></li>
               </ul>
             </div>
-            
+            -->
         </div>        <!--Fin Container-->
     </body>
          

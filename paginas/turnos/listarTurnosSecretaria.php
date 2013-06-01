@@ -80,7 +80,7 @@ background-repeat: repeat;
             </tbody>  
           </table>
             
-            <div class="pagination" align="center">
+            <!--<div class="pagination" align="center">
               <ul>
                 <li><a href="#">Anterior</a></li>
                 <li class="active"><a href="#">1</a></li>
@@ -89,7 +89,7 @@ background-repeat: repeat;
                 <li><a href="#">4</a></li>
                 <li><a href="#">Siguiente</a></li>
               </ul>
-            </div>        
+            </div>    -->    
         </div>        <!--Fin Container-->
     </body>        
     
