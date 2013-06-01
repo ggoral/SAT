@@ -16,7 +16,7 @@ background-repeat: repeat;
 	<div class="navbar navbar-static-top">
 		<div class="navbar-inner">
                     <div class="container">
-                        <a href="#" class="brand">SAT - Sistema de Administración de Turnos</a>
+                        <a href="/SAT/index.php" class="brand">SAT - Sistema de Administración de Turnos</a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right"><li class="divider-vertical"></li>
                                 <li class="active"><a href="/SAT/paginas/turnos/listarTurnosSecretaria.php">Turnos</a></li><li class="divider-vertical"></li>
