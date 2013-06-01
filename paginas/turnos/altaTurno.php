@@ -40,44 +40,47 @@
 	</div>
       <!-- Fin NavBar-->
         <div class="container">
-            <h3>CREAR TURNO</h3>
-            <form id ="formAltaTurno" action="crearTurno.php" method="post">
-                <fieldset>
-                    <label>DNI de paciente:</label>
-                    <input id="dni" type="text" name="dni" autocomplete="off"></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
-                     <label>Seleccione especialidad del médico:</label>
-                    <select id="especialidad" name="especialidad">
-                        <option value="">Seleccione Especialidad</option>
-                    <?php 
-                    
-                     while($especialidad = mysql_fetch_array($resultEsp)){
-                    ?>     
-                        <option value="<?php echo $especialidad["id"] ?>"> <?php echo $especialidad["nombre"]?></option>  
-                        
-                    <?php    
-                    }
-                    ?>
-                    </select>
-                     
-                     <br>
-                     <label>Seleccione Medico</label>
-                     <select id="medico" name="medico">
-                         <option value="">Ninguno</option>
-                     </select>
-                     <br>
-                     <div id="diasAtencion"></div> <!--  Mensaje con dias de atencion-->
-                     <label>Seleccione fecha turno</label>
-                        <input id="fechaturno" type="text" name="fechaturno" autocomplete="off">
-                     <br>
-                     <label>Seleccione turno</label>
-                     <select id="turno" name="turno">
-                         <option value="">Ninguno</option>
-                     </select>
-                     <br>
-                     
-                    <br><a id="botonCrear"class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></a>
-                </fieldset>
-            </form>
+            <div class="offset4 span3">
+                <h3 align="center">NUEVO TURNO</h3>
+                <form class ="well" id ="formAltaTurno" action="crearTurno.php" method="post">
+                    <fieldset>
+                        <label>DNI de paciente:</label>
+                        <input id="dni" type="text" name="dni" autocomplete="off"></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
+                         <label>Seleccione especialidad del médico:</label>
+                        <select id="especialidad" name="especialidad">
+                            <option value="">Seleccione Especialidad</option>
+                        <?php 
+
+                         while($especialidad = mysql_fetch_array($resultEsp)){
+                        ?>     
+                            <option value="<?php echo $especialidad["id"] ?>"> <?php echo $especialidad["nombre"]?></option>  
+
+                        <?php    
+                        }
+                        ?>
+                        </select>
+
+                         <br>
+                         <label>Seleccione Medico</label>
+                         <select id="medico" name="medico">
+                             <option value="">Ninguno</option>
+                         </select>
+                         <br>
+                         <div id="diasAtencion"></div> <!--  Mensaje con dias de atencion-->
+                         <label>Seleccione fecha turno</label>
+                            <input id="fechaturno" type="text" name="fechaturno" autocomplete="off">
+                         <br>
+                         <label>Seleccione turno</label>
+                         <select id="turno" name="turno">
+                             <option value="">Ninguno</option>
+                         </select>
+                         <br>
+
+                        <br><a id="botonCrear"class="btn btn-warning">Agregar Turno <i class="icon-plus icon-white"></i></a>
+                        <a class="btn" href="listarTurnosSecretaria.php">Volver</a>
+                    </fieldset>
+                </form>
+            </div>
         </div>        <!--Fin Container-->
     </body>        
     <footer>   

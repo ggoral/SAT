@@ -15,7 +15,7 @@ if(mysql_num_rows($result) != 0){
 }
 else{
 ?>
-    <span class="text-error"><small>Ingrese un número de DNI valido!  </small></span><i class=" icon-warning-sign"></i>
+    <span class="text-error">Ingrese un número de DNI valido!  </span><i class=" icon-warning-sign"></i>
     <!--<a class="btn btn-danger btn-small" href="#"> Agregar Paciente</a><p></p> -->
 <?php
 }
