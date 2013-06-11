@@ -31,7 +31,7 @@ background-repeat: repeat;
       <!-- Fin NavBar-->
     <div class="container">
             <h3>
-                Administrar Turnos <br>
+                Turnos para el día de hoy <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br>
                 <a href="altaTurno.php">
                     <button class="btn btn-warning btn-primary">
                     Nuevo turno <i class="icon-plus icon-white"></i>
@@ -57,10 +57,11 @@ background-repeat: repeat;
                         INNER JOIN medico AS m ON ( m.id = t.medico_id ) 
                         INNER JOIN paciente AS pa ON ( pa.id = t.paciente_id ) 
                         INNER JOIN persona AS p1 ON ( p1.id = m.id ) 
-                        INNER JOIN persona AS p2 ON ( p2.id = pa.id ) 
+                        INNER JOIN persona AS p2 ON ( p2.id = pa.id )
+                        WHERE DAY(t.fecha_desde) = DAY(CURRENT_DATE())
                         ORDER BY t.fecha_desde";
               $result=  mysql_query($query);
-              while ($row = mysql_fetch_array($result)) {
+              while ($row = mysql_fetch_array($result) or die(mysql_error())) {
                   $fechayhora= new \DateTime($row["fecha_desde"]);
                   if($row["eliminado"] == 0){
                   ?>

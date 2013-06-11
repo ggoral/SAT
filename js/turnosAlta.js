@@ -44,7 +44,10 @@ $("#botonCrear").click(function(){
     var añoAct = new Date().getFullYear();
     var mesAct = new Date().getMonth();
     var diaAct = new Date().getDate();
-    $("#fechaturno").datepicker({minDate: new Date( añoAct, mesAct, diaAct)}); //HABILITA EL DATE PICKER    //
+    $("#fechaturno").datepicker({
+        minDate: new Date( añoAct, mesAct, diaAct),
+        maxDate: new Date(añoAct, mesAct, diaAct + 7)
+    }); //HABILITA EL DATE PICKER    //
     //-----------------------
     
     //AJAX PARA TRARME TODOS LOS TURNOS DE UN MEDICO
