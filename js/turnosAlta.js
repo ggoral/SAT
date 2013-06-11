@@ -78,6 +78,21 @@ $("#botonCrear").click(function(){
         $("#mensajePaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
     });
 
+    $("#dni").focusout(function() { //deberia Cargar las obras sociales
+        var data = "dni=" + $("#dni").val();
+        $.ajax({
+            type: "POST",
+            url: "procesarObrasSociales.php",
+            async: false,
+            data: data,
+            success: function(html) {
+                $("#obraSocial").empty();
+                $("#obraSocial").append(html);
+            }
+        });
+
+    });
+
 //-----------------------
 
 

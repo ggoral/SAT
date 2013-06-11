@@ -9,6 +9,7 @@ $especialidad_id = $_POST["especialidad"];
 $medico_id = $_POST["medico"];
 $fechaturno = $_POST["fechaturno"];
 $horaturno = $_POST["turno"];
+$obrasocial = $_POST["obraSocial"];
 
 
 $sqlPaciente = "select * from persona as p
@@ -26,8 +27,8 @@ $fechaHora = $objetoFechaHora->format("Y-m-d H:i:s");
 $objetoFechaHora->modify('+30 minutes');
 
 
-$sql = "Insert into turno (id,medico_id,paciente_id,fecha_desde,fecha_hasta,asistencia,eliminado) Values
-    (null,$medico_id,".$paciente["id"].",'".$fechaHora."','".$objetoFechaHora->format("Y-m-d H:i:s")."',0,0)";
+$sql = "Insert into turno (id,medico_id,paciente_id,obrasocial_id,fecha_desde,fecha_hasta,asistencia,eliminado) Values
+    (null,$medico_id,".$paciente["id"].",$obrasocial,'".$fechaHora."','".$objetoFechaHora->format("Y-m-d H:i:s")."',0,0)";
 
 mysql_query($sql);
         

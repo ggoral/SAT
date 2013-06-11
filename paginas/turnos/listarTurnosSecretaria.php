@@ -42,7 +42,8 @@ background-repeat: repeat;
             <thead>  
               <tr>   
                 <th id="centrado">Paciente <a href="#"><i class="icon-chevron-down"></i></a></th>  
-                <th id="centrado">Médico <a href="#"><i class="icon-chevron-down"></i></a></th>  
+                <th id="centrado">Médico <a href="#"><i class="icon-chevron-down"></i></a></th>
+                <th id="centrado">Obra Social<a href="#"><i class="icon-chevron-down"></i></a></th>
                 <th id="centrado">Horario <a href="#"><i class="icon-chevron-down"></i></a></th>
                 <th id="centrado">Asistencia</th>
                 <th id="centrado">Acciones</th> 
@@ -52,12 +53,14 @@ background-repeat: repeat;
               <?php 
               $query = "SELECT p2.nombre as nomPaciente,p1.nombre as nomMedico,
                         p2.apellido as apePaciente, p1.apellido as apeMedico,
-                        t.fecha_desde, t.asistencia, t.id, t.eliminado  
+                        t.fecha_desde, t.asistencia, t.id, t.eliminado , os.nombre as osocial 
                         FROM turno t
                         INNER JOIN medico AS m ON ( m.id = t.medico_id ) 
                         INNER JOIN paciente AS pa ON ( pa.id = t.paciente_id ) 
                         INNER JOIN persona AS p1 ON ( p1.id = m.id ) 
                         INNER JOIN persona AS p2 ON ( p2.id = pa.id )
+                        INNER JOIN pacientes_obrasociales as po ON (po.paciente_id = pa.id)
+                        INNER JOIN obrasocial as os ON (os.id = po.obrasocial_id)
                         WHERE DAY(t.fecha_desde) = DAY(CURRENT_DATE())
                         ORDER BY t.fecha_desde";
               $result=  mysql_query($query);
@@ -66,8 +69,9 @@ background-repeat: repeat;
                   if($row["eliminado"] == 0){
                   ?>
                 <tr class='<?php $clase=($row["asistencia"] == false)?'warning':'success';echo $clase; ?>'> 
-                <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>     
+                <td><?php echo $row["nomPaciente"]." ".$row["apePaciente"]?></td>  
                 <td><?php echo $row["nomMedico"]." ".$row["apeMedico"]?></td>  
+                <td><?php echo $row["osocial"]?></td>
                 <td class ="span2" id="centrado"><?php echo $fechayhora->format("d-m-Y H:i:s")?></td>
                 <td class ="span2" id="centrado"><?php $mensaje=($row["asistencia"] == false)?'Pendiente':'Asistido';echo $mensaje;?></td>
                 <td class ="span3" id="centrado">
