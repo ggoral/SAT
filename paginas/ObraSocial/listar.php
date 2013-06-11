@@ -58,18 +58,28 @@
               $query = "Select * from obrasocial where eliminado = false";
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {
-                
+                  $estilo = "";
+                  if ($row["habilitada"] == 0) {$estilo = "error";}
               ?>
-              <tr>  
+              <tr class="<?php echo $estilo ?>">  
                 <td id="centrado" class="span3"><?php echo $row["nombre"]; ?></td>  
-                <td id="centrado" class="span2">
+                <td id="centrado" class="span7">
         
                     <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarOS.php?id=<?php echo $row["id"]?>">
                         Borrar <i class="icon-remove"></i>
                     </a>
                     <a class="btn btn-success btn-small" href="modificar.php?id=<?php echo $row["id"]?>">
-                        Modificar <i class="icon-ok"></i> 
+                        Modif. Nombre <i class="icon-pencil"></i> 
                     </a>
+                    <?php if ($row["habilitada"] == 0){?>
+                        <a class="btn btn-info btn-small" href="habilitarOs.php?id=<?php echo $row["id"]?>">
+                            Habilitar <i class="icon-ok"></i> 
+                        </a>
+                    <?php }else {?>
+                        <a class="btn btn-info btn-small" href="deshabilitarOs.php?id=<?php echo $row["id"]?>">
+                           Deshabilitar <i class="icon-remove"></i> 
+                        </a>
+                    <?php }?>
         
                 </td>
 
