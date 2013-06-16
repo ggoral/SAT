@@ -48,9 +48,9 @@
                         <input id="dni" type="text" name="dni" autocomplete="off"></input><div id="mensajePaciente"></div><!--  mensaje de error cuando no esta el paciente-->
                         <label>Seleccione Obra Social:</label> 
                         <select id="obraSocial" name="obraSocial">
-                            <option value="">Seleccione obra social</option>
+                            <option value="0">Seleccione obra social</option>
                         </select>
-                        
+                        <div id="mensajeObraSocial"></div>
                         <label>Seleccione especialidad del médico:</label>
                         <select id="especialidad" name="especialidad">
                             <option value="">Seleccione Especialidad</option>

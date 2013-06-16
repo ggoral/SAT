@@ -10,8 +10,8 @@ $query = "
     WHERE per.dni =$dni
     ";
 $result = mysql_query($query);
-?>
-<option value=""> Ninguna </option>
+?> 
+<option value="0"> Ninguna </option>
 <?php
 while ($row = mysql_fetch_array($result) or die (mysql_error())){?>
     <option value="<?php echo $row["id"] ?>"> <?php echo $row["nombre"] ?> </option>

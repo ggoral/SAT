@@ -5,6 +5,7 @@ $("#especialidad").attr("disabled","disabled");
 $("#medico").attr("disabled","disabled");
 $("#fechaturno").attr("disabled","disabled");
 $("#turno").attr("disabled","disabled");
+$("#obraSocial").attr("disabled","disabled");
 //-----------------------
 //
 //VALIDAR QUE TODO TENGA VALOR Y SUBMIT
@@ -48,8 +49,82 @@ $("#botonCrear").click(function(){
         minDate: new Date( añoAct, mesAct, diaAct),
         maxDate: new Date(añoAct, mesAct, diaAct + 7)
     }); //HABILITA EL DATE PICKER    //
-    //-----------------------
+    //-----------------------  
+//----------------------------------------------------------------SE INGRESA DNI 
+ $('#dni').keyup(function () { // EVITA QUE SE INGRESEN LETRAS
+  this.value = this.value.replace(/[^0-9]/g,''); 
+  $("#obraSocial").removeAttr("disabled");
+});
     
+    $("#dni").keyup(function() { // SE VALIDA QUE EL DNI EXISTA EN LA BASE DE DATOS
+        $("#mensajePaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
+    });
+
+    $("#dni").focusout(function() { //Carga las obras sociales del paciente.
+        var data = "dni=" + $("#dni").val();
+        $.ajax({
+            type: "POST",
+            url: "procesarObrasSociales.php",
+            async: false,
+            data: data,
+            success: function(html) {
+                $("#obraSocial").empty();
+                $("#obraSocial").append(html);
+            }
+        });
+
+    });
+ //------------------------------------------------------------------SE ELIJE OBRA SOCIAL
+    $("#obraSocial").change(function(){
+       $("#especialidad").removeAttr("disabled"); //reactiva especialidades
+       var data = "osocial=" + $("#obraSocial").val();
+        $.ajax({
+            type: "POST",
+            url: "verificarObraSocial.php",
+            async: false,
+            data: data,
+            success: function(html) {
+                $("#mensajeObraSocial").empty();
+                $("#mensajeObraSocial").append(html);
+            }
+        });
+       
+    });
+    
+//------------------------------------------------------------------SE ELIJE ESPECIALIDAD
+        //FUNCION AJAX DE ESPECIALIDAD-MEDICO
+    $("#especialidad").change(function() {
+          $("#medico").removeAttr("disabled"); //REACTIVA MEDICOS
+        var data = "especialidad=" + $("#especialidad").val()+"&obraSocial="+$("#obraSocial").val();
+        $.ajax({
+            type: "POST",
+            url: "procesarEspecialidad.php",
+            async: false,
+            data: data,
+            success: function(html) {
+                $("#medico").empty();
+                $("#medico").append(html);
+            }
+        });
+
+    });
+//-----------------------------------------------------------------------SE ELIJE MEDICO 
+$("#medico").change(function(){ // REACTIVA FECHAS y muestra dias 
+    $("#fechaturno").removeAttr("disabled");
+        var data = "medico=" + $("#medico").val();
+        $.ajax({
+            type: "POST",
+            url: "procesarDiasAtencion.php",
+            async: false,
+            data: data,
+            success: function(html) {
+                $("#diasAtencion").empty();
+                $("#diasAtencion").append(html);
+            }
+        });
+
+    });
+//------------------------------------------------------------------SE ELIJE FECHA EN EL DATEPICKER
     //AJAX PARA TRARME TODOS LOS TURNOS DE UN MEDICO
     $("#fechaturno").change(function() {
         $("#turno").removeAttr("disabled");  //REACTIVA TURNOS
@@ -66,69 +141,10 @@ $("#botonCrear").click(function(){
         });
     });
 
-//-----------------------
-    //FUNCION QUE VALIDA EL PACIENTE
-    
- $('#dni').keyup(function () { // EVITA QUE SE INGRESEN LETRAS
-  this.value = this.value.replace(/[^0-9]/g,''); 
-  $("#especialidad").removeAttr("disabled");
-});
-    
-    $("#dni").keyup(function() { // SE VALIDA QUE EL DNI EXISTA EN LA BASE DE DATOS
-        $("#mensajePaciente").load("procesarAltaTurno.php" + '?dni=' + $("#dni").val());
-    });
-
-    $("#dni").focusout(function() { //deberia Cargar las obras sociales
-        var data = "dni=" + $("#dni").val();
-        $.ajax({
-            type: "POST",
-            url: "procesarObrasSociales.php",
-            async: false,
-            data: data,
-            success: function(html) {
-                $("#obraSocial").empty();
-                $("#obraSocial").append(html);
-            }
-        });
-
-    });
-
-//-----------------------
 
 
-    //FUNCION AJAX DE ESPECIALIDAD-MEDICO
-    $("#especialidad").change(function() {
-          $("#medico").removeAttr("disabled"); //REACTIVA MEDICOS
-        var data = "especialidad=" + $("#especialidad").val()+"&dni="+$("#dni").val();
-        $.ajax({
-            type: "POST",
-            url: "procesarEspecialidad.php",
-            async: false,
-            data: data,
-            success: function(html) {
-                $("#medico").empty();
-                $("#medico").append(html);
-            }
-        });
 
-    });
 
-//-----------------------
-$("#medico").change(function(){ // REACTIVA FECHAS y muestra dias 
-    $("#fechaturno").removeAttr("disabled");
-        var data = "medico=" + $("#medico").val();
-        $.ajax({
-            type: "POST",
-            url: "procesarDiasAtencion.php",
-            async: false,
-            data: data,
-            success: function(html) {
-                $("#diasAtencion").empty();
-                $("#diasAtencion").append(html);
-            }
-        });
 
-    });
-//-----------------------
 
 }); //FIN DOCUMENT READY

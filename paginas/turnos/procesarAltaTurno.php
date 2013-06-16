@@ -17,6 +17,9 @@ else{
 ?>
     <span class="label label-important">Ingrese un número de DNI valido!  <i class=" icon-warning-sign icon-white"></i></span>
     <!--<a class="btn btn-danger btn-small" href="#"> Agregar Paciente</a><p></p> -->
+    <script language="Javascript">
+           $("#obraSocial").attr("disabled","disabled");
+       </script>
 <?php
 }
 ?>

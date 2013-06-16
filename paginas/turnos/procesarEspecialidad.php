@@ -2,22 +2,21 @@
 include '../conectar.php';
 
 $especialidad_id = $_POST["especialidad"];
-$paciente_dni = $_POST["dni"];
+$obraSocial = $_POST["obraSocial"];
 
 // ESTA CONSULTA ESTA HECHA DE ESTA MANERA PARA PODER TRAER TODOS LOS MEDICOS QUE POSEEN LA MISMA OBRA SOCIAL QUE EL PACIENTE
 
 
-$sql = "select DISTINCT(m.id),pm.nombre,pm.apellido from medico as m
-        inner join persona as pm on(pm.id = m.id)
-        inner join medicos_especialidades as me on( me.medico_id = m.id)
-        inner join medicos_obrasociales as mo on(mo.medico_id = m.id)
-        inner join obrasocial as om on(om.id = mo.obrasocial_id)
-        inner join pacientes_obrasociales as po on (po.obrasocial_id = mo.obrasocial_id)
-        inner join paciente as p on(po.paciente_id = p.id)
-        inner join persona as pp on(pp.id = p.id)
-        where om.eliminado = false
-        and pp.dni = '".$paciente_dni."'
-        and me.especialidad_id =".$especialidad_id;
+$sql = "SELECT DISTINCT(m.id), p.nombre, p.apellido 
+        FROM medico AS m
+        INNER JOIN persona as p ON (p.id = m.id)
+        INNER JOIN medicos_especialidades as me ON (me.medico_id = m.id)
+        INNER JOIN medicos_obrasociales as mo ON (mo.medico_id = m.id)
+        WHERE p.eliminado = 0 AND 
+        mo.obrasocial_id = $obraSocial AND
+        me.especialidad_id = $especialidad_id
+";
+
 
 
 $resultado = mysql_query($sql);
