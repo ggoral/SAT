@@ -76,8 +76,7 @@
               </ul>
             </div>    -->    
         </div>        <!--Fin Container-->
-    </body>        
-    
     <footer class="footer">   
     </footer>
+  </body>        
 </html>

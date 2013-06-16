@@ -16,4 +16,7 @@ h3{
 #centrado{
     text-align: center;
 }
-
+.footer{
+    height: 200px;
+    background-color: #0088cc;
+}
