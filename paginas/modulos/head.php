@@ -21,3 +21,11 @@
 <!--DATE PICKER-->
 <script type="text/javascript" src="/SAT/js/jquery-ui-1.10.3.custom.js"></script>
 <link href="/SAT/css/redmond/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
+
+   <style type="text/css"> 
+    body { 
+    background: url('../../img/background.png');
+    background-repeat: repeat;
+    } 
+    
+</style> 

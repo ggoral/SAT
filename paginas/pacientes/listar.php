@@ -1,7 +1,13 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+<?php include "../conectar.php" ?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <?php include "../modulos/head.php" ?>  
+    <title>Pacientes</title>
+  </head>
+  <body>     
+    </body>        
+    
+    <footer class="footer">   
+    </footer>
+</html>
