@@ -13,6 +13,8 @@ $email = $_GET["email"];
 $telefono = $_GET["telefono"];
 $matricula = $_GET["matricula"];
 $idEspecialidad = $_GET["especialidad"];
+$idObraSocial = $_GET["obra"];
+
 
 $sqlExiste = "Select * from medico inner join persona on( medico.id = persona.id) where matricula ='$matricula' and eliminado = false";
 $resultadoExiste = mysql_query($sqlExiste);
@@ -37,6 +39,11 @@ mysql_query($insertoMedico);
 //Inserto el medico en la tabla medicos_especialidades
 $insertoMedicoEnEspecialidad = "insert into medicos_especialidades (medico_id, especialidad_id) values ((select id from persona where dni =  '$dni'), '$idEspecialidad')";
 mysql_query($insertoMedicoEnEspecialidad);
+
+//Inserto el medico en la tabla medicos_obrassociales
+$insertoMedicoEnObraSocial = "insert into medicos_obrasociales (medico_id, obrasocial_id) values ((select id from persona where dni =  '$dni'), '$idObraSocial')";
+mysql_query($insertoMedicoEnObraSocial);
+
 
 header('location: listar.php');
     

@@ -28,17 +28,17 @@ $(document).ready(function(){
         campoTelefono = document.getElementById("telefono").value;
         campoEmail = document.getElementById("email").value;
         campoEspecialidad= document.getElementById("especialidad").value;
-        
+        campoObraSocial= document.getElementById("obra").value;
         
         if (campoMatricula.length === 0 || isNaN(campoMatricula) || /^\s+$/.test(campoMatricula)) {       
             alert ('Ingrese una matricula valida');
             return false;          
         } 
-         if (campoNombre.length === 0 || /^\s+$/.test(campoNombre) || !campoNombre.match(/[a-z]/)) {       
+         if (campoNombre.length === 0 || /^\s+$/.test(campoNombre) || !campoNombre.match(/[A-Z]/)) {       
             alert ('Ingrese un nombre valido');
             return false;          
         } 
-         if (campoApellido.length === 0 || /^\s+$/.test(campoApellido) || !campoApellido.match(/[a-z]/)) {       
+         if (campoApellido.length === 0 || /^\s+$/.test(campoApellido) || !campoApellido.match(/[A-Z]/)) {       
             alert ('Ingrese un apellido valido');
             return false;          
         } 
@@ -50,7 +50,7 @@ $(document).ready(function(){
             alert ('Seleccione una Provincia');
             return false;          
         } 
-          if (campoLocalidad.length === 0 || /^\s+$/.test(campoLocalidad) || !campoLocalidad.match(/[a-z]/)) {       
+          if (campoLocalidad.length === 0 || /^\s+$/.test(campoLocalidad) || !campoLocalidad.match(/[A-Z]/)) {       
             alert ('Ingrese una localidad valida');
             return false;          
         } 
@@ -72,6 +72,10 @@ $(document).ready(function(){
         } 
            if ( campoEspecialidad.length === 0 ) {       
             alert ('Seleccione una especialidad');
+            return false;          
+        } 
+            if ( campoObraSocial.length === 0 ) {       
+            alert ('Seleccione una obra social');
             return false;          
         } 
         return true;
