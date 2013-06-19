@@ -63,7 +63,7 @@
                     <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarMedico.php?id=<?php echo $row["id"]?>">
                         Borrar <i class="icon-remove"></i>
                     </a>
-                    <a class="btn btn-success btn-small" href="modificarPersona.php?id=<?php echo $row["id"]?>">
+                    <a class="btn btn-success btn-small" href="modificar.php?id=<?php echo $row["id"]?>">
                         Modificar <i class="icon-pencil"></i> 
                     </a>          
                 </td>
