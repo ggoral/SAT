@@ -34,10 +34,12 @@
             </thead>  
             <tbody>   
               <?php 
-              $query = "SELECT DISTINCT (pe.id),pe.dni,pe.apellido,pe.nombre,pe.provincia,pe.localidad,pe.calle,pe.numero,
+              $query = "SELECT DISTINCT (pe.id),pe.dni,pe.apellido,pe.nombre,pro.nombre as provincia,l.nombre as localidad,pe.calle,pe.numero,
                         pe.telefono,pe.email, pe.eliminado
                         FROM persona as pe
                         INNER JOIN paciente as pa ON (pa.id = pe.id)
+                        INNER JOIN localidad as l ON (pe.localidad_id = l.id)
+                        INNER JOIN provincia as pro ON (pro.id = l.provincia_id)
                         ORDER BY pe.dni
                 ";
               $result=  mysql_query($query);
