@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Obras Sociales</title>
+    <title>Especialidades</title>
     <?php include "../modulos/head.php" ?>
   </head>
   <body>     
@@ -11,14 +11,14 @@
      <?php include "../modulos/navBar.php" ?>
       <!-- Fin NavBar-->
     <div class="container">
-            <h3> Especialidad <br>
+            <h3> Especialidades <br>
                 
             </h3>
         <div class="offset3">
             <div class="span5"id="centrado">
             <a href="/SAT/paginas/Especialidad/alta.php">
                     <button class="btn btn-warning btn-primary">
-                    Nueva Obra Social <i class="icon-plus icon-white"></i>
+                    Nueva Especialidad <i class="icon-plus icon-white"></i>
                     </button>
                 </a>
             </div>

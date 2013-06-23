@@ -4,20 +4,18 @@ include '../conectar.php';
 
 $nombre = $_GET["nombre"];
 
-$sqlExiste = "Select * from obrasocial where nombre ='".$nombre."' and eliminado = false";
+$sqlExiste = "Select * from especialidad where nombre ='".$nombre."' and eliminado = false";
 $resultadoExiste = mysql_query($sqlExiste);
-$obrasocial = mysql_fetch_array($resultadoExiste);
+$especialidad = mysql_fetch_array($resultadoExiste);
 
 
-if($obrasocial){
+if($especialidad){
     echo "estoy en el if";
     header('location: alta.php?errornombre='.$nombre);
     exit;
 }
-//echo "estoy fuera del if";exit;
-$consulta = "INSERT INTO `obrasocial`(`id`, `nombre`) VALUES (null,'$nombre')";
 
-//echo $consulta;exit;
+$consulta = "INSERT INTO `especialidad`(`id`, `nombre`,`habilitada`) VALUES (null,'$nombre',true)";
 
 mysql_query($consulta);
 

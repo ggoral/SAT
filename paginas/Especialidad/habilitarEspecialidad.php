@@ -1,7 +1,7 @@
 <?php
 include '../conectar.php';
-$idOS = $_GET['id'];
-$query =  "UPDATE `obrasocial` SET `habilitada`='1' WHERE id = $idOS";
+$idEspecialidad = $_GET['id'];
+$query =  "UPDATE `especialidad` SET `habilitada`='1' WHERE id = $idEspecialidad";
 mysql_query($query);
 header('location: listar.php');
 ?>

@@ -8,7 +8,7 @@
                                 <li class="<?php echo ($activo == "paciente") ? 'active' : ''; ?>"><a href="/SAT/paginas/pacientes/listar.php">Pacientes</a></li><li class="divider-vertical"></li>
                                 <li class="<?php echo ($activo == "medico") ? 'active' : ''; ?>"><a href="/SAT/paginas/medicos/listar.php">Medicos</a></li><li class="divider-vertical"></li>
                                 <li class="<?php echo ($activo == "obrasocial") ? 'active' : ''; ?>"><a href="/SAT/paginas/ObraSocial/listar.php" >Obras Sociales</a></li><li class="divider-vertical"></li>
-                                <li class="<?php echo ($activo == "especialidad") ? 'active' : ''; ?>"><a href="#">Especialidades</a></li><li class="divider-vertical"></li>
+                                <li class="<?php echo ($activo == "especialidad") ? 'active' : ''; ?>"><a href="/SAT/paginas/Especialidad/listar.php">Especialidades</a></li><li class="divider-vertical"></li>
                             </ul>
                         </div>
                     </div>
