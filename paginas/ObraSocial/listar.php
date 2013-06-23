@@ -1,4 +1,5 @@
 <?php include "../conectar.php" ?>
+<?php $activo = "obrasocial"?>
 <!DOCTYPE html>
 <html>
   <head>

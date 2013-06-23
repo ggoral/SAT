@@ -1,4 +1,5 @@
 <?php include "../conectar.php" ?>
+<?php $activo = "turno"?>
 <!DOCTYPE html>
 <html>
   <head>
