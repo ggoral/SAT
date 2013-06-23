@@ -1,15 +1,24 @@
 <?php include "../conectar.php" ?>
 <?php $activo = "especialidad"?>
 
+    
+<?php 
+// ESTAS LINEAS CAPTURA LOS PARAMETROS POR GET PARA MANTENER EL FILTRO Y LAS PAGINAS
 
-
+$filtro =" ";
+if (array_key_exists('nombre', $_GET)) {
+    $nombre = $_GET['nombre'];
+    $filtro =" and nombre like '%".$nombre."%'";
+    $linkfiltro = "&nombre=".$nombre;
+}
+?>
 
 <?php 
 // ESTE CODIGO ES ESCENCIAL PARA QUE FUNCIONE EL PAGINADOR
 // LA QUERY SIEMPRE TIENE QUE IR PRIMERO
 // EL MISMO CALCULADOR NOS VA A DEVOLVER EL RESULT PARA PROCESAR!
 
-$query = "Select * from especialidad where eliminado = false";
+$query = "Select * from especialidad where eliminado = false".$filtro;
 $tam_pag = 3;
 include "../modulos/CalculadorPaginas.php";
 
