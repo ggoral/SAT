@@ -1,5 +1,22 @@
 <?php include "../conectar.php" ?>
 <?php $activo = "especialidad"?>
+
+
+
+
+<?php 
+// ESTE CODIGO ES ESCENCIAL PARA QUE FUNCIONE EL PAGINADOR
+// LA QUERY SIEMPRE TIENE QUE IR PRIMERO
+// EL MISMO CALCULADOR NOS VA A DEVOLVER EL RESULT PARA PROCESAR!
+
+$query = "Select * from especialidad where eliminado = false";
+$tam_pag = 3;
+include "../modulos/CalculadorPaginas.php";
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,8 +49,8 @@
             </thead>
             <tbody>   
               <?php 
-              $query = "Select * from especialidad where eliminado = false";
-              $result=  mysql_query($query);
+              //$query = "Select * from especialidad where eliminado = false";
+              //$result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {
                   $estilo = "";
                   if ($row["habilitada"] == 0) {$estilo = "error";}
@@ -67,18 +84,11 @@
             </tbody>  
           </table>
         </div>
-            <!--
-            <div class="pagination" align="center">
-              <ul>
-                <li><a href="#">Anterior</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">Siguiente</a></li>
-              </ul>
-            </div>
-            -->
+        
+        
+        <?php include "../modulos/paginas.php" ?>
+       
+          
         </div>        <!--Fin Container-->
     </body>
          
