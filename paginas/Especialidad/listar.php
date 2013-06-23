@@ -32,7 +32,7 @@
             </thead>
             <tbody>   
               <?php 
-              $query = "Select * from obrasocial where eliminado = false";
+              $query = "Select * from especialidad where eliminado = false";
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {
                   $estilo = "";
@@ -42,18 +42,18 @@
                 <td id="centrado" class="span3"><?php echo $row["nombre"]; ?></td>  
                 <td id="centrado" class="span7">
         
-                    <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarOS.php?id=<?php echo $row["id"]?>">
+                    <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarEspecialidad.php?id=<?php echo $row["id"]?>">
                         Borrar <i class="icon-remove"></i>
                     </a>
                     <a class="btn btn-success btn-small" href="modificar.php?id=<?php echo $row["id"]?>">
                         Modif. Nombre <i class="icon-pencil"></i> 
                     </a>
                     <?php if ($row["habilitada"] == 0){?>
-                        <a class="btn btn-info btn-small" href="habilitarOs.php?id=<?php echo $row["id"]?>">
+                        <a class="btn btn-info btn-small" href="habilitarEspecialidad.php?id=<?php echo $row["id"]?>">
                             Habilitar <i class="icon-ok"></i> 
                         </a>
                     <?php }else {?>
-                        <a class="btn btn-info btn-small" href="deshabilitarOs.php?id=<?php echo $row["id"]?>">
+                        <a class="btn btn-info btn-small" href="deshabilitarEspecialidad.php?id=<?php echo $row["id"]?>">
                            Deshabilitar <i class="icon-remove"></i> 
                         </a>
                     <?php }?>
