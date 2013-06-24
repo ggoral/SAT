@@ -1,4 +1,11 @@
 <?php include "../conectar.php" ?>
+<?php session_start();
+if(!isset($_SESSION['usuario'])){
+    header("location:/SAT/login.php");
+    exit;
+}
+
+?>
 <?php $activo = "especialidad"?>
 
     
