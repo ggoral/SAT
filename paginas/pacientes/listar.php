@@ -13,7 +13,7 @@
       <div class="container">
             <h3>
                 Turnos para el día de hoy <br>
-                <a href="#">
+                <a href="/SAT/paginas/pacientes/alta.php">
                     <button class="btn btn-warning btn-primary">
                     Nuevo Paciente <i class="icon-plus icon-white"></i>
                     </button>
