@@ -1,4 +1,5 @@
 <?php include "../conectar.php" ?>
+<?php $activo = "paciente" ?>
 <!DOCTYPE html>
 <html>
   <head>

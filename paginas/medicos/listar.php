@@ -1,4 +1,5 @@
 <?php include "../conectar.php" ?>
+<?php $activo = "medico" ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,13 +39,15 @@
             </thead>
             <tbody>   
               <?php 
-              $query = "SELECT medico.id, persona.nombre AS nombreP, apellido, matricula, localidad, especialidad.nombre AS nombreE, obrasocial.nombre AS obra
+              $query = "SELECT medico.id, persona.nombre AS nombreP, apellido, matricula,l.nombre as localidad, especialidad.nombre AS nombreE, obrasocial.nombre AS obra
                         FROM medico
                         INNER JOIN persona ON ( medico.id = persona.id ) 
                         INNER JOIN medicos_especialidades ON ( medico.id = medicos_especialidades.medico_id ) 
                         INNER JOIN especialidad ON ( medicos_especialidades.especialidad_id = especialidad.id )
                         INNER JOIN medicos_obrasociales ON (medicos_obrasociales.medico_id = medico.id)
                         INNER JOIN obrasocial ON (medicos_obrasociales.obrasocial_id = obrasocial.id)
+                        INNER JOIN localidad as l ON (persona.localidad_id = l.id)
+                        INNER JOIN provincia as pro ON (pro.id = l.provincia_id)
                         WHERE persona.eliminado = false";
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {

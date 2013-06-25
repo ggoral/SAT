@@ -89,6 +89,7 @@
         </div>        <!--Fin Container-->
     </body>        
     <footer class="footer">
+        Contenido Footer
     </footer>
     
 </html>
