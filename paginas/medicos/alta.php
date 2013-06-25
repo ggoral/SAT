@@ -1,4 +1,5 @@
 <?php 
+$activo = "medico";
     if(isset($_GET["errormatricula"])){
         $Campomatricula = $_GET["errormatricula"];
     }else{
