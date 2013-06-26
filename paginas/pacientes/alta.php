@@ -26,9 +26,8 @@ include '../conectar.php';
           <fieldset>
                 <br>
                 <h3>Alta de Paciente</h3>   
-               <form class="well" id="formulario" action="#" method="GET" onsubmit="" >
-                    <input id="dni" type="text" name="dni" placeholder="DNI" autocomplete="off">
-                    <br> 
+               <form class="well" id="formularioAltaPaciente" action="procesarAltaPaciente.php" method="GET">
+                    <input id="dni" type="text" name="dni" placeholder="DNI" autocomplete="off"><div id="mensajeDNI"></div>
                     <input id="nombre" type="text" name="nombre" placeholder="Nombre" onKeyUp="this.value=this.value.toUpperCase(); "autocomplete="off">
                     <br>
                     <input id="apellido" type="text" name="apellido" placeholder="Apellido" onKeyUp="this.value=this.value.toUpperCase();"autocomplete="off">
@@ -60,30 +59,17 @@ include '../conectar.php';
                         <option value="TUCUMAN">Tucuman</option>
                     </select>
                     <br>
-                    <input id="localidad" type="text" name="localidad" placeholder="Localidad" onKeyUp="this.value=this.value.toUpperCase();"<br>
+                    <select id ="localidad" name='localidad'>
+                        <option value="">Seleccionar localidad</option>
+                    </select>
                     <br>
-                    <input id="calle" type="text" name="calle" placeholder="Calle" onKeyUp="this.value=this.value.toUpperCase();"<br>
+                    <input id="calle" type="text" name="calle" placeholder="Calle" onKeyUp="this.value=this.value.toUpperCase();"autocomplete="off"<br>
                     <br>
-                    <input id="numero" type="text" name="numero" placeholder="Numero de casa"<br>
+                    <input id="numero" type="text" name="numero" placeholder="Numero de casa"autocomplete="off"<br>
                     <br>
-                    <input id="telefono" type="text" name="telefono" placeholder="Telefono"<br>
+                    <input id="telefono" type="text" name="telefono" placeholder="Telefono"autocomplete="off"<br>
                     <br>
-                    <input id="email" type="text" name="email" placeholder="E-mail" <br>
-                    <br>                                
-                         <select id="especialidad" name="especialidad">
-                            <option value="">Seleccione Especialidad</option>
-                        <?php 
-                        $queryEsp = "select * from especialidad";
-                        $resEsp = mysql_query($queryEsp);
-                        while($especialidad = mysql_fetch_array($resEsp)){
-                        ?>     
-                            <option value="<?php echo $especialidad["id"] ?>"> <?php echo $especialidad["nombre"]?></option>  
-
-                        <?php    
-                        }
-                        ?>
-                        </select>
-                    <br>             
+                    <input id="email" type="text" name="email" placeholder="E-mail"autocomplete="off" <br>            
                       <select id="obra" name="obra">
                             <option value="">Seleccione Obra Social</option>
                         <?php 
@@ -99,7 +85,7 @@ include '../conectar.php';
                         </select>
                     <br>
                     <br>
-                    <button class="btn btn-warning" type="submit">Agregar <i class="icon-plus icon-white"></i></button>
+                    <a href='#'id="botonCrear"class="btn btn-warning">Agregar <i class="icon-plus icon-white"></i></a>
                     <a class="btn" href="/SAT/paginas/medicos/listar.php">
                     Cancelar
                     </a>
