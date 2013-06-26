@@ -84,6 +84,7 @@ include '../conectar.php';
                         }
                         ?>
                         </select><br>
+                        <div id="nuevos"></div>
                         <a class='btn btn-mini btn-info' id="añadirOS">Agregar OS +</a><div id="masOS"></div>
                     <br>
                     <br>
