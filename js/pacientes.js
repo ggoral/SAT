@@ -35,6 +35,11 @@ $("#añadirOS").click(function(){
    }
 });  
 
+
+//Confirmar borrado-------------------------------------------------------------
+$("#borrar").click(function(){
+   confirm(); 
+});
     
 });
 
