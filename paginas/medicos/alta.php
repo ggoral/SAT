@@ -16,16 +16,17 @@ include '../conectar.php';
     <title>Medicos</title>
  
     <?php include "../modulos/head.php" ?>
-
-     <script>
+    
+    <script type="text/javascript" src="/SAT/js/medicoAlta.js"></script>
+    
+    <script>
     $(document).ready(function(){
         
-        
+        alert('algo');
         <?php
             if($Campomatricula != "")
                 echo "alert('Esta matricula ya existe')";
-        ?>
-                
+        ?>      
     });
     </script>
     
@@ -35,7 +36,7 @@ include '../conectar.php';
     background-repeat: repeat;
     } 
     
-</style> 
+    </style> 
   </head>
    
 
@@ -59,33 +60,22 @@ include '../conectar.php';
                     <input id="dni" type="text" name="dni" placeholder="DNI">
                     <br>              
                     <select id="provincia" name="provincia">
-                        <option value="">Seleccione Provincia</option>
-                        <option value="CAPITAL FEDERAL">Capital Federal</option>
-                        <option value="BUENOS AIRES">Buenos Aires</option>
-                        <option value="CATAMARCA">Catamarca</option>
-                        <option value="CORDOBA">Cordoba</option>
-                        <option value="CORRIENTES">Corrientes</option>
-                        <option value="CHACO">Chaco</option>
-                        <option value="CHUBUT">Chubut</option>
-                        <option value="ENTRE RIOS">Entre Rios</option>
-                        <option value="FORMOSA">Formosa</option>
-                        <option value="JUJUY">Jujuy</option>
-                        <option value="LA PAMPA">La Pampa</option>
-                        <option value="LA RIOJA">La Rioja</option>
-                        <option value="MENDOZA">Mendoza</option>
-                        <option value="MISIONES">Misiones</option>
-                        <option value="NEUQUEN">Neuquen</option>
-                        <option value="RIO NEGRO">Rio Negro</option>
-                        <option value="SALTA">Salta</option>
-                        <option value="SAN JUAN">San Juan</option>
-                        <option value="SAN LUIS">San Luis</option>
-                        <option value="SANTA CRUZ">Santa Cruz</option>
-                        <option value="SANTA FE">Santa Fe</option>
-                        <option value="TIERRA DEL FUEGO">Tierra Del Fuego</option>
-                        <option value="TUCUMAN">Tucuman</option>
+                        <option value="">Seleccione Provincia</option> 
+                         <?php 
+                        $queryPro = "select * from provincia";
+                        $resPro = mysql_query($queryPro);
+                        while($provincia = mysql_fetch_array($resPro)){
+                        ?>     
+                            <option value="<?php echo $provincia["id"] ?>"> <?php echo $provincia["nombre"]?></option>  
+
+                        <?php    
+                        }
+                        ?>
                     </select>
                     <br>
-                    <input id="localidad" type="text" name="localidad" placeholder="Localidad" onKeyUp="this.value=this.value.toUpperCase();"<br>
+                    <select id="localidad" name="localidad" >
+                        <option value="">Seleccione Localidad</option>
+                    </select>
                     <br>
                     <input id="calle" type="text" name="calle" placeholder="Calle" onKeyUp="this.value=this.value.toUpperCase();"<br>
                     <br>
