@@ -22,8 +22,7 @@ include '../conectar.php';
     
     <script>
     $(document).ready(function(){
-        
-        alert('algo');
+
         <?php
             if($Campomatricula != "")
                 echo "alert('Esta matricula ya existe')";

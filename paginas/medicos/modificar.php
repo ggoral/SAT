@@ -4,15 +4,18 @@ if (isset($_GET["errormatricula"])) {
 } else {
     $matricula = "";
 }
-
+$activo = "medico";
 include '../conectar.php';
+
 $idpersona = $_GET['id'];
-$sql = "Select medico.id, calle, especialidad.nombre AS nombreEsp, numero, telefono, email, persona.nombre AS nombreP, dni, apellido, provincia, matricula, localidad, especialidad.nombre AS nombreE, obrasocial.nombre AS obra FROM persona
+$sql = "Select medico.id, calle, especialidad.nombre AS nombreEsp, numero, telefono, email, persona.nombre AS nombreP, dni, apellido, provincia.nombre as provincia, matricula, localidad.id as localidad, especialidad.nombre AS nombreE, obrasocial.nombre AS obra FROM persona
         INNER JOIN medico ON ( medico.id = persona.id ) 
         INNER JOIN medicos_especialidades ON ( medico.id = medicos_especialidades.medico_id ) 
         INNER JOIN especialidad ON ( medicos_especialidades.especialidad_id = especialidad.id )
         INNER JOIN medicos_obrasociales ON (medicos_obrasociales.medico_id = medico.id)
         INNER JOIN obrasocial ON (medicos_obrasociales.obrasocial_id = obrasocial.id)
+        INNER JOIN localidad ON (persona.localidad_id = localidad.id)
+        INNER JOIN provincia ON (localidad.provincia_id = provincia.id)
         WHERE persona.id = $idpersona and persona.eliminado = false";
 $resultado = mysql_query($sql);
 $dato = mysql_fetch_array($resultado);
@@ -47,11 +50,14 @@ if (!$dato) {
             background-repeat: repeat;
         } 
 
-    </style> 
+    </style>
+        <script type="text/javascript" src="/SAT/js/medicoAlta.js"></script>
+        <script type="text/javascript" src="/SAT/js/validacionesGenericas.js"></script>
     </head>
 
 <body>
-    <!--NavBar-->
+       
+ <!--NavBar-->
      <?php include "../modulos/navBar.php" ?>
       <!-- Fin NavBar-->
       
@@ -101,37 +107,40 @@ if (!$dato) {
                             <div class="controls">  
                         <select id="provincia" name="provincia">
                         <option value="">Seleccione Provincia</option>
-                        <option value="CAPITAL FEDERAL" <?php if( $dato['provincia'] == 'CAPITAL FEDERAL' ){ echo 'selected'; } ?> >Capital Federal</option>
-                        <option value="BUENOS AIRES" <?php if( $dato['provincia'] == 'BUENOS AIRES' ){ echo 'selected'; } ?> >Buenos Aires</option>
-                        <option value="CATAMARCA" <?php if( $dato['provincia'] == 'CATAMARCA' ){ echo 'selected'; } ?>>Catamarca</option>
-                        <option value="CORDOBA" <?php if( $dato['provincia'] == 'CORDOBA' ){ echo 'selected'; } ?>>Cordoba</option>
-                        <option value="CORRIENTES" <?php if( $dato['provincia'] == 'CORRIENTES' ){ echo 'selected'; } ?>>Corrientes</option>
-                        <option value="CHACO" <?php if( $dato['provincia'] == 'CHACO' ){ echo 'selected'; } ?>>Chaco</option>
-                        <option value="CHUBUT" <?php if( $dato['provincia'] == 'CHUBUT' ){ echo 'selected'; } ?>>Chubut</option>
-                        <option value="ENTRE RIOS" <?php if( $dato['provincia'] == 'ENTRE RIOS' ){ echo 'selected'; } ?>>Entre Rios</option>
-                        <option value="FORMOSA" <?php if( $dato['provincia'] == 'FORMOSA' ){ echo 'selected'; } ?>>Formosa</option>
-                        <option value="JUJUY" <?php if( $dato['provincia'] == 'JUJUY' ){ echo 'selected'; } ?>>Jujuy</option>
-                        <option value="LA PAMPA" <?php if( $dato['provincia'] == 'LA PAMPA' ){ echo 'selected'; } ?>>La Pampa</option>
-                        <option value="LA RIOJA" <?php if( $dato['provincia'] == 'LA RIOJA' ){ echo 'selected'; } ?>>La Rioja</option>
-                        <option value="MENDOZA" <?php if( $dato['provincia'] == 'MENDOZA' ){ echo 'selected'; } ?>>Mendoza</option>
-                        <option value="MISIONES" <?php if( $dato['provincia'] == 'MISIONES' ){ echo 'selected'; } ?>>Misiones</option>
-                        <option value="NEUQUEN" <?php if( $dato['provincia'] == 'NEUQUEN' ){ echo 'selected'; } ?>>Neuquen</option>
-                        <option value="RIO NEGRO" <?php if( $dato['provincia'] == 'RIO NEGRO' ){ echo 'selected'; } ?>>Rio Negro</option>
-                        <option value="SALTA" <?php if( $dato['provincia'] == 'SALTA' ){ echo 'selected'; } ?>>Salta</option>
-                        <option value="SAN JUAN" <?php if( $dato['provincia'] == 'SAN JUAN' ){ echo 'selected'; } ?>>San Juan</option>
-                        <option value="SAN LUIS" <?php if( $dato['provincia'] == 'SAN LUIS' ){ echo 'selected'; } ?>>San Luis</option>
-                        <option value="SANTA CRUZ" <?php if( $dato['provincia'] == 'SANTA CRUZ' ){ echo 'selected'; } ?>>Santa Cruz</option>
-                        <option value="SANTA FE" <?php if( $dato['provincia'] == 'SANTA FE' ){ echo 'selected'; } ?>>Santa Fe</option>
-                        <option value="TIERRA DEL FUEGO" <?php if( $dato['provincia'] == 'TIERRA DEL FUEGO' ){ echo 'selected'; } ?>>Tierra Del Fuego</option>
-                        <option value="TUCUMAN" <?php if( $dato['provincia'] == 'TUCUMAN' ){ echo 'selected'; } ?>>Tucuman</option>
+                        <option value="CAPITAL FEDERAL" <?php if( $dato['provincia'] == 'Capital Federal' ){ echo 'selected'; } ?> >Capital Federal</option>
+                        <option value="BUENOS AIRES" <?php if( $dato['provincia'] == 'Buenos Aires' ){ echo 'selected'; } ?> >Buenos Aires</option>
+                        <option value="CATAMARCA" <?php if( $dato['provincia'] == 'Catamarca' ){ echo 'selected'; } ?>>Catamarca</option>
+                        <option value="CORDOBA" <?php if( $dato['provincia'] == 'Cordoba' ){ echo 'selected'; } ?>>Cordoba</option>
+                        <option value="CORRIENTES" <?php if( $dato['provincia'] == 'Corrientes' ){ echo 'selected'; } ?>>Corrientes</option>
+                        <option value="CHACO" <?php if( $dato['provincia'] == 'Chaco' ){ echo 'selected'; } ?>>Chaco</option>
+                        <option value="CHUBUT" <?php if( $dato['provincia'] == 'Chubut' ){ echo 'selected'; } ?>>Chubut</option>
+                        <option value="ENTRE RIOS" <?php if( $dato['provincia'] == 'Entre Rios' ){ echo 'selected'; } ?>>Entre Rios</option>
+                        <option value="FORMOSA" <?php if( $dato['provincia'] == 'Formosa' ){ echo 'selected'; } ?>>Formosa</option>
+                        <option value="JUJUY" <?php if( $dato['provincia'] == 'Jujuy' ){ echo 'selected'; } ?>>Jujuy</option>
+                        <option value="LA PAMPA" <?php if( $dato['provincia'] == 'La Pampa' ){ echo 'selected'; } ?>>La Pampa</option>
+                        <option value="LA RIOJA" <?php if( $dato['provincia'] == 'La Rioja' ){ echo 'selected'; } ?>>La Rioja</option>
+                        <option value="MENDOZA" <?php if( $dato['provincia'] == 'Mendoza' ){ echo 'selected'; } ?>>Mendoza</option>
+                        <option value="MISIONES" <?php if( $dato['provincia'] == 'Misiones' ){ echo 'selected'; } ?>>Misiones</option>
+                        <option value="NEUQUEN" <?php if( $dato['provincia'] == 'Neuquen' ){ echo 'selected'; } ?>>Neuquen</option>
+                        <option value="RIO NEGRO" <?php if( $dato['provincia'] == 'Rio Negro' ){ echo 'selected'; } ?>>Rio Negro</option>
+                        <option value="SALTA" <?php if( $dato['provincia'] == 'Salta' ){ echo 'selected'; } ?>>Salta</option>
+                        <option value="SAN JUAN" <?php if( $dato['provincia'] == 'San Juan' ){ echo 'selected'; } ?>>San Juan</option>
+                        <option value="SAN LUIS" <?php if( $dato['provincia'] == 'San Luis' ){ echo 'selected'; } ?>>San Luis</option>
+                        <option value="SANTA CRUZ" <?php if( $dato['provincia'] == 'Santa Cruz' ){ echo 'selected'; } ?>>Santa Cruz</option>
+                        <option value="SANTA FE" <?php if( $dato['provincia'] == 'Santa Fe' ){ echo 'selected'; } ?>>Santa Fe</option>
+                        <option value="TIERRA DEL FUEGO" <?php if( $dato['provincia'] == 'Tierra Del Fuego' ){ echo 'selected'; } ?>>Tierra Del Fuego</option>
+                        <option value="TUCUMAN" <?php if( $dato['provincia'] == 'Tucuman' ){ echo 'selected'; } ?>>Tucuman</option>
                         </select>
                             </div>
                         </div>
                         <br>
                     <div class="control_group">
                         <label class="control-label" for="Localidad">Localidad</label> 
-                        <div class="controls">   
-                            <input id="localidad" type="text" name="localidad" placeholder="Localidad" value='<?php echo $dato['localidad']; ?>' onKeyUp="this.value=this.value.toUpperCase();"><br>
+                        <div class="controls">  
+                           <select id="localidad" name="localidad" >
+                        <option value="">Seleccione Localidad</option>
+                        
+                            </select>
                         </div>
                         </div>
                         <br>

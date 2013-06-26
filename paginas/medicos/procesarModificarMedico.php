@@ -20,7 +20,6 @@ $id = $_GET["idpersona"];
 $nombre = $_GET["nombre"];
 $apellido = $_GET["apellido"];
 $localidad = $_GET["localidad"];
-$provincia = $_GET["provincia"];
 $dni = $_GET["dni"];
 $calle = $_GET["calle"];
 $numero = $_GET["numero"];
@@ -31,7 +30,7 @@ $idEspecialidad = $_GET["especialidad"];
 $idObraSocial = $_GET["obra"];
 
 //Inserto una nueva persona
-$updatePersona = "UPDATE persona SET  nombre='$nombre', apellido='$apellido', dni='$dni', provincia= '$provincia', localidad='$localidad', numero='$numero', calle='$calle', telefono='$telefono', email='$email'
+$updatePersona = "UPDATE persona SET  nombre='$nombre', apellido='$apellido', dni='$dni', numero='$numero', calle='$calle', telefono='$telefono', email='$email', localidad_id='$localidad'
                    WHERE id='$id'";
 
 mysql_query($updatePersona);
