@@ -31,6 +31,7 @@
                 <th id="centrado">Teléfono</th>
                 <th id="centrado">Email</th>
                 <th id="centrado">Obras Sociales</th> 
+                <th id="centrado">Eliminar</th>
               </tr>  
             </thead>  
             <tbody>   
@@ -41,6 +42,7 @@
                         INNER JOIN paciente as pa ON (pa.id = pe.id)
                         INNER JOIN localidad as l ON (pe.localidad_id = l.id)
                         INNER JOIN provincia as pro ON (pro.id = l.provincia_id)
+                        WHERE pe.eliminado = 0
                         ORDER BY pe.dni
                 ";
               $result=  mysql_query($query);
@@ -68,6 +70,7 @@
                                         <?php echo $os['nombre']?>
                                     <?php }?>
                     </td>
+                    <td id="centrado"><a href="borrarPaciente.php?id=<?php echo $row['id']?>"id="borrarPaciente"class="btn btn-mini btn-danger"><i class="icon-remove icon-white"></i></a></td>
                 </tr> 
             <?php }}?>
             </tbody>  

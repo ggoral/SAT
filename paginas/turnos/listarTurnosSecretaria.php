@@ -1,4 +1,5 @@
 <?php include "../conectar.php" ?>
+<?php include "procesarFiltro.php" ?>
 <?php $activo = "turno"?>
 <!DOCTYPE html>
 <html>
@@ -22,10 +23,10 @@
         <table id="tabla" class="table table-striped table-bordered table-condensed">  
             <thead>  
               <tr>   
-                <th id="centrado">Paciente <a href="#"><i class="icon-chevron-down"></i></a></th>  
-                <th id="centrado">Médico <a href="#"><i class="icon-chevron-down"></i></a></th>
-                <th id="centrado">Obra Social<a href="#"><i class="icon-chevron-down"></i></a></th>
-                <th id="centrado">Horario <a href="#"><i class="icon-chevron-down"></i></a></th>
+                <th id="centrado">Paciente <a href="listarTurnosSecretaria.php?ordenP=ASC"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenP=DESC"><i class="icon-chevron-up"></i></a></th>  
+                <th id="centrado">Médico <a href="listarTurnosSecretaria.php?ordenM=ASC"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenM=DESC"><i class="icon-chevron-up"></i></a></th>
+                <th id="centrado">Obra Social<a href="listarTurnosSecretaria.php?ordenO=ASC"><i class="icon-chevron-down"></i> <a href="listarTurnosSecretaria.php?ordenO=DESC"><i class="icon-chevron-up"></i></a></a></th>
+                <th id="centrado">Horario <a href="listarTurnosSecretaria.php?ordenH=ASC"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenH=DESC"><i class="icon-chevron-up"></i></a></th>
                 <th id="centrado">Asistencia</th>
                 <th id="centrado">Acciones</th> 
               </tr>  
@@ -43,7 +44,8 @@
                         INNER JOIN pacientes_obrasociales as po ON (po.paciente_id = pa.id)
                         INNER JOIN obrasocial as os ON (os.id = po.obrasocial_id)
                         WHERE DAY(t.fecha_desde) = DAY(CURRENT_DATE())
-                        ORDER BY t.fecha_desde";
+                        ORDER BY ".$filtro;
+                            
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result) or die(mysql_error())) {
                   $fechayhora= new \DateTime($row["fecha_desde"]);

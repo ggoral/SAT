@@ -23,12 +23,17 @@ $(document).ready(function(){
     }
     });
 //------------------------------------------------------------------------------
-   
 
 //PARA AGREGAR MAS DE UNA OS dinamicamente--------------------------------------
-$("#anadirOS").click(function(){
-    
-});    
+var numcampo = 1;
+var max = 3;
+$("#añadirOS").click(function(){
+    if (numcampo < max){
+        var contenido = '<select class=""><option>una os<option></select>   <a id="borrarCampo"class="btn btn-mini btn-danger"><i class="icon-remove icon-white"></i></a>';
+        $("#nuevos").append(contenido);
+        numcampo ++;
+   }
+});  
 
     
 });
