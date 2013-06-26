@@ -16,16 +16,18 @@ include '../conectar.php';
     <title>Medicos</title>
  
     <?php include "../modulos/head.php" ?>
-
-     <script>
+    
+    <script type="text/javascript" src="/SAT/js/medicoAlta.js"></script>
+    <script type="text/javascript" src="/SAT/js/validacionesGenericas.js"></script>
+    
+    <script>
     $(document).ready(function(){
         
-        
+        alert('algo');
         <?php
             if($Campomatricula != "")
                 echo "alert('Esta matricula ya existe')";
-        ?>
-                
+        ?>      
     });
     </script>
     
@@ -35,7 +37,7 @@ include '../conectar.php';
     background-repeat: repeat;
     } 
     
-</style> 
+    </style> 
   </head>
    
 
@@ -85,7 +87,9 @@ include '../conectar.php';
                         <option value="TUCUMAN">Tucuman</option>
                     </select>
                     <br>
-                    <input id="localidad" type="text" name="localidad" placeholder="Localidad" onKeyUp="this.value=this.value.toUpperCase();"<br>
+                    <select id="localidad" name="localidad" >
+                        <option value="">Seleccione Localidad</option>
+                    </select>
                     <br>
                     <input id="calle" type="text" name="calle" placeholder="Calle" onKeyUp="this.value=this.value.toUpperCase();"<br>
                     <br>
