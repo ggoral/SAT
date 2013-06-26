@@ -32,6 +32,7 @@
                 <th id="centrado">Email</th>
                 <th id="centrado">Obras Sociales</th> 
                 <th id="centrado">Eliminar</th>
+                <th id="centrado">Editar</th>
               </tr>  
             </thead>  
             <tbody>   
@@ -67,10 +68,11 @@
                                     $resultado = mysql_query($consulta);
                                     while ($os = mysql_fetch_array($resultado)){
                                     ?>
-                                        <?php echo $os['nombre']?>
+                                        <?php echo $os['nombre']; if(mysql_num_rows($resultado) > 1) echo ",";?>
                                     <?php }?>
                     </td>
                     <td id="centrado"><a id="borrar" href="borrarPaciente.php?id=<?php echo $row['id']?>"id="borrarPaciente"class="btn btn-mini btn-danger"><i class="icon-remove icon-white"></i></a></td>
+                    <td id="centrado"><a href="#" class="btn btn-mini btn-success"><i class="icon-pencil icon-white"></i></a></td>
                 </tr> 
             <?php }}?>
             </tbody>  
