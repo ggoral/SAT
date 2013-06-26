@@ -57,12 +57,6 @@
                     <td id="centrado"><?php echo $row['telefono'] ?></td>
                     <td id="centrado"><?php echo $row['email'] ?></td>
                     <td id="centrado">
-                              <div class="input-append">
-                              <div class="btn-group">
-                                <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                  <small>Mostrar</small>
-                                </button>
-                                <ul class="dropdown-menu">
                                     <?php
                                     $idPaciente = $row['id'];
                                     $consulta = "SELECT o.nombre from obrasocial as o
@@ -71,11 +65,8 @@
                                     $resultado = mysql_query($consulta);
                                     while ($os = mysql_fetch_array($resultado)){
                                     ?>
-                                    <li><?php echo $os['nombre']?></li>
+                                        <?php echo $os['nombre']?>
                                     <?php }?>
-                                </ul>
-                              </div>
-                            </div>
                     </td>
                 </tr> 
             <?php }}?>
