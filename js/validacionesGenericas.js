@@ -15,7 +15,7 @@ $(document).ready(function(){
     });
     
     
-    ////Verificar que el DNI no existe.---------------------------------------------
+    ////Verificar que el DNI no existe Crea un mensaje de error en el DIV id="mensajeDNI"
    $("#dni").focusout(function(){
        var data = "dni=" + $("#dni").val();
         $.ajax({
