@@ -1,56 +1,18 @@
 <?php
+$filtro =" t.fecha_desde";
 
-$arrayFiltro = array();
-$arrayFiltroP = array();
-$arrayFiltroP['ordenP'];
-$arrayFiltroP['ordenH'];
-$arrayFiltroP['ordenO'];
-$arrayFiltroP['ordenM'];
-
-
-foreach ($_GET as $key => $elemento) {
-
-
-    if ('ordenP' == $key) {
-        $arrayFiltroP[$key] = "CONCAT(p2.nombre, p2.apellido)";
-    }
-    if ('ordenH' == $key) {
-        $arrayFiltroP[$key] = "t.fecha_desde";
-    }
-    if ('ordenO' == $key) {
-        $arrayFiltroP[$key] = "os.nombre";
-    }
-    if ('ordenM' == $key) {
-        $arrayFiltroP[$key] = "CONCAT(p1.nombre, p1.apellido)";
-    }
+if (array_key_exists('ordenP', $_GET)) {
+      $filtro = " CONCAT(p2.nombre, p2.apellido) ".$_GET['ordenP'];
+}
+if (array_key_exists('ordenH', $_GET)) {
+      $filtro = " t.fecha_desde ".$_GET['ordenH'];
+}
+if (array_key_exists('ordenO', $_GET)) {
+      $filtro = " os.nombre ".$_GET['ordenO'];
+}
+if (array_key_exists('ordenM', $_GET)) {
+      $filtro = " CONCAT(p1.nombre, p1.apellido) ".$_GET['ordenM'];
 }
 
-foreach ($arrayFiltroP as $key => $elemento) {
-    $arrayFiltro[$key] = $_GET[$key];
-}
-
-
-$linkFiltro = " ";
-$filtro = " t.fecha_desde ASC";
-echo count($arrayFiltro);
-
-if (count($arrayFiltro) > 0) {
-    $linkFiltro = "?";
-    $filtro = " ";
-}
-
-$and = count($arrayFiltro) - 1;
-
-foreach ($arrayFiltro as $key => $elemento) {
-        
-    $linkFiltro = $linkFiltro . $key . "=" . $elemento;
-    $filtro = $filtro.$arrayFiltroP[$key] . " " . $arrayFiltro[$key];
-
-    if ($and != 0) {
-        $linkFiltro = $linkFiltro . "&";
-        $filtro = $filtro.", ";
-        $and--;
-    }
-}
 
 ?>
