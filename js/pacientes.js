@@ -50,7 +50,18 @@ $("#borrar").click(function(){
 });
 
 
-
+$("#botonGuardar").click(function(){
+    if(  ($("#dni").val() === "") || ($("#nombre").val() === "") || ($("#apellido").val() === "") 
+    || ($("#provincia").val() === "") || ($("#localidad").val() === "") || ($("#calle").val() === "")
+    || ($("#numero").val() === "") || ($("#telefono").val() === "")
+    ){
+        alert("Complete todos los campos");
+    }
+    else {
+        alert("Cambios Guardados")
+        $("#formularioEditarPaciente").submit();
+    }
+    });
 
 });//FIN READY
 //------------------------------------------------------------------------------

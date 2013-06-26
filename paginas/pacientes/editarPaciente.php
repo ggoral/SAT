@@ -31,7 +31,7 @@ $result1 = mysql_query($query1);
                 <br>
                 <h3>Modificar Paciente</h3>   
          <?php while ($row = mysql_fetch_array($result1)){?>
-               <form class="well" id="formularioAltaPaciente" action="procesarAltaPaciente.php" method="GET">
+               <form class="well" id="formularioEditarPaciente" action="procesarEditarPaciente.php" method="GET">
                     <input id="dni" type="text" name="dni" placeholder="DNI" autocomplete="off" value="<?php echo $row['dni']?>"><div id="mensajeDNI"></div>
                     <input id="nombre" type="text" name="nombre" placeholder="Nombre" onKeyUp="this.value=this.value.toUpperCase(); "autocomplete="off"value="<?php echo $row['nombre']?>">
                     <br>
