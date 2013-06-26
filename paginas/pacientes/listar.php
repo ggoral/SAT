@@ -70,7 +70,7 @@
                                         <?php echo $os['nombre']?>
                                     <?php }?>
                     </td>
-                    <td id="centrado"><a href="borrarPaciente.php?id=<?php echo $row['id']?>"id="borrarPaciente"class="btn btn-mini btn-danger"><i class="icon-remove icon-white"></i></a></td>
+                    <td id="centrado"><a id="borrar" href="borrarPaciente.php?id=<?php echo $row['id']?>"id="borrarPaciente"class="btn btn-mini btn-danger"><i class="icon-remove icon-white"></i></a></td>
                 </tr> 
             <?php }}?>
             </tbody>  
