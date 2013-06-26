@@ -11,7 +11,7 @@ $telefono = $_GET['telefono'];
 $email = $_GET['email'];
 $obra = $_GET['obra'];
 $obra2 = $_GET['obra2'];
-$obra3 = $_GET['obra2'];
+$obra3 = $_GET['obra3'];
 if ($email == ''){$email = '-';}
 
 //Insertar paciente en la tabla persona-----------------------------------------
@@ -38,9 +38,9 @@ if($obra2 != ""){
 
 //Insertar paciente en la tabla obrasocia3---SI EXISTE-----------------------------------
 if($obra3 != ""){
-    $insertarObraSocial2 = "INSERT INTO pacientes_obrasociales (paciente_id, obrasocial_id)
+    $insertarObraSocial3 = "INSERT INTO pacientes_obrasociales (paciente_id, obrasocial_id)
                      VALUES ((SELECT id FROM persona WHERE dni = $dni), $obra3)";
-    mysql_query($insertarObraSocial2);
+    mysql_query($insertarObraSocial3);
 };
 
 

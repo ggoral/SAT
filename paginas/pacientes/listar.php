@@ -12,7 +12,7 @@
   <!-- Fin NavBar-->
       <div class="container">
             <h3>
-                Turnos para el día de hoy <br>
+                Pacientes en el sistema<br>
                 <a href="/SAT/paginas/pacientes/alta.php">
                     <button class="btn btn-warning btn-primary">
                     Nuevo Paciente <i class="icon-plus icon-white"></i>
@@ -72,7 +72,7 @@
                                     <?php }?>
                     </td>
                     <td id="centrado"><a id="borrar" href="borrarPaciente.php?id=<?php echo $row['id']?>"id="borrarPaciente"class="btn btn-mini btn-danger"><i class="icon-remove icon-white"></i></a></td>
-                    <td id="centrado"><a href="#" class="btn btn-mini btn-success"><i class="icon-pencil icon-white"></i></a></td>
+                    <td id="centrado"><a href="editarPaciente.php?id=<?php echo $row['id']?>" class="btn btn-mini btn-success"><i class="icon-pencil icon-white"></i></a></td>
                 </tr> 
             <?php }}?>
             </tbody>  
