@@ -14,6 +14,7 @@ include '../conectar.php';
     } 
 </style>
 <script type="text/javascript" src="/SAT/js/pacientes.js"></script>
+<script type="text/javascript" src="/SAT/js/validacionesGenericas.js"></script>
   </head>
   
     <body>
@@ -82,10 +83,11 @@ include '../conectar.php';
                         <?php    
                         }
                         ?>
-                        </select>
+                        </select><br>
+                        <a class='btn btn-mini btn-info' id="añadirOS">Agregar OS +</a><div id="masOS"></div>
                     <br>
                     <br>
-                    <a href='#'id="botonCrear"class="btn btn-warning">Agregar <i class="icon-plus icon-white"></i></a>
+                    <a href='#'id="botonCrear"class="btn btn-warning" onClick="agregarCampo();">Agregar <i class="icon-plus icon-white"></i></a>
                     <a class="btn" href="/SAT/paginas/medicos/listar.php">
                     Cancelar
                     </a>

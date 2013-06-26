@@ -57,9 +57,11 @@ $(document).ready(function(){
         });
     });
    
+
+//PARA AGREGAR MAS DE UNA OS dinamicamente--------------------------------------
+$("#anadirOS").click(function(){
     
-    
-    
+});    
 
     
 });
