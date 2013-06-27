@@ -6,14 +6,15 @@
 <link href="/SAT/css/estilo.css" rel="stylesheet" media="screen"> 
 <link href="/SAT/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
 <link href="/SAT/css/bootstrap-modal.css" rel="stylesheet" media="screen">
-
+<link href="/SAT/css/bootstrap-timepicker.css" rel="stylesheet" media="screen">
 <!--JQUERY-->
 <script type="text/javascript" src="/SAT/js/jquery-1.9.1.js"></script>
 
 <!--JAVASCRIPT BOOTSTRAT-->
 <script src="/SAT/js/bootstrap.min.js"></script>
 <script src="/SAT/js/bootstrap-modal.js"></script>
-<script src="/SAT/js/bootstrap-modalmanager.js"></script>
+<!--<script src="/SAT/js/bootstrap-modalmanager.js"></script>-->
+<script src="/SAT/js/bootstrap-timepicker.js"></script>
 
 <!--FUNCIONES-->
 <script type="text/javascript" src="/SAT/js/funciones.js"></script>

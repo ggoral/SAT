@@ -1,7 +1,7 @@
 <?php
     $host = 'localhost';
-    $usuario = '';
-    $contraseña = '';
+    $usuario = 'root';
+    $contraseña = 'root';
     $db ='ingenieria';  
     mysql_connect($host, $usuario, $contraseña) or die (mysql_error());
     mysql_select_db($db);
