@@ -124,7 +124,7 @@ include '../conectar.php';
                         <?php    
                         }
                         ?>
-                        </select>
+                        </select>                   
                     <br>
                     <br>
                     <button class="btn btn-warning" type="submit">Agregar <i class="icon-plus icon-white"></i></button>

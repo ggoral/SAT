@@ -66,4 +66,24 @@
         return true;
     }
     
+     function validarAltaDia() {
+         
+          campo1 = document.getElementById("dia").value;
+        campo2 = document.getElementById("horaDesde").value;
+        campo3 = document.getElementById("horaHasta").value;
+        
+        if (campo1.length === 0) {       
+            alert ('Elija un dia');
+            return false;          
+        } 
+               if (campo2.length === 0) {       
+            alert ('Ingrese un horario de comienzo valido');
+            return false;          
+        } 
+               if (campo3.length === 0) {       
+            alert ('Ingrese un horario de fin valido');
+            return false;          
+        } 
+     }
+    
 

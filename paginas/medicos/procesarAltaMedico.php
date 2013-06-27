@@ -13,7 +13,7 @@ $telefono = $_GET["telefono"];
 $matricula = $_GET["matricula"];
 $idEspecialidad = $_GET["especialidad"];
 $idObraSocial = $_GET["obra"];
-echo'rocanrol';
+
 $sqlExiste = "Select * from medico inner join persona on( medico.id = persona.id) where matricula ='$matricula' and eliminado = false";
 $resultadoExiste = mysql_query($sqlExiste);
 $medico = mysql_fetch_array($resultadoExiste);
