@@ -1,13 +1,12 @@
 <?php include "../conectar.php";
 $activo = "paciente";
+include "procesarBusqueda.php";
 include "procesarFiltro.php" ?>
 <!DOCTYPE html>
 <html>
   <head>
     <?php include "../modulos/head.php" ?>  
     <title>Pacientes</title>
-  <script type="text/javascript" src="/SAT/js/pacientes.js"></script>
-  <script type="text/javascript" src="/SAT/js/validacionesGenericas.js"></script>  
   </head>
   <body>
   <!--NavBar-->
@@ -15,18 +14,8 @@ include "procesarFiltro.php" ?>
   <!-- Fin NavBar-->
       <div class="container">
             <h3>
-                Pacientes en el sistema  
+                Resultados de busqueda
             </h3>
-            <a class="btn btn-warning btn-primary"href="/SAT/paginas/pacientes/alta.php">Nuevo Paciente <i class="icon-plus icon-white"></i></a>
-            <form class="form-search" action="busqueda.php" method="GET" id="formBusqueda">
-                <div class="input-append">
-                <input type="text" class="span2 search-query" name="campoBusqueda" id="campoBusqueda"placeholer="Ingrese busqueda" onKeyUp="this.value=this.value.toUpperCase();"></input>
-                <a class="btn" id="botonBuscar" href="#">Buscar Paciente</a>
-                </div>
-                <br>
-                <input type="radio" name="criterio" value="porApellido" id="porApellido">Por Apellido</input>
-                <input type="radio" name="criterio" value="porDNI" id="porDNI">Por DNI</input>
-            </form>
           
           <table id="tabla" class="table table-striped table-bordered table-condensed">  
             <thead>  
@@ -52,10 +41,11 @@ include "procesarFiltro.php" ?>
                         INNER JOIN paciente as pa ON (pa.id = pe.id)
                         INNER JOIN localidad as l ON (pe.localidad_id = l.id)
                         INNER JOIN provincia as pro ON (pro.id = l.provincia_id)
-                        WHERE pe.eliminado = 0
+                        WHERE (pe.eliminado = 0)".$criterioBusqueda." 
                         ORDER BY".$filtro;
               
               $result=  mysql_query($query);
+              if(mysql_num_rows($result)!= 0){
               while ($row = mysql_fetch_array($result) or die(mysql_error())) {
                   if($row["eliminado"] == 0){
                   ?>
@@ -88,6 +78,12 @@ include "procesarFiltro.php" ?>
           </table>
           </div>
             <footer class="footer"> ALGOOOOOOOO </footer>
+              <?php }
+              else{
+                  ?><script>alert('No se encontraron resultados');
+                     </script>
+                         <?php
+              }?>
   </body>        
     
 

@@ -63,6 +63,17 @@ $("#botonGuardar").click(function(){
     }
     });
 
+
+//EVITA UNA BUSQUEDA VACIA
+$("#botonBuscar").click(function(){
+    if ($("#campoBusqueda").val() === ""){
+        alert('Debe completar el campo de busqueda');
+    }
+    else{
+        $("#formBusqueda").submit();
+    };
+});
+
 });//FIN READY
 //------------------------------------------------------------------------------
 //PARA BORRAR UNA OS AGREGADA---------------------------------------------------
