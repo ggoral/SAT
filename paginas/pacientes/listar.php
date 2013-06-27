@@ -1,5 +1,6 @@
-<?php include "../conectar.php" ?>
-<?php $activo = "paciente" ?>
+<?php include "../conectar.php";
+$activo = "paciente";
+include "procesarFiltro.php" ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,10 +23,10 @@
         <table id="tabla" class="table table-striped table-bordered table-condensed">  
             <thead>  
               <tr>   
-                <th id="centrado">DNI <a href="#"><i class="icon-chevron-down"></i></a></th>  
-                <th id="centrado">Apellido y nombre<a href="#"><i class="icon-chevron-down"></i></a></th>
-                <th id="centrado">Provincia <a href="#"><i class="icon-chevron-down"></i></a></th>
-                <th id="centrado">Localidad</th>
+                <th id="centrado">DNI</th>  
+                <th id="centrado">Apellido y nombre<a href="listar.php?ordenApe=ASC"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenApe=DESC"><i class="icon-chevron-up"></i></a></th>
+                <th id="centrado" class="span1">Provincia <a href="listar.php?ordenProv=ASC"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenProv=DESC"><i class="icon-chevron-up"></i></a</th>
+                <th id="centrado" class="span1">Localidad <a href="listar.php?ordenLoc=ASC"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenLoc=DESC"><i class="icon-chevron-up"></i></a</th>
                 <th id="centrado">Calle</th>
                 <th id="centrado">N° Casa</th>
                 <th id="centrado">Teléfono</th>
@@ -44,8 +45,8 @@
                         INNER JOIN localidad as l ON (pe.localidad_id = l.id)
                         INNER JOIN provincia as pro ON (pro.id = l.provincia_id)
                         WHERE pe.eliminado = 0
-                        ORDER BY pe.dni
-                ";
+                        ORDER BY".$filtro;
+              
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result) or die(mysql_error())) {
                   if($row["eliminado"] == 0){
