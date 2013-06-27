@@ -11,6 +11,9 @@ $(document).ready(function(){
     //Solo admiten letras
     $("#nombre").keyup(function(){this.value = this.value.replace(/[^A-Z]/g,''); });  
     $("#apellido").keyup(function(){this.value = this.value.replace(/[^A-Z]/g,''); });
+//    $("#provincia").keyup(function(){this.value = this.value.replace(/[^A-Z]/g,''); });
+//    $("#localidad").keyup(function(){this.value = this.value.replace(/[^A-Z]/g,''); });
+//    $("#nombyApe").keyup(function(){this.value = this.value.replace(/[^A-Z]/g,''); });
 //------------------------------------------------------------------------------
 //VERIFICAR QUE TODO TENGA VALOR------------------------------------------------
     $("#botonCrear").click(function(){

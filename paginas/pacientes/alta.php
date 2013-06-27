@@ -47,7 +47,7 @@ include '../conectar.php';
                     <br>
                     <input id="telefono" type="text" name="telefono" placeholder="Telefono"autocomplete="off"<br>
                     <br>
-                    <input id="email" type="text" name="email" placeholder="E-mail"autocomplete="off" <br>            
+                    <input id="email" type="email" name="email" placeholder="E-mail"autocomplete="off" <br>            
                       <select id="obra" name="obra">
                         <?php include "cargarOS.php";?>
                         </select><br>

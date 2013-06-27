@@ -1,5 +1,8 @@
 $(document).ready(function(){
-   //Carga las Localidades segun la provincia elegida------------------------------
+    
+    
+    
+    //Carga las Localidades segun la provincia elegida------------------------------
     $("#provincia").change(function(){
         var data = "provincia=" +  this.value;
         $.ajax({
