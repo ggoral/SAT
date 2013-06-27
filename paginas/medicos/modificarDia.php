@@ -7,6 +7,7 @@ include '../conectar.php';
     
  $idMedico=$_GET["id"];
  $dia=$_GET["dia"];
+ $idDia=$_GET["idDia"];
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +56,7 @@ include '../conectar.php';
                     <input id="id" name="id" type="hidden" value="<?php echo $idMedico?>">
                       <input id="diaAnt" name="diaAnt" type="hidden" value="<?php echo $dia?>">
                     <select id="dia" name="dia">   
-            
+                        
                         <option value="">Seleccione Dia</option>
                         <option value="Lunes" <?php if( $dia == 'Lunes' ){ echo 'selected'; } ?> >Lunes</option>
                         <option value="Martes" <?php if( $dia == 'Martes' ){ echo 'selected'; } ?> >Martes</option>
@@ -67,7 +68,16 @@ include '../conectar.php';
                     <br>
                        <label>Selecione horario de inicio:</label>
                           <select id="horaDesde" name="horaDesde">   
+                               
+                              
                                 <?php
+                                
+                                $consulta="select horaDesde from diasatencion where id=$idDia";
+                                $horaDant=mysql_query($consulta);
+                                
+                                $consulta2="select horaHasta from diasatencion where id=$idDia";
+                                $horaHant=mysql_query($consulta2);
+                                
                                 $hora=0;
                                 $minuto=0;
                                 $segundo=0;
@@ -75,11 +85,11 @@ include '../conectar.php';
                                     
                                         if($hora <= 9){
                                     ?> 
-                                        <option value='<?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?></option>
+                                           <option value='<?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=30;
                                         ?>
-                                        <option value='<?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':'.$minuto.':0'.$segundo?></option>
+                                        <option value='<?php echo '0'.$hora.':'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=0;
                                         $hora=$hora+1;
@@ -89,7 +99,7 @@ include '../conectar.php';
                                         <?php
                                         $minuto=30;
                                         ?>
-                                        <option value='<?php echo $hora.':0'.$minuto.':0'.$segundo?>'><?php echo $hora.':'.$minuto.':0'.$segundo?></option>
+                                        <option value='<?php echo $hora.':'.$minuto.':0'.$segundo?>'><?php echo $hora.':'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=0;
                                         $hora=$hora+1;
@@ -111,11 +121,11 @@ include '../conectar.php';
                                     
                                         if($hora <= 9){
                                     ?> 
-                                        <option value='<?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?></option>
+                                      <option value='<?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=30;
                                         ?>
-                                        <option value='<?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':'.$minuto.':0'.$segundo?></option>
+                                        <option value='<?php echo '0'.$hora.':'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=0;
                                         $hora=$hora+1;
@@ -125,7 +135,7 @@ include '../conectar.php';
                                         <?php
                                         $minuto=30;
                                         ?>
-                                        <option value='<?php echo $hora.':0'.$minuto.':0'.$segundo?>'><?php echo $hora.':'.$minuto.':0'.$segundo?></option>
+                                        <option value='<?php echo $hora.':'.$minuto.':0'.$segundo?>'><?php echo $hora.':'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=0;
                                         $hora=$hora+1;

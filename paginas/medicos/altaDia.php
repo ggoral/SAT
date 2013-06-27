@@ -91,7 +91,7 @@ include '../conectar.php';
                                         <?php
                                         $minuto=30;
                                         ?>
-                                        <option value='<?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':'.$minuto.':0'.$segundo?></option>
+                                        <option value='<?php echo '0'.$hora.':'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=0;
                                         $hora=$hora+1;
@@ -101,7 +101,7 @@ include '../conectar.php';
                                         <?php
                                         $minuto=30;
                                         ?>
-                                        <option value='<?php echo $hora.':0'.$minuto.':0'.$segundo?>'><?php echo $hora.':'.$minuto.':0'.$segundo?></option>
+                                        <option value='<?php echo $hora.':'.$minuto.':0'.$segundo?>'><?php echo $hora.':'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=0;
                                         $hora=$hora+1;
@@ -127,7 +127,7 @@ include '../conectar.php';
                                         <?php
                                         $minuto=30;
                                         ?>
-                                        <option value='<?php echo '0'.$hora.':0'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':'.$minuto.':0'.$segundo?></option>
+                                        <option value='<?php echo '0'.$hora.':'.$minuto.':0'.$segundo?>'><?php echo '0'.$hora.':'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=0;
                                         $hora=$hora+1;
@@ -137,7 +137,7 @@ include '../conectar.php';
                                         <?php
                                         $minuto=30;
                                         ?>
-                                        <option value='<?php echo $hora.':0'.$minuto.':0'.$segundo?>'><?php echo $hora.':'.$minuto.':0'.$segundo?></option>
+                                        <option value='<?php echo $hora.':'.$minuto.':0'.$segundo?>'><?php echo $hora.':'.$minuto.':0'.$segundo?></option>
                                         <?php
                                         $minuto=0;
                                         $hora=$hora+1;

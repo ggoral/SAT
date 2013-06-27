@@ -37,8 +37,12 @@ $idMedico = $_GET['id'];
                     Agregar Dia <i class="icon-plus icon-white"></i>
                     </button>
                 </a>
+            <a class="btn" href="/SAT/paginas/medicos/listar.php">
+                    Volver
+                    </a>
             
-            <br><br>
+            <br>
+            <br>
                 <table id="tabla" class="table table-striped table-bordered table-condensed ">  
             <thead>  
               <tr>   
@@ -66,7 +70,7 @@ $idMedico = $_GET['id'];
                     <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarDia.php?id=<?php echo $row["idDia"]?>">
                         Borrar <i class="icon-remove"></i>
                     </a>
-                    <a class="btn btn-success btn-small" href="modificarDia.php?dia=<?php echo $row["dia"]?>&id=<?php echo $row["id"]?>">
+                    <a class="btn btn-success btn-small" href="modificarDia.php?dia=<?php echo $row["dia"]?>&id=<?php echo $row["id"]?>&idDia=<?php echo $row["idDia"]?>">
                         Modificar <i class="icon-pencil"></i> 
                               </a>  
                 </td>

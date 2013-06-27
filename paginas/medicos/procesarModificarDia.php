@@ -16,6 +16,6 @@ $modificarDia = "UPDATE diasatencion SET dia='$dia', horaDesde='$horaDesde', hor
 mysql_query($modificarDia);
 
 
-header('location: listar.php');
+header("location: diasAtencion.php?id=$idMedico");
     
 ?>

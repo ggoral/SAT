@@ -22,6 +22,6 @@ mysql_query($insertarDia);
 
 
 
-header('location: listar.php');
+header("location: diasAtencion.php?id=$idMedico");
     
 ?>
