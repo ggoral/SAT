@@ -110,22 +110,8 @@ include '../conectar.php';
                         <?php    
                         }
                         ?>
-                        </select>
-                    <br>             
-                      <select id="obra" name="obra">
-                            <option value="">Seleccione Obra Social</option>
-                        <?php 
-                        $queryObra = "select * from obrasocial where eliminado=false";
-                        $resObra = mysql_query($queryObra);
-                        while($Obra = mysql_fetch_array($resObra)){
-                        ?>     
-                            <option value="<?php echo $Obra["id"] ?>"> <?php echo $Obra["nombre"]?></option>  
-
-                        <?php    
-                        }
-                        ?>
-                        </select>                   
-                    <br>
+                        </select>         
+                 
                     <br>
                     <button class="btn btn-warning" type="submit">Agregar <i class="icon-plus icon-white"></i></button>
                     <a class="btn" href="/SAT/paginas/medicos/listar.php">

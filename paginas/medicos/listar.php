@@ -33,20 +33,17 @@
                 <th id="centrado">Localidad <a href="#"><i class="icon-chevron-down"></i></a></th>
                 <th id="centrado">Matricula</th>
                 <th id="centrado">Especialidad <a href="#"><i class="icon-chevron-down"></i></a></th>
-                <th id="centrado">Obra Social <a href="#"><i class="icon-chevron-down"></i></a></th>
                 <th id="centrado">Acciones</th> 
               </tr>  
             </thead>
             <tbody>   
               <?php 
-              $query = "SELECT medico.id, persona.nombre AS nombreP, apellido, matricula,l.nombre as localidad, especialidad.nombre AS nombreE, obrasocial.nombre AS obra
+              $query = "SELECT medico.id, persona.nombre AS nombreP, apellido, matricula,l.nombre as localidad, especialidad.nombre AS nombreE
                         FROM medico
                         INNER JOIN persona ON ( medico.id = persona.id ) 
                         INNER JOIN medicos_especialidades ON ( medico.id = medicos_especialidades.medico_id ) 
-                        INNER JOIN especialidad ON ( medicos_especialidades.especialidad_id = especialidad.id )
-                        INNER JOIN medicos_obrasociales ON (medicos_obrasociales.medico_id = medico.id)
-                        INNER JOIN obrasocial ON (medicos_obrasociales.obrasocial_id = obrasocial.id)
-                        INNER JOIN localidad as l ON (persona.localidad_id = l.id)
+                        INNER JOIN especialidad ON ( medicos_especialidades.especialidad_id = especialidad.id )           
+                        INNER JOIN localidad as l ON ( persona.localidad_id = l.id )
                         INNER JOIN provincia as pro ON (pro.id = l.provincia_id)
                         WHERE persona.eliminado = false";
               $result=  mysql_query($query);
@@ -60,15 +57,20 @@
                 <td id="centrado" class="span3"><?php echo $row["localidad"]; ?></td>
                 <td id="centrado" class="span3"><?php echo $row["matricula"]; ?></td>
                 <td id="centrado" class="span3"><?php echo $row["nombreE"]; ?></td>
-                <td id="centrado" class="span3"><?php echo $row["obra"]; ?></td>
-                <td id="centrado" class="span7">
+                <td id="centrado" class="span12">
         
                     <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarMedico.php?id=<?php echo $row["id"]?>">
                         Borrar <i class="icon-remove"></i>
                     </a>
                     <a class="btn btn-success btn-small" href="modificar.php?id=<?php echo $row["id"]?>">
                         Modificar <i class="icon-pencil"></i> 
-                    </a>          
+                    </a>
+                     <a class="btn btn-info btn-small" href="obrasSociales.php?id=<?php echo $row["id"]?>">
+                        Obras <i class="icon-plus"></i> 
+                    </a>  
+                     <a class="btn btn-warning btn-small" href="diasAtencion.php?id=<?php echo $row["id"]?>">
+                        Horarios <i class="icon-plus"></i> 
+                    </a>  
                 </td>
               </tr>
                <?php 

@@ -86,4 +86,13 @@
         } 
      }
     
+   function validarAltaObra() {
+         
+        campo1 = document.getElementById("obra").value;
 
+        
+        if (campo1.length === 0) {       
+            alert ('Elija una obra');
+            return false;          
+        } 
+     }
