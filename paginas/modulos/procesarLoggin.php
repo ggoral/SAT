@@ -18,12 +18,15 @@ if(mysql_num_rows($resultado) == 1){
 }
 
 if($usuario){
+    $_SESSION['usuario']['id'] = $usuario['id'];
     $_SESSION['usuario']['nombre'] = $username;
+    $_SESSION['usuario']['rol'] = $usuario['Roles'];
 }else{
     header("location: /SAT/login.php?error=error");
     exit;
 }
 
-    header("location: /SAT/login.php");
+
+    header("location: /SAT/index.php");
 
 ?>

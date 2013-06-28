@@ -1,27 +1,22 @@
-<div class="navbar navbar-static-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a href="/SAT/index.php" class="brand">SAT - Sistema de Administración de Turnos</a>
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right"><li class="divider-vertical"></li>
-                    <li class="dropdown <?php echo ($activo == "turno") ? 'active' : ''; ?>">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            Turnos
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a  href="/SAT/paginas/turnos/listarTurnosSecretaria.php"> Turnos de hoy </a></li>
-                            <li><a  href="/SAT/paginas/turnos/listarTurnosSecretariaDesdeHoy.php"> Turnos desde hoy </a></li>
-                        </ul>
+<?php
 
-                    </li>
+session_start();
 
-                    <li class="<?php echo ($activo == "paciente") ? 'active' : ''; ?>"><a href="/SAT/paginas/pacientes/listar.php">Pacientes</a></li>
-                    <li class="<?php echo ($activo == "medico") ? 'active' : ''; ?>"><a href="/SAT/paginas/medicos/listar.php">Medicos</a></li>
-                    <li class="<?php echo ($activo == "obrasocial") ? 'active' : ''; ?>"><a href="/SAT/paginas/ObraSocial/listar.php" >Obras Sociales</a></li>
-                    <li class="<?php echo ($activo == "especialidad") ? 'active' : ''; ?>"><a href="/SAT/paginas/Especialidad/listar.php">Especialidades</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+if (array_key_exists('usuario', $_GET)) {
+    header("location:/SAT/login.php");
+    exit;
+}
+
+
+$usuario = $_SESSION['usuario'];
+
+
+if ($usuario['rol'] == "ROLE_SECRETARIA") {
+    include "NavBarSecretaria.php";
+}
+
+if ($usuario['rol'] == "ROLE_DIRECTOR") {
+    include "NavBarDirector.php";
+}
+
+
