@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 if (!array_key_exists('usuario', $_SESSION)) {
 
     header("location:/SAT/login.php");
