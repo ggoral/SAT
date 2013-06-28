@@ -83,10 +83,10 @@
             <table id="tabla" class="table table-striped table-bordered table-condensed">  
                 <thead>  
                     <tr>   
-                        <th id="centrado">Paciente <a href="listarTurnosSecretaria.php?ordenP=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenP=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>  
-                        <th id="centrado">Médico <a href="listarTurnosSecretaria.php?ordenM=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenM=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
-                        <th id="centrado">Obra Social<a href="listarTurnosSecretaria.php?ordenO=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i> <a href="listarTurnosSecretaria.php?ordenO=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></a></th>
-                        <th id="centrado">Horario <a href="listarTurnosSecretaria.php?ordenH=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenH=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                        <th id="centrado">Paciente <a href="listarTurnosSecretariaDesdeHoy.php?ordenP=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretariaDesdeHoy.php?ordenP=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>  
+                        <th id="centrado">Médico <a href="listarTurnosSecretariaDesdeHoy.php?ordenM=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretariaDesdeHoy.php?ordenM=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                        <th id="centrado">Obra Social<a href="listarTurnosSecretariaDesdeHoy.php?ordenO=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i> <a href="listarTurnosSecretariaDesdeHoy.php?ordenO=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></a></th>
+                        <th id="centrado">Horario <a href="listarTurnosSecretariaDesdeHoy.php?ordenH=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretariaDesdeHoy.php?ordenH=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
                         <th id="centrado">Asistencia</th>
                         <th id="centrado">Acciones</th> 
                     </tr>  
