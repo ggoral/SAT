@@ -18,84 +18,102 @@ $result1 = mysql_query($query1);
 </style>
 <script type="text/javascript" src="/SAT/js/pacientes.js"></script>
 <script type="text/javascript" src="/SAT/js/validacionesGenericas.js"></script>
-  </head>
-  
+  </head> 
     <body>
         <!--NavBar-->
      <?php include "../modulos/navBar.php" ?>
       <!-- Fin NavBar-->
-
-      <div class="container" align="center">
-      <div class="span4 offset4"> 
-          <fieldset>
-                <br>
-                <h3>Modificar Paciente</h3>   
-         <?php while ($row = mysql_fetch_array($result1)){?>
-               <form class="well" id="formularioEditarPaciente" action="procesarEditarPaciente.php" method="GET">
-                    <input id="dni" type="text" name="dni" placeholder="DNI" autocomplete="off" value="<?php echo $row['dni']?>"><div id="mensajeDNI"></div>
-                    <input id="nombre" type="text" name="nombre" placeholder="Nombre" onKeyUp="this.value=this.value.toUpperCase(); "autocomplete="off"value="<?php echo $row['nombre']?>">
-                    <br>
-                    <input id="apellido" type="text" name="apellido" placeholder="Apellido" onKeyUp="this.value=this.value.toUpperCase();"autocomplete="off" value="<?php echo $row['apellido']?>">
-                    <br>
-                    <select id="provincia" name="provincia">
-                        <?php $query2 = "SELECT p.nombre
-                                        FROM persona AS per
-                                        INNER JOIN localidad AS l ON ( l.id = localidad_id ) 
-                                        INNER JOIN provincia AS p ON ( l.provincia_id = p.id ) 
-                                        WHERE per.id = $idPaciente;
-                                        ";
-                        $result2 = mysql_query($query2);
-                        while($row2 = mysql_fetch_array($result2)){
-                           ?> <option value="<?php echo $row2['nombre'];?>" selected>Original: <?php echo $row2['nombre'];?></option>
-                        <?php }?>    
-                        <?php include "../modulos/optionsProvincias.php"?>
-                    </select>
-                    <br>
-                    <select id ="localidad" name='localidad'>
-                        <?php $query3 = "SELECT l.nombre, l.id FROM localidad as l
-                                         INNER JOIN persona as p ON (p.localidad_id = l.id)
-                                         WHERE p.id = $idPaciente";
-                              $result3 = mysql_query($query3);
-                        while ($row3 = mysql_fetch_array($result3)){?><option value="<?php echo $row3['id'] ?>" selected>Original: <?php echo $row3['nombre'] ?></option> <?php }
-                        ?>
+        <div class="container" align="center">
+            <div class="span4 offset3"> 
+                <fieldset>
+                    <h3>Modificar Paciente</h3>
+                    <?php while ($row = mysql_fetch_array($result1)){?>
+                    <form class="form-horizontal" id="formularioEditarPaciente" action="procesarEditarPaciente.php" method="GET">
+                        <div class="control-group">
+                            <label class="control-label" for="dni">DNI:</label>
+                            <div class="controls">
+                            <input id="dni" type="text" name="dni" placeholder="DNI" autocomplete="off" value="<?php echo $row['dni']?>"><div id="mensajeDNI"></div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="nombre">Nombre:</label>
+                            <div class="controls">
+                            <input id="nombre" type="text" name="nombre" placeholder="Nombre" onKeyUp="this.value=this.value.toUpperCase(); "autocomplete="off"value="<?php echo $row['nombre']?>">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="apellido">Apellido:</label>
+                            <div class="controls">
+                            <input id="apellido" type="text" name="apellido" placeholder="Apellido" onKeyUp="this.value=this.value.toUpperCase();"autocomplete="off" value="<?php echo $row['apellido']?>">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="provincia">Provincia:</label>
+                            <div class="controls">
+                            <select id="provincia" name="provincia">
+                            <?php $query2 = "SELECT p.nombre
+                                            FROM persona AS per
+                                            INNER JOIN localidad AS l ON ( l.id = localidad_id ) 
+                                            INNER JOIN provincia AS p ON ( l.provincia_id = p.id ) 
+                                            WHERE per.id = $idPaciente;
+                                            ";
+                            $result2 = mysql_query($query2);
+                            while($row2 = mysql_fetch_array($result2)){
+                               ?> <option value="<?php echo $row2['nombre'];?>" selected>Original: <?php echo $row2['nombre'];?></option>
+                            <?php }?>    
+                            <?php include "../modulos/optionsProvincias.php"?>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="localidad">Localidad:</label>
+                            <div class="controls">
+                            <select id ="localidad" name='localidad'>
+                            <?php $query3 = "SELECT l.nombre, l.id FROM localidad as l
+                                             INNER JOIN persona as p ON (p.localidad_id = l.id)
+                                             WHERE p.id = $idPaciente";
+                                  $result3 = mysql_query($query3);
+                            while ($row3 = mysql_fetch_array($result3)){?><option value="<?php echo $row3['id'] ?>" selected>Original: <?php echo $row3['nombre'] ?></option> <?php }
+                            ?>     
+                            </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="calle">Calle:</label>
+                            <div class="controls">
+                            <input id="calle" type="text" name="calle" placeholder="Calle" onKeyUp="this.value=this.value.toUpperCase();"autocomplete="off" value="<?php echo $row['calle']?>">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="numero">Numero:</label>
+                            <div class="controls">
+                            <input id="numero" type="text" name="numero" placeholder="Numero de casa"autocomplete="off" value="<?php echo $row['numero']?>">
+                            </div>
+                        </div>
                         
-                    </select>
-                    <br>
-                    <input id="calle" type="text" name="calle" placeholder="Calle" onKeyUp="this.value=this.value.toUpperCase();"autocomplete="off" value="<?php echo $row['calle']?>"<br>
-                    <br>
-                    <input id="numero" type="text" name="numero" placeholder="Numero de casa"autocomplete="off" value="<?php echo $row['numero']?>"<br>
-                    <br>
-                    <input id="telefono" type="text" name="telefono" placeholder="Telefono"autocomplete="off"value="<?php echo $row['telefono']?>"<br>
-                    <br>
-                    <input id="email" type="text" name="email" placeholder="E-mail"autocomplete="off" value="<?php echo $row['email']?>"<br>            
-                    <?php $query4 = "SELECT o.id, o.nombre FROM obrasocial as o
-                                    INNER JOIN pacientes_obrasociales as po ON (po.obrasocial_id = o.id)
-                                    WHERE po.paciente_id = $idPaciente";
-                          $result4 = mysql_query($query4); //tengo todas las OS que tiene el paciente 
-                    $numObra = 1;    
-                          ?>
-                    <?php while ($row4 = mysql_fetch_array($result4)){ ?>
-                    <select id="obra<?php echo $numObra;?>" name="obra">
-                        <option value="<?php echo $row4['nombre'] ?>" selected>Original: <?php echo $row4['nombre'] ?></option>   
-                        <?php include "cargarOS.php";?>
-                        </select><br>
-                        <?php 
-                        $numObra++;
-                        }?>
-                        <div id="nuevos"></div>
-                        <a class='btn btn-mini btn-info' id="agregarOS">Agregar OS +</a><div id="masOS"></div>
-                    <br>
-                    <br>
-                    <a href='#'id="botonGuardar"class="btn btn-warning" onClick="">Guardar <i class="icon-plus icon-white"></i></a>
-                    <a class="btn" href="/SAT/paginas/pacientes/listar.php">
-                    Cancelar
-                    </a>
-                    
-         <?php } ?>
-                </form>
-          </fieldset> 
-        
-      </div>
-    </div>
+                        <div class="control-group">
+                            <label class="control-label" for="telefono">Telefono:</label>
+                            <div class="controls">
+                            <input id="telefono" type="text" name="telefono" placeholder="Telefono"autocomplete="off"value="<?php echo $row['telefono']?>">
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label" for="email">E-Mail:</label>
+                            <div class="controls">
+                            <input id="email" type="text" name="email" placeholder="E-mail"autocomplete="off" value="<?php echo $row['email']?>">
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <a class="btn btn-info btn-mini" href="obrasSociales.php?id=<?php echo $idPaciente;?>">Editar Obras sociales<i class="icon-plus icon-white"></i></a>
+                        <br><br>
+                        <a href='#'id="botonGuardar"class="btn btn-warning" onClick="">Guardar <i class="icon-plus icon-white"></i></a>
+                        <a class="btn" href="/SAT/paginas/pacientes/listar.php">Cancelar</a>
+                    <?php } ?>    
+                    </form>
+                </fieldset>      
+            </div>
+        </div>
     </body>
 </html>
