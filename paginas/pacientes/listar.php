@@ -60,11 +60,12 @@ include "procesarFiltro.php" ?>
             <tbody>   
               <?php 
               $query = "SELECT DISTINCT (pe.id),pe.dni,pe.apellido,pe.nombre,pro.nombre as provincia,l.nombre as localidad,pe.calle,pe.numero,
-                        pe.telefono,pe.email, pe.eliminado
+                        pe.telefono,pe.email, pe.eliminado ".$campoOSid."
                         FROM persona as pe
                         INNER JOIN paciente as pa ON (pa.id = pe.id)
                         INNER JOIN localidad as l ON (pe.localidad_id = l.id)
                         INNER JOIN provincia as pro ON (pro.id = l.provincia_id)
+                        ".$traerObras."
                         WHERE pe.eliminado = 0".$buscador."
                         ORDER BY".$filtro;
               
@@ -84,14 +85,16 @@ include "procesarFiltro.php" ?>
                     <td id="centrado">
                                     <?php
                                     $idPaciente = $row['id'];
-                                    $consulta = "SELECT o.nombre from obrasocial as o
+                                    $consulta = "SELECT o.nombre,o.habilitada from obrasocial as o
                                                  INNER JOIN pacientes_obrasociales as po ON (po.obrasocial_id = o.id)
                                                  WHERE po.paciente_id = $idPaciente";
                                     $resultado = mysql_query($consulta);
                                     while ($os = mysql_fetch_array($resultado)){
-                                    ?>
+                                        ?> <span class="<?php if ($os['habilitada'] == 0){echo "text-error";}?>">
                                         <?php echo $os['nombre']; if(mysql_num_rows($resultado) > 1) echo ",";?>
+                                        <?php if ($os['habilitada'] == 0){echo "(deshabilitada)";}?></span>
                                     <?php }?>
+                                            
                     </td>
                     <td id="centrado"><a id="borrar" href="borrarPaciente.php?id=<?php echo $row['id']?>"id="borrarPaciente"class="btn btn-mini btn-danger"><i class="icon-remove icon-white"></i></a></td>
                     <td id="centrado"><a href="editarPaciente.php?id=<?php echo $row['id']?>" class="btn btn-mini btn-success"><i class="icon-pencil icon-white"></i></a></td>

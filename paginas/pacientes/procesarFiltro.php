@@ -38,8 +38,16 @@ if (array_key_exists('localidad', $_GET)) {
 
 if (array_key_exists('obrasocial', $_GET)) {
     if ($_GET['obrasocial'] != "") {
-        $buscador = $buscador . " and CONCAT() like '%" . $_GET['obrasocial'] . "%'";
+        $buscador = $buscador . " and os.id =" . $_GET["obrasocial"] . " ";
         $linkBuscador = $linkBuscador . "&obrasocial=" . $_GET['obrasocial'];
     }
+}
+
+$traerObras="";
+$campoOSid ="";
+if (isset ($_GET['obrasocial'])){
+    $traerObras = "INNER JOIN pacientes_obrasociales as po ON (po.paciente_id = pa.id)
+    INNER JOIN obrasocial as os ON (os.id = po.obrasocial_id)";
+    $campoOSid =", os.id";
 }
 ?>
