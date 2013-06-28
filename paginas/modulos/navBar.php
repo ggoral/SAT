@@ -3,9 +3,7 @@
 session_start();
 
 if (!array_key_exists('usuario', $_SESSION)) {
-    
-    echo "estoy dentro del if";exit;
-    
+
     header("location:/SAT/login.php");
     exit;
 }

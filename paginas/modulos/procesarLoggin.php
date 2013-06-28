@@ -7,7 +7,7 @@ session_start();
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-$sql = "select * from usuario as u where u.username = '".$username."' and u.password = ".$password;
+$sql = "select * from usuario as u where u.username = '".$username."' and u.password = '".$password."'";
 
 $resultado = mysql_query($sql) or die(mysql_error());
 

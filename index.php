@@ -1,4 +1,10 @@
+
 <!DOCTYPE html>
+<?php
+include "procesarSeguridad.php";
+?>
+
+
 <html>
     <?php $activo = "turnos"?>
     <head>
