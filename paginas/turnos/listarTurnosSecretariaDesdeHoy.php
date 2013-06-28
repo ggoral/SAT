@@ -1,10 +1,11 @@
 <?php include "../conectar.php" ?>
-<?php include "procesarFiltroHoy.php" ?>
+<?php include "procesarFiltroDesdeHoy.php" ?>
 <?php $activo = "turno" ?>
 <!DOCTYPE html>
 <html>
     <head>
         <?php include "../modulos/head.php" ?>  
+        <script src="/SAT/js/filtroTurno.js"></script>
         <title>Secretaria</title>
     </head>
     <body>     
@@ -13,13 +14,13 @@
         <!-- Fin NavBar-->
         <div class="container">
             <h3>
-                Turnos para el día de hoy <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br>
+                Turnos desde hoy en adelate <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br>
                 <a href="altaTurno.php">
                     <button class="btn btn-warning btn-primary">
                         Nuevo turno <i class="icon-plus icon-white"></i>
                     </button>
                 </a>
-                <form action="listarTurnosSecretaria.php"<?php ?> class="form-inline">
+                <form action="listarTurnosSecretariaDesdeHoy.php"<?php ?> class="form-inline">
 
                     
                     <?php $queryOS = "select * from obrasocial where habilitada=true and eliminado=false";
@@ -32,12 +33,19 @@
                         <label> Medico </label>
                         <input name="medico" class="input-medium" type="text"> 
                         <label> Obra Social </label>
-                        <select name="obrasocial">
+                        <select class="input-medium" name="obrasocial">
                             <option value="">Ninguna</option>
                             <?php while($OS = mysql_fetch_array($resultado)){?>
                             <option value="<?php echo $OS['id']?>"><?php echo $OS['nombre']?></option>
                             <?php }?>
                         </select>
+                        
+                        <label> Fecha desde </label>
+                        <input id="fechaDesde" name="fechaDesde" class="input-small" type="text" value="<?php $today = new \DateTime(); echo $today->format("d-m-Y")?>"> 
+                        <label> Fecha hasta </label>
+                        <input id="fechaHasta" name="fechaHasta" class="input-small" type="text"> 
+
+                        
                     </div>
 <!--                    <div  class="controls-row">
                         <div class="bootstrap-timepicker pull-left">
@@ -97,6 +105,7 @@
                         INNER JOIN obrasocial as os ON (os.id = po.obrasocial_id)
                         WHERE " .$buscador."
                         ORDER BY " . $filtro;
+                    
                     $result = mysql_query($query);
                     while ($row = mysql_fetch_array($result) or die(mysql_error())) {
                         $fechayhora = new \DateTime($row["fecha_desde"]);
