@@ -67,7 +67,7 @@ $idMedico = $_GET['id'];
                 <td id="centrado" class="span3"><?php echo $row["horaHasta"]; ?></td>
                 <td id="centrado" class="span7">
         
-                    <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarDia.php?id=<?php echo $row["idDia"]?>">
+                    <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarDia.php?id=<?php echo $row["idDia"]?>&idM=<?php echo $row["id"]?>">
                         Borrar <i class="icon-remove"></i>
                     </a>
                     <a class="btn btn-success btn-small" href="modificarDia.php?dia=<?php echo $row["dia"]?>&id=<?php echo $row["id"]?>&idDia=<?php echo $row["idDia"]?>">
