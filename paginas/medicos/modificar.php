@@ -8,12 +8,10 @@ $activo = "medico";
 include '../conectar.php';
 
 $idpersona = $_GET['id'];
-$sql = "Select medico.id, calle, especialidad.nombre AS nombreEsp, numero, telefono, email, persona.nombre AS nombreP, dni, apellido, provincia.nombre as provincia, matricula, localidad.id as localidad, especialidad.nombre AS nombreE, obrasocial.nombre AS obra FROM persona
+$sql = "Select medico.id, calle, especialidad.nombre AS nombreEsp, numero, telefono, email, persona.nombre AS nombreP, dni, apellido, provincia.nombre as provincia, matricula, localidad.id as localidad, especialidad.nombre AS nombreE FROM persona
         INNER JOIN medico ON ( medico.id = persona.id ) 
         INNER JOIN medicos_especialidades ON ( medico.id = medicos_especialidades.medico_id ) 
-        INNER JOIN especialidad ON ( medicos_especialidades.especialidad_id = especialidad.id )
-        INNER JOIN medicos_obrasociales ON (medicos_obrasociales.medico_id = medico.id)
-        INNER JOIN obrasocial ON (medicos_obrasociales.obrasocial_id = obrasocial.id)
+        INNER JOIN especialidad ON ( medicos_especialidades.especialidad_id = especialidad.id )     
         INNER JOIN localidad ON (persona.localidad_id = localidad.id)
         INNER JOIN provincia ON (localidad.provincia_id = provincia.id)
         WHERE persona.id = $idpersona and persona.eliminado = false";
@@ -21,7 +19,7 @@ $resultado = mysql_query($sql);
 $dato = mysql_fetch_array($resultado);
 
 if (!$dato) {
-    header("location:listar.php");
+   header("location:listar.php");
 }
 ?>
 <!DOCTYPE html>
@@ -197,25 +195,8 @@ if (!$dato) {
                          </div>
                         <br>  
                       
-                      <div class="control_group">
-                         <label class="control-label" for="Obra Social">Obra Social</label> 
-                      <div class="controls">  
-                      <select id="obra" name="obra">
-                            <option value="">Seleccione Obra Social</option>
-                        <?php 
-                        $queryObra = "select * from obrasocial where eliminado=false";
-                        $resObra = mysql_query($queryObra);
-                        while($Obra = mysql_fetch_array($resObra)){
-                        ?>     
-                            <option value="<?php echo $Obra["id"] ?>" <?php if( $dato['obra'] == $Obra['nombre'] ){ echo 'selected'; } ?> > <?php echo $Obra["nombre"]?></option>  
-
-                        <?php    
-                        }
-                        ?>
-                        </select>
-                     </div>
-                         </div>
-                      <br> 
+                    
+                
                       
                     <br>
                     <button class="btn btn-warning" type="submit">Modificar <i class="icon-plus icon-white"></i></button>

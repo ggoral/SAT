@@ -27,7 +27,6 @@ $email = $_GET["email"];
 $telefono = $_GET["telefono"];
 $matricula = $_GET["matricula"];
 $idEspecialidad = $_GET["especialidad"];
-$idObraSocial = $_GET["obra"];
 
 //Inserto una nueva persona
 $updatePersona = "UPDATE persona SET  nombre='$nombre', apellido='$apellido', dni='$dni', numero='$numero', calle='$calle', telefono='$telefono', email='$email', localidad_id='$localidad'
@@ -45,9 +44,6 @@ $updateMedicoEnEspecialidad = "UPDATE medicos_especialidades SET medico_id='$id'
                                
 mysql_query($updateMedicoEnEspecialidad);
 
-//Inserto el medico en la tabla medicos_obrassociales
-$updateMedicoEnObraSocial = "UPDATE medicos_obrasociales SET medico_id='$id', obrasocial_id='$idObraSocial' WHERE medico_id='$id'";
-mysql_query($updateMedicoEnObraSocial);
 
 
 header('location: listar.php');
