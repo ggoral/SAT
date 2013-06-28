@@ -6,7 +6,7 @@ if(!isset($_SESSION['usuario'])){
 }
 
 ?>
-<?php $activo = "especialidad"?>
+<?php $activo = "especialidad";include "procesarFiltro.php"?>
 
 <!DOCTYPE html>
 <html>
@@ -34,13 +34,13 @@ if(!isset($_SESSION['usuario'])){
         <table id="tabla" class="table table-striped table-bordered table-condensed span5">  
             <thead>  
               <tr>   
-                <th id="centrado">Nombre <a href="#"><i class="icon-chevron-down"></i></a></th>  
-                <th id="centrado">Acciones</th> 
+                <th id="centrado">Nombre <a href="listar.php?ordenNom=ASC"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenNom=DESC"><i class="icon-chevron-up"></i></a></th>  
+                <th id="centrado" class="">Acciones</th> 
               </tr>  
             </thead>
             <tbody>   
               <?php 
-              $query = "Select * from especialidad where eliminado = false";
+              $query = "Select * from especialidad as e where eliminado = false ORDER BY ".$filtro."";
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {
                   $estilo = "";
@@ -48,7 +48,7 @@ if(!isset($_SESSION['usuario'])){
               ?>
               <tr class="<?php echo $estilo ?>">  
                 <td id="centrado" class="span3"><?php echo $row["nombre"]; ?></td>  
-                <td id="centrado" class="span7">
+                <td id="centrado" class="span8">
         
                     <a id="borrar" class="btn btn-danger btn-small" href="procesarBorrarEspecialidad.php?id=<?php echo $row["id"]?>">
                         Borrar <i class="icon-remove"></i>
