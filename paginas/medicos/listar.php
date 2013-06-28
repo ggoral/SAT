@@ -1,5 +1,5 @@
 <?php include "../conectar.php" ?>
-<?php $activo = "medico" ?>
+<?php $activo = "medico" ;include "procesarSeguridad.php";?>
 <!DOCTYPE html>
 <html>
   <head>

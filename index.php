@@ -29,6 +29,13 @@ include "procesarSeguridad.php";
     <div class="container" align="center">
         <div class="span3 offset4"> 
         </div>
+        <div class="row">
+            <br><br><br><br><br><br>
+                <div class="span4 offset4 well">
+                    <h3>Bienvenido al sistema</h3>
+                    <p class="muted"><i>(Puede comenzar a navegar utilizando la barra superior)</i></p>
+                </div>
+        </div>
     </div>            
 </body>
 </html>

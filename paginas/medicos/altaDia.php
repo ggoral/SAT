@@ -1,6 +1,6 @@
 <?php 
 $activo = "medico";
- 
+ include "procesarSeguridad.php";
 include '../conectar.php';
 
   if(isset($_GET["errordia"])){

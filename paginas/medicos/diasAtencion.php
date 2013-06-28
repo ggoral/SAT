@@ -1,7 +1,7 @@
 <?php
 $activo = "medico";
 include '../conectar.php';
-
+include "procesarSeguridad.php";
 $idMedico = $_GET['id'];
 ?>
 <!DOCTYPE html>

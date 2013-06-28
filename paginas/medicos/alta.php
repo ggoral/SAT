@@ -6,7 +6,7 @@ $activo = "medico";
         $Campomatricula = "";
     }
 
-include '../conectar.php';
+include '../conectar.php';include "procesarSeguridad.php";
 ?>
 
 <!DOCTYPE html>

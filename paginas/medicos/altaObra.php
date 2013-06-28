@@ -2,7 +2,7 @@
 $activo = "medico";
  
 include '../conectar.php';
-
+include "procesarSeguridad.php";
   if(isset($_GET["errorObra"])){
         $CampoObra = $_GET["errorObra"];
        

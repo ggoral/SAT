@@ -6,7 +6,7 @@ if (isset($_GET["errormatricula"])) {
 }
 $activo = "medico";
 include '../conectar.php';
-
+include "procesarSeguridad.php";
 $idpersona = $_GET['id'];
 $sql = "Select medico.id, calle, especialidad.nombre AS nombreEsp, numero, telefono, email, persona.nombre AS nombreP, dni, apellido, provincia.nombre as provincia, matricula, localidad.id as localidad, especialidad.nombre AS nombreE FROM persona
         INNER JOIN medico ON ( medico.id = persona.id ) 
