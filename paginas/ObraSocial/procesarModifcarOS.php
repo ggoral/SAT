@@ -1,18 +1,23 @@
 <?php
 
+include "procesarSeguridad.php";
+?>
+
+<?php
+
 include '../conectar.php';
 
 $errornombre = $_GET["nombre"];
 
 echo $errornombre;
 
-$sqlExiste = "Select * from obrasocial where nombre ='".$errornombre."' and eliminado = false" ;
+$sqlExiste = "Select * from obrasocial where nombre ='" . $errornombre . "' and eliminado = false";
 //
 $resultadoExiste = mysql_query($sqlExiste);
 $obrasocial = mysql_fetch_array($resultadoExiste);
 
-if($obrasocial && ($obrasocial["id"] != $_GET["idOS"])){
-    header('location: modificar.php?id='.$_GET["idOS"].'&errornombre='.$errornombre);
+if ($obrasocial && ($obrasocial["id"] != $_GET["idOS"])) {
+    header('location: modificar.php?id=' . $_GET["idOS"] . '&errornombre=' . $errornombre);
     exit;
 }
 

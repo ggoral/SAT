@@ -1,4 +1,8 @@
 <?php
+include "procesarSeguridad.php";
+?>
+
+<?php
 if (isset($_GET["errornombre"])) {
     $nombre = $_GET["errornombre"];
 } else {

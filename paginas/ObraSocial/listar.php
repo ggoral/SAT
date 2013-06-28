@@ -1,3 +1,7 @@
+<?php
+include "procesarSeguridad.php";
+?>
+
 <?php include "../conectar.php" ?>
 <?php $activo = "obrasocial";
 include "procesarFiltro.php"?>

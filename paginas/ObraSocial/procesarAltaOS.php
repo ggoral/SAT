@@ -1,4 +1,8 @@
 <?php
+include "procesarSeguridad.php";
+?>
+
+<?php
 
 include '../conectar.php';
 
