@@ -3,7 +3,6 @@
 <html>
   <head>
     <?php include "../modulos/head.php";
-      include "../js/bootstrap-timepicker.js/";
     ?> 
     <script type="text/javascript" src="/SAT/js/turnosAlta.js"></script>
     <script type="text/javascript" src="/SAT/js/bootstrap-timepicker.js"></script>
