@@ -1,6 +1,6 @@
 <?php
 $activo = "paciente";
-include '../conectar.php';
+include '../conectar.php';include "procesarSeguridad.php";
 $idPaciente = $_GET['id'];
 ?>
 <!DOCTYPE html>

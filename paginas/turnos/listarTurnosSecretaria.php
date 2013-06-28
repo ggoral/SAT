@@ -1,5 +1,5 @@
 <?php include "../conectar.php" ?>
-<?php include "procesarFiltroHoy.php" ?>
+<?php include "procesarFiltroHoy.php";include "procesarSeguridad.php"; ?>
 <?php $activo = "turno" ?>
 <!DOCTYPE html>
 <html>

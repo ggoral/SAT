@@ -1,6 +1,7 @@
 <?php include "../conectar.php";
 $activo = "paciente";
-include "procesarFiltro.php" ?>
+include "procesarFiltro.php";
+include "procesarSeguridad.php";?>
 <!DOCTYPE html>
 <html>
   <head>

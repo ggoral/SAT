@@ -1,6 +1,6 @@
 <?php 
 $activo = "paciente";
-include '../conectar.php';
+include '../conectar.php';include "procesarSeguridad.php";
 $idPaciente = $_GET['id'];
 $query1 = "SELECT * FROM persona WHERE id = $idPaciente";
 $result1 = mysql_query($query1);

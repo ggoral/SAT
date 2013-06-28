@@ -1,8 +1,9 @@
 <?php include "../conectar.php" ?>
+<?php $activo = "turno" ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <?php include "../modulos/head.php";
+    <?php include "../modulos/head.php";include "procesarSeguridad.php";
     ?> 
     <script type="text/javascript" src="/SAT/js/turnosAlta.js"></script>
     <script type="text/javascript" src="/SAT/js/bootstrap-timepicker.js"></script>
@@ -26,22 +27,8 @@
   ?>
   <body>     
      <!--NavBar-->
-	<div class="navbar navbar-static-top">
-		<div class="navbar-inner">
-                    <div class="container">
-                        <a href="/SAT/index.php" class="brand">SAT - Sistema de Administración de Turnos</a>
-                        <div class="nav-collapse collapse">
-                            <ul class="nav pull-right"><li class="divider-vertical"></li>
-                                <li class="active"><a href="/SAT/paginas/turnos/listarTurnosSecretaria.php">Turnos</a></li><li class="divider-vertical"></li>
-                                <li><a href="#">Pacientes</a></li><li class="divider-vertical"></li>
-                                <li><a href="/SAT/paginas/ObraSocial/listar.php">Obras Sociales</a></li><li class="divider-vertical"></li>
-                                <li><a href="#">Especialidades</a></li><li class="divider-vertical"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-	</div>
-      <!-- Fin NavBar-->
+  <?php include "../modulos/navBar.php" ?>
+  <!-- Fin NavBar-->
         <div class="container">
             <div class="offset4 span3">
                 <h3 align="center">NUEVO TURNO</h3>
@@ -91,8 +78,5 @@
             </div>
         </div>        <!--Fin Container-->
     </body>        
-    <footer class="footer">
-        Contenido Footer
-    </footer>
     
 </html>
