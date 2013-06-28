@@ -1,7 +1,6 @@
 <?php
 
 if (!array_key_exists('usuario', $_SESSION)) {
-
     header("location:/SAT/login.php");
     exit;
 }
@@ -17,5 +16,7 @@ if ($usuario['rol'] == "ROLE_SECRETARIA") {
 if ($usuario['rol'] == "ROLE_DIRECTOR") {
     include "NavBarDirector.php";
 }
+
+
 
 
