@@ -14,7 +14,7 @@
         <div class="container">
             <h3>
                 Turnos para el día de hoy <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br>
-                <form action="listarTurnosSecretaria.php"<?php ?> class="form-inline">
+                <form action="listarTurnosHoyDirector.php"<?php ?> class="form-inline">
 
                     
                     <?php $queryOS = "select * from obrasocial where habilitada=true and eliminado=false";
@@ -40,10 +40,10 @@
             <table id="tabla" class="table table-striped table-bordered table-condensed">  
                 <thead>  
                     <tr>   
-                        <th id="centrado">Paciente <a href="listarTurnosSecretaria.php?ordenP=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenP=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>  
-                        <th id="centrado">Médico <a href="listarTurnosSecretaria.php?ordenM=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenM=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
-                        <th id="centrado">Obra Social<a href="listarTurnosSecretaria.php?ordenO=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenO=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
-                        <th id="centrado">Horario <a href="listarTurnosSecretaria.php?ordenH=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosSecretaria.php?ordenH=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                        <th id="centrado">Paciente <a href="listarTurnosHoyDirector.php?ordenP=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosHoyDirector.php?ordenP=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>  
+                        <th id="centrado">Médico <a href="listarTurnosHoyDirector.php?ordenM=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosHoyDirector.php?ordenM=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                        <th id="centrado">Obra Social<a href="listarTurnosHoyDirector.php?ordenO=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosHoyDirector.php?ordenO=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                        <th id="centrado">Horario <a href="listarTurnosHoyDirector.php?ordenH=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarTurnosHoyDirector.php?ordenH=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
                         <th id="centrado">Asistencia</th>
                     </tr>  
                 </thead>  
@@ -60,7 +60,7 @@
                         INNER JOIN pacientes_obrasociales as po ON (po.paciente_id = pa.id)
                         INNER JOIN obrasocial as os ON (os.id = po.obrasocial_id)
                         WHERE " .$buscador."
-                        ORDER BY " . $filtro;
+                        ORDER BY " . $filtro."";
                     $result = mysql_query($query);
                     while ($row = mysql_fetch_array($result) or die(mysql_error())) {
                         $fechayhora = new \DateTime($row["fecha_desde"]);

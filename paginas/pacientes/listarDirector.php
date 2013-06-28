@@ -20,7 +20,7 @@ include "procesarSeguridad.php";?>
             </h3>
             <hr>
             <h5 class="text-info">Buscador:</h5>
-            <form class="form-search" action="listar.php" method="GET" id="formBusqueda">
+            <form class="form-search" action="listarDirector.php" method="GET" id="formBusqueda">
                 <?php $queryOS = "select * from obrasocial where habilitada=true and eliminado=false";
                       $resultado = mysql_query($queryOS);      
                 ?>
@@ -44,9 +44,9 @@ include "procesarSeguridad.php";?>
             <thead>  
               <tr>   
                 <th id="centrado">DNI</th>  
-                <th id="centrado">Paciente<a href="listar.php?ordenApe=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenApe=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
-                <th id="centrado" class="span1">Provincia <a href="listar.php?ordenProv=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenProv=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a</th>
-                <th id="centrado" class="span1">Localidad <a href="listar.php?ordenLoc=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenLoc=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                <th id="centrado">Paciente<a href="listarDirector.php?ordenApe=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarDirector.php?ordenApe=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                <th id="centrado" class="span1">Provincia <a href="listarDirector.php?ordenProv=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarDirector.php?ordenProv=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a</th>
+                <th id="centrado" class="span1">Localidad <a href="listarDirector.php?ordenLoc=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listarDirector.php?ordenLoc=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
                 <th id="centrado">Dirección</th>
                 <th id="centrado">Teléfono</th>
                 <th id="centrado">Email</th>
@@ -56,14 +56,14 @@ include "procesarSeguridad.php";?>
             <tbody>   
               <?php 
               $query = "SELECT DISTINCT (pe.id),pe.dni,pe.apellido,pe.nombre,pro.nombre as provincia,l.nombre as localidad,pe.calle,pe.numero,
-                        pe.telefono,pe.email, pe.eliminado ".$campoOSid."
+                        pe.telefono,pe.email, pe.eliminado".$campoOSid."
                         FROM persona as pe
                         INNER JOIN paciente as pa ON (pa.id = pe.id)
                         INNER JOIN localidad as l ON (pe.localidad_id = l.id)
-                        INNER JOIN provincia as pro ON (pro.id = l.provincia_id)
-                        ".$traerObras."
-                        WHERE pe.eliminado = 0".$buscador."
-                        ORDER BY".$filtro;
+                        INNER JOIN provincia as pro ON (pro.id = l.provincia_id)".$traerObras."
+                        WHERE pe.eliminado = 0 ".$buscador."
+                        GROUP BY pe.id    
+                        ORDER BY ".$filtro;
               
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result) or die(mysql_error())) {
