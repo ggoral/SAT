@@ -1,5 +1,6 @@
 <?php include "../conectar.php" ?>
-<?php $activo = "obrasocial"?>
+<?php $activo = "obrasocial";
+include "procesarFiltro.php"?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,13 +27,13 @@
         <table id="tabla" class="table table-striped table-bordered table-condensed span5">  
             <thead>  
               <tr>   
-                <th id="centrado">Nombre <a href="#"><i class="icon-chevron-down"></i></a></th>  
+                <th id="centrado">Nombre <a href="listar.php?ordenNom=ASC"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenNom=DESC"><i class="icon-chevron-up"></i></a></th>  
                 <th id="centrado">Acciones</th> 
               </tr>  
             </thead>
             <tbody>   
               <?php 
-              $query = "Select * from obrasocial where eliminado = false";
+              $query = "Select * from obrasocial as o where eliminado = false ORDER BY ".$filtro."";
               $result=  mysql_query($query);
               while ($row = mysql_fetch_array($result)) {
                   $estilo = "";
