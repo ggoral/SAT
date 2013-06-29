@@ -6,7 +6,7 @@
     <head>
         <?php include "../modulos/head.php" ?>  
         <script src="/SAT/js/filtroTurno.js"></script>
-        <title>Secretaria</title>
+        <title>Turnos</title>
     </head>
     <body>     
         <!--NavBar-->

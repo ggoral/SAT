@@ -44,11 +44,10 @@ include "procesarSeguridad.php";?>
             <thead>  
               <tr>   
                 <th id="centrado">DNI</th>  
-                <th id="centrado">Apellido y nombre<a href="listar.php?ordenApe=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenApe=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                <th id="centrado">Paciente<a href="listar.php?ordenApe=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenApe=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
                 <th id="centrado" class="span1">Provincia <a href="listar.php?ordenProv=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenProv=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a</th>
                 <th id="centrado" class="span1">Localidad <a href="listar.php?ordenLoc=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenLoc=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
-                <th id="centrado">Calle</th>
-                <th id="centrado">N° Casa</th>
+                <th id="centrado">Dirección</th>
                 <th id="centrado">Teléfono</th>
                 <th id="centrado">Email</th>
                 <th id="centrado">Obras Sociales</th> 
@@ -75,8 +74,7 @@ include "procesarSeguridad.php";?>
                     <td id="centrado"><?php echo $row['apellido']." ".$row['nombre']?></td>
                     <td id="centrado"><?php echo $row['provincia'] ?></td>
                     <td id="centrado"><?php echo $row['localidad'] ?></td>
-                    <td id="centrado"><?php echo $row['calle'] ?></td>
-                    <td id="centrado"><?php echo $row['numero'] ?></td>
+                    <td id="centrado"><?php echo $row['calle']." #".$row['numero'] ?></td>
                     <td id="centrado"><?php echo $row['telefono'] ?></td>
                     <td id="centrado"><?php echo $row['email'] ?></td>
                     <td id="centrado">

@@ -54,7 +54,7 @@
             <thead>  
               <tr>
                 <th id="centrado">Matricula</th>
-                <th id="centrado">Apellido y Nombre <a href="#"><i class="icon-chevron-down"></i></a></th>
+                <th id="centrado">Médico <a href="#"><i class="icon-chevron-down"></i></a></th>
                 <th id="centrado">Especialidad <a href="#"><i class="icon-chevron-down"></i></a></th>
                 <th id="centrado">Provincia<a href="#"><i class="icon-chevron-down"></i></a></th> 
                 <th id="centrado">Localidad <a href="#"><i class="icon-chevron-down"></i></a></th>

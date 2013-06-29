@@ -48,6 +48,6 @@ $campoOSid ="";
 if (isset ($_GET['obrasocial'])){
     $traerObras = "INNER JOIN pacientes_obrasociales as po ON (po.paciente_id = pa.id)
     INNER JOIN obrasocial as os ON (os.id = po.obrasocial_id)";
-    $campoOSid =", os.id";
+    $campoOSid =", os.id as osID";
 }
 ?>

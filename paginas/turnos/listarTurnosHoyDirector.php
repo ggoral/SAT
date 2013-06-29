@@ -5,7 +5,7 @@
 <html>
     <head>
         <?php include "../modulos/head.php" ?>  
-        <title>Secretaria</title>
+        <title>Turnos</title>
     </head>
     <body>     
         <!--NavBar-->
