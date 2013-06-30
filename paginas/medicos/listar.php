@@ -46,8 +46,9 @@ include "procesarFiltro.php";?>
             <thead>  
               <tr>
                 <th id="centrado">Matricula</th>
+                <th id="centrado">Trabaja por</th>
                 <th id="centrado">Médico <a href="listar.php?ordenApe=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenApe=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
-                <th id="centrado">Especialidad <a href="listar.php?ordenEsp=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenEsp=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
+                <th id="centrado">Especialidad <br><a href="listar.php?ordenEsp=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenEsp=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
                 <th id="centrado">Provincia<a href="listar.php?ordenProv=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenProv=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th> 
                 <th id="centrado">Localidad <a href="listar.php?ordenLoc=ASC<?php echo $linkBuscador ?>"><i class="icon-chevron-down"></i></a> <a href="listar.php?ordenLoc=DESC<?php echo $linkBuscador ?>"><i class="icon-chevron-up"></i></a></th>
                 <th id="centrado">Dirección</th>    
@@ -57,14 +58,16 @@ include "procesarFiltro.php";?>
             </thead>
             <tbody>   
               <?php 
-              $query = "SELECT medico.id, pe.nombre AS nombreP, pe.apellido, pe.calle, pe.numero, pe.telefono, matricula, l.nombre AS localidad, especialidad.nombre AS nombreE, pro.nombre AS provincia
-    
+              $query = "SELECT medico.id, pe.nombre AS nombreP, pe.apellido, pe.calle, pe.numero, pe.telefono, matricula, l.nombre AS localidad, especialidad.nombre AS nombreE, pro.nombre AS provincia ,
+                        os.id as osID, os.nombre as osNombre
                         FROM medico
                         INNER JOIN persona AS pe ON ( medico.id = pe.id ) 
                         INNER JOIN medicos_especialidades ON ( medico.id = medicos_especialidades.medico_id ) 
                         INNER JOIN especialidad ON ( medicos_especialidades.especialidad_id = especialidad.id ) 
                         INNER JOIN localidad AS l ON ( pe.localidad_id = l.id ) 
                         INNER JOIN provincia AS pro ON ( pro.id = l.provincia_id )
+                        INNER JOIN medicos_obrasociales as mo ON (mo.medico_id = pe.id)
+    			INNER JOIN obrasocial as os ON (os.id = mo.obrasocial_id)
                         WHERE pe.eliminado = FALSE ".$buscador."
                         ORDER BY ".$filtro;
               $result=  mysql_query($query);
@@ -74,8 +77,9 @@ include "procesarFiltro.php";?>
               ?>
               <tr class="<?php echo $estilo ?>">  
                 <td id="centrado" class="span3"><?php echo $row["matricula"]; ?></td>  
+                <td id="centrado" class="span3"><?php echo $row["osNombre"]; ?></td>
                 <td id="centrado" class="span3"><?php echo $row['apellido']." ".$row["nombreP"]; ?></td>
-                <td id="centrado" class="span3"><?php echo $row["nombreE"]; ?></td>
+                <td id="centrado" class="span3"><?php echo $row["nombreE"]; ?></td>      
                 <td id="centrado" class="span3"><?php echo $row["provincia"]; ?></td>
                 <td id="centrado" class="span3"><?php echo $row["localidad"]; ?></td>
                 <td id="centrado" class="span3"><?php echo $row["calle"]."  #".$row['numero']; ?></td>

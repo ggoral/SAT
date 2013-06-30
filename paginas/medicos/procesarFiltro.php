@@ -45,10 +45,12 @@ if (array_key_exists('obrasocial', $_GET)) {
     }
 }
 
-$traerObras="";
-$campoOSid ="";
-if (isset ($_GET['obrasocial'])){
-    $traerObras = "INNER JOIN pacientes_obrasociales as po ON (po.paciente_id = pe.id)
-    INNER JOIN obrasocial as os ON (os.id = po.obrasocial_id)";
-    $campoOSid =", os.id as osID";
-}
+//$traerObras="";
+//$campoOSid ="";
+//if (isset ($_GET['obrasocial'])){
+//    $traerObras = "INNER JOIN medicos_obrasociales as mo ON (mo.paciente_id = pe.id)
+//    INNER JOIN obrasocial as os ON (os.id = mo.obrasocial_id)";
+//    $campoOSid =", os.id as osID";
+//}
+
+
