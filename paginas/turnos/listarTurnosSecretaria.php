@@ -117,8 +117,8 @@
                                 <td class ="span3" id="centrado">
                                     <?php if ($row["asistencia"] == false) { ?>
                                         <a href="cancelar.php?id=<?php echo $row["id"] ?>" class="btn btn-danger btn-small">Cancelar <i class="icon-remove"></i></a></a>
-                                        <a href="asistir.php?id=<?php echo $row["id"] ?>" class="btn btn-success btn-small">Asistió <i class="icon-ok"></i>
-                                        </a>
+                                        <a href="asistir.php?id=<?php echo $row["id"] ?>" class="btn btn-success btn-small">Asistió <i class="icon-ok"></i></a>
+                                        <a href="../pdf/imprimirPDF.php?id=<?php echo $row["id"] ?>&paciente=<?php echo $row["nomPaciente"] . " " . $row["apePaciente"] ?>&horaDia=<?php echo $fechayhora->format("d-m-Y H:i:s") ?>&obrasocial=<?php echo $row["osocial"] ?> &doctor=<?php echo $row["nomMedico"] . " " . $row["apeMedico"] ?>">Imprimir</a>
                                     <?php } else { ?><button class="btn btn-danger btn-small disabled">Cancelar <i class="icon-remove"></i></button> <button class="btn btn-success btn-small disabled">Asistió <i class="icon-ok"></i></button><?php } ?>
                                 </td>
                             </tr> <?php

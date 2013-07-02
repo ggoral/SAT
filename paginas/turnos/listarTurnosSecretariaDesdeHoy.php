@@ -95,7 +95,7 @@
                     <?php
                     $query = "SELECT p2.nombre as nomPaciente,p1.nombre as nomMedico,
                         p2.apellido as apePaciente, p1.apellido as apeMedico,
-                        t.fecha_desde, t.asistencia, t.id, t.eliminado , os.nombre as osocial 
+                        t.fecha_desde, t.asistencia, t.id, t.eliminado , os.nombre as osocial, t.fecha_hasta
                         FROM turno t
                         INNER JOIN medico AS m ON ( m.id = t.medico_id ) 
                         INNER JOIN paciente AS pa ON ( pa.id = t.paciente_id ) 
