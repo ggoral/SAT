@@ -1,6 +1,10 @@
 <?php
 
-$buscador = "DAY(t.fecha_desde) >= DAY(CURRENT_DATE())";
+$fechaHOY = new \DateTime();
+$strfecha = $fechaHOY->format('Y-m-d');
+//$strfecha = $fechaHOY->format('Y-m-d H:i:s');
+
+$buscador = "t.fecha_desde > '".$strfecha."'";
 $linkBuscador = "";
 
 if (array_key_exists('fechaDesde', $_GET)) {
