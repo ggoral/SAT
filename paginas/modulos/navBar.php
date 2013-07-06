@@ -17,6 +17,10 @@ if ($usuario['rol'] == "ROLE_DIRECTOR") {
     include "NavBarDirector.php";
 }
 
+if ($usuario['rol'] == "ROLE_MEDICO") {
+    include "NavBarMedico.php";
+}
+
 
 
 

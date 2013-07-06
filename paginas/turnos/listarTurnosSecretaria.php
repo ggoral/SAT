@@ -1,6 +1,6 @@
 <?php include "../conectar.php" ?>
 <?php include "procesarFiltroHoy.php";include "procesarSeguridad.php"; ?>
-<?php $activo = "turno" ?>
+<?php $activo = "turno";$user= $_SESSION['usuario']['nombre'];  ?>
 <!DOCTYPE html>
 <html>
     <head>
