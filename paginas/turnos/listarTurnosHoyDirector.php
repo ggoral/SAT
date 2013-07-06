@@ -22,8 +22,8 @@
                       $resultado = mysql_query($queryOS);      
                     ?>
                     <fieldset> 
-                        <input name="paciente" placeholder="Paciente" class="span2 search-query" type="text"> 
-                        <input name="medico" placeholder="Médico" class="span2 search-query" type="text"> 
+                        <input name="paciente" placeholder="Paciente" class="span2 search-query" type="text"  onKeyUp="this.value=this.value.toUpperCase();" autocomplete="off"> 
+                        <input name="medico" placeholder="Médico" class="span2 search-query" type="text"  onKeyUp="this.value=this.value.toUpperCase();" autocomplete="off"> 
                         <select name="obrasocial">
                             <option value="">Obra Social</option>
                             <?php while($OS = mysql_fetch_array($resultado)){?>

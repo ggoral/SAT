@@ -7,6 +7,7 @@ include "procesarFiltro.php";?>
   <head>
     <title>Medicos</title>
     <?php include "../modulos/head.php" ?>
+    <script type="text/javascript" src="/SAT/js/validacionesGenericas.js"></script>
   </head>
   <body>     
      <!--NavBar-->

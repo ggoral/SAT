@@ -28,8 +28,8 @@
                       $resultado = mysql_query($queryOS);      
                     ?>
                     <fieldset>  
-                        <input placeholder="Paciente" class="span2 search-query" name="paciente" class="input-medium" type="text"> 
-                        <input placeholder="Médico" class="span2 search-query" name="medico" type="text"> 
+                        <input placeholder="Paciente" class="span2 search-query" name="paciente" class="input-medium" type="text"  onKeyUp="this.value=this.value.toUpperCase();" autocomplete="off"> 
+                        <input placeholder="Médico" class="span2 search-query" name="medico" type="text"  onKeyUp="this.value=this.value.toUpperCase();" autocomplete="off"> 
                         <select class="input-medium" name="obrasocial">
                             <option value="">Obra Social</option>
                             <?php while($OS = mysql_fetch_array($resultado)){?>

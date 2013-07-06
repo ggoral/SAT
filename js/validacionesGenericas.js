@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    
+    $("#matricula").keyup(function(){this.value = this.value.replace(/[^0-9]/g,''); });
+
     
     
     //Carga las Localidades segun la provincia elegida------------------------------
