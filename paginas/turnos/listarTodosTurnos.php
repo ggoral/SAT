@@ -13,27 +13,30 @@
         <!-- Fin NavBar-->
         <div class="container">
             <h3>
-                Turnos para el día de hoy <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br>
-                <form action="listarTodosTurnos.php"<?php ?> class="form-inline">      
+                Todos los turnos <br>
+            </h3>
+            <hr>
+            <!-- Buscador-->
+            <h5 class="text-info">Buscador:</h5>
+                <form action="listarTodosTurnos.php" class="form-inline form-search"">      
                     <?php $queryOS = "select * from obrasocial where habilitada=true and eliminado=false";
                       $resultado = mysql_query($queryOS);      
                     ?>               
-                    <div class="controls-row">
-                        <label> Paciente </label>    
-                        <input name="paciente" class="input-medium" type="text"> 
-                        <label> Medico </label>
-                        <input name="medico" class="input-medium" type="text"> 
-                        <label> Obra Social </label>
+                    <fieldset>  
+                        <input name="paciente" placeholder="Paciente" class="span2 search-query" type="text"> 
+                        <input name="medico" placeholder="Médico" class="span2 search-query"type="text"> 
                         <select name="obrasocial">
-                            <option value="">Ninguna</option>
+                            <option value="">Obra Social</option>
                             <?php while($OS = mysql_fetch_array($resultado)){?>
                             <option value="<?php echo $OS['id']?>"><?php echo $OS['nombre']?></option>
                             <?php }?>
                         </select>
-                    </div>
-                    <input type="submit" class="btn" value="Buscar">
+                    
+                    <button type="submit" class="btn btn-info btn-small" value="Buscar turno ">Buscar turno <i class="icon-search icon-white"></i></button>
+                    </fieldset>
                 </form>
-            </h3>
+            <hr>
+            <!-- Buscador-->
             <table id="tabla" class="table table-striped table-bordered table-condensed">  
                 <thead>  
                     <tr>   
@@ -48,7 +51,7 @@
                     <?php
                     $query = "SELECT p2.nombre as nomPaciente,p1.nombre as nomMedico,
                         p2.apellido as apePaciente, p1.apellido as apeMedico,
-                        t.fecha_desde, t.asistencia, t.id, t.eliminado , os.nombre as osocial 
+                        t.fecha_desde, t.asistencia, t.id as idTurno, t.eliminado , os.nombre as osocial, t.obrasocial_id
                         FROM turno t
                         INNER JOIN medico AS m ON ( m.id = t.medico_id ) 
                         INNER JOIN paciente AS pa ON ( pa.id = t.paciente_id ) 

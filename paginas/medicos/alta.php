@@ -104,11 +104,11 @@ include '../conectar.php';include "procesarSeguridad.php";
                         $queryEsp = "select * from especialidad";
                         $resEsp = mysql_query($queryEsp);
                         while($especialidad = mysql_fetch_array($resEsp)){
-                        ?>     
+                        if($especialidad['habilitada']== 1){?>    
                             <option value="<?php echo $especialidad["id"] ?>"> <?php echo $especialidad["nombre"]?></option>  
 
                         <?php    
-                        }
+                        }}
                         ?>
                         </select>         
                  

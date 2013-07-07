@@ -3,6 +3,11 @@ $(document).ready(function(){
     $("a#borrar").click(function(){ 
         return (confirm("¿Esta seguro que desea borrar este elemento?"));
     });
+    
+    //Funcion que despliega un alert para confirmar el CANCELAR
+    $("a#cancelar").click(function(){ 
+        return (confirm("¿Esta seguro que desea borrar este elemento?"));
+    });
 });
 
  //Funcion que valida que no se ingrese un campo en blanco en alta de obras sociales

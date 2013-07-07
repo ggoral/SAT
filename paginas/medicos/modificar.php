@@ -21,6 +21,7 @@ $dato = mysql_fetch_array($resultado);
 if (!$dato) {
    header("location:listar.php");
 }
+$idPaciente = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +75,7 @@ if (!$dato) {
                         </div>
                         <br>
                         
-                        <input name="idpersona" type="hidden" value="<?php echo $dato['id'] ?>">
+                        <input name="idpersona" type="hidden" value="<?php echo $idpersona ?>">
                         
                         <div class="control_group">
                             <label class="control-label" for="Nombre">Nombre</label> 
@@ -104,40 +105,31 @@ if (!$dato) {
                             <label class="control-label" for="Provincia">Provincia</label> 
                             <div class="controls">  
                         <select id="provincia" name="provincia">
-                        <option value="">Seleccione Provincia</option>
-                        <option value="CAPITAL FEDERAL" <?php if( $dato['provincia'] == 'Capital Federal' ){ echo 'selected'; } ?> >Capital Federal</option>
-                        <option value="BUENOS AIRES" <?php if( $dato['provincia'] == 'Buenos Aires' ){ echo 'selected'; } ?> >Buenos Aires</option>
-                        <option value="CATAMARCA" <?php if( $dato['provincia'] == 'Catamarca' ){ echo 'selected'; } ?>>Catamarca</option>
-                        <option value="CORDOBA" <?php if( $dato['provincia'] == 'Cordoba' ){ echo 'selected'; } ?>>Cordoba</option>
-                        <option value="CORRIENTES" <?php if( $dato['provincia'] == 'Corrientes' ){ echo 'selected'; } ?>>Corrientes</option>
-                        <option value="CHACO" <?php if( $dato['provincia'] == 'Chaco' ){ echo 'selected'; } ?>>Chaco</option>
-                        <option value="CHUBUT" <?php if( $dato['provincia'] == 'Chubut' ){ echo 'selected'; } ?>>Chubut</option>
-                        <option value="ENTRE RIOS" <?php if( $dato['provincia'] == 'Entre Rios' ){ echo 'selected'; } ?>>Entre Rios</option>
-                        <option value="FORMOSA" <?php if( $dato['provincia'] == 'Formosa' ){ echo 'selected'; } ?>>Formosa</option>
-                        <option value="JUJUY" <?php if( $dato['provincia'] == 'Jujuy' ){ echo 'selected'; } ?>>Jujuy</option>
-                        <option value="LA PAMPA" <?php if( $dato['provincia'] == 'La Pampa' ){ echo 'selected'; } ?>>La Pampa</option>
-                        <option value="LA RIOJA" <?php if( $dato['provincia'] == 'La Rioja' ){ echo 'selected'; } ?>>La Rioja</option>
-                        <option value="MENDOZA" <?php if( $dato['provincia'] == 'Mendoza' ){ echo 'selected'; } ?>>Mendoza</option>
-                        <option value="MISIONES" <?php if( $dato['provincia'] == 'Misiones' ){ echo 'selected'; } ?>>Misiones</option>
-                        <option value="NEUQUEN" <?php if( $dato['provincia'] == 'Neuquen' ){ echo 'selected'; } ?>>Neuquen</option>
-                        <option value="RIO NEGRO" <?php if( $dato['provincia'] == 'Rio Negro' ){ echo 'selected'; } ?>>Rio Negro</option>
-                        <option value="SALTA" <?php if( $dato['provincia'] == 'Salta' ){ echo 'selected'; } ?>>Salta</option>
-                        <option value="SAN JUAN" <?php if( $dato['provincia'] == 'San Juan' ){ echo 'selected'; } ?>>San Juan</option>
-                        <option value="SAN LUIS" <?php if( $dato['provincia'] == 'San Luis' ){ echo 'selected'; } ?>>San Luis</option>
-                        <option value="SANTA CRUZ" <?php if( $dato['provincia'] == 'Santa Cruz' ){ echo 'selected'; } ?>>Santa Cruz</option>
-                        <option value="SANTA FE" <?php if( $dato['provincia'] == 'Santa Fe' ){ echo 'selected'; } ?>>Santa Fe</option>
-                        <option value="TIERRA DEL FUEGO" <?php if( $dato['provincia'] == 'Tierra Del Fuego' ){ echo 'selected'; } ?>>Tierra Del Fuego</option>
-                        <option value="TUCUMAN" <?php if( $dato['provincia'] == 'Tucuman' ){ echo 'selected'; } ?>>Tucuman</option>
-                        </select>
+                            <?php $query2 = "SELECT p.nombre
+                                            FROM persona AS per
+                                            INNER JOIN localidad AS l ON ( l.id = localidad_id ) 
+                                            INNER JOIN provincia AS p ON ( l.provincia_id = p.id ) 
+                                            WHERE per.id = $idPaciente;
+                                            ";
+                            $result2 = mysql_query($query2);
+                            while($row2 = mysql_fetch_array($result2)){
+                               ?> <option value="<?php echo $row2['nombre'];?>" selected>Original: <?php echo $row2['nombre'];?></option>
+                            <?php }?>    
+                            <?php include "../modulos/optionsProvincias.php"?>
+                            </select>
                             </div>
                         </div>
                         <br>
                     <div class="control_group">
                         <label class="control-label" for="Localidad">Localidad</label> 
                         <div class="controls">  
-                           <select id="localidad" name="localidad" >
-                        <option value="">Seleccione Localidad</option>
-                        
+                           <select id ="localidad" name='localidad'>
+                            <?php $query3 = "SELECT l.nombre, l.id FROM localidad as l
+                                             INNER JOIN persona as p ON (p.localidad_id = l.id)
+                                             WHERE p.id = $idPaciente";
+                                  $result3 = mysql_query($query3);
+                            while ($row3 = mysql_fetch_array($result3)){?><option value="<?php echo $row3['id'] ?>" selected>Original: <?php echo $row3['nombre'] ?></option> <?php }
+                            ?>     
                             </select>
                         </div>
                         </div>
@@ -184,11 +176,11 @@ if (!$dato) {
                         $queryEsp = "select * from especialidad";
                         $resEsp = mysql_query($queryEsp);
                         while($especialidad = mysql_fetch_array($resEsp)){
-                        ?>     
+                        if($especialidad['habilitada']== 1){?>      
                             <option value="<?php echo $especialidad["id"] ?>" <?php if( $dato['nombreEsp'] == $especialidad['nombre'] ){ echo 'selected'; } ?>> <?php echo $especialidad["nombre"]?></option>  
 
                         <?php    
-                        }
+                        }}
                         ?>
                         </select>
                         </div>

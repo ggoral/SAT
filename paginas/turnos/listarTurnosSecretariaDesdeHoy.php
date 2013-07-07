@@ -14,72 +14,37 @@
         <!-- Fin NavBar-->
         <div class="container">
             <h3>
-                Turnos desde hoy en adelate <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br>
+                Turnos desde hoy en adelate <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br></h3>
                 <a href="altaTurno.php">
                     <button class="btn btn-warning btn-primary">
                         Nuevo turno <i class="icon-plus icon-white"></i>
                     </button>
                 </a>
-                <form action="listarTurnosSecretariaDesdeHoy.php"<?php ?> class="form-inline">
-
-                    
+            <hr>
+            <!-- Buscador-->
+            <h5 class="text-info">Buscador:</h5>
+                <form action="listarTurnosSecretariaDesdeHoy.php" class="form-inline form-search">     
                     <?php $queryOS = "select * from obrasocial where habilitada=true and eliminado=false";
                       $resultado = mysql_query($queryOS);      
                     ?>
-                    
-                    <div class="controls-row">
-                        <label> Paciente </label>    
-                        <input name="paciente" class="input-medium" type="text"> 
-                        <label> Medico </label>
-                        <input name="medico" class="input-medium" type="text"> 
-                        <label> Obra Social </label>
+                    <fieldset>  
+                        <input placeholder="Paciente" class="span2 search-query" name="paciente" class="input-medium" type="text"> 
+                        <input placeholder="Médico" class="span2 search-query" name="medico" type="text"> 
                         <select class="input-medium" name="obrasocial">
-                            <option value="">Ninguna</option>
+                            <option value="">Obra Social</option>
                             <?php while($OS = mysql_fetch_array($resultado)){?>
                             <option value="<?php echo $OS['id']?>"><?php echo $OS['nombre']?></option>
                             <?php }?>
-                        </select>
-                        
+                        </select>          
                         <label> Fecha desde </label>
-                        <input id="fechaDesde" name="fechaDesde" class="input-small" type="text" value="<?php $today = new \DateTime(); echo $today->format("d-m-Y")?>"> 
+                        <input id="fechaDesde" name="fechaDesde"  class="span2 search-query" type="text" value="<?php $today = new \DateTime(); echo $today->format("d-m-Y")?>"> 
                         <label> Fecha hasta </label>
-                        <input id="fechaHasta" name="fechaHasta" class="input-small" type="text"> 
-
-                        
-                    </div>
-<!--                    <div  class="controls-row">
-                        <div class="bootstrap-timepicker pull-left">
-                            <label> Hora Inicio </label>  
-                            <input name="horaInicio" id="timepicker1" type="text" class="input-small">
-                        </div>
-
-                        <div style="margin-left: 1%" class="bootstrap-timepicker pull-left">
-                            <label> Hora Fin </label>  
-                            <input name="horaFin" id="timepicker2" type="text" class="input-small">
-                        </div>
-                    </div>
-
-                    <script type="text/javascript">
-                        $('#timepicker1').timepicker({
-                            minuteStep: 30,
-                            showInputs: false,
-                            disableFocus: true,
-                            showSeconds: true,
-                            showMeridian: false
-                        });
-                        $('#timepicker2').timepicker({
-                            minuteStep: 30,
-                            showInputs: false,
-                            disableFocus: true,
-                            showSeconds: true,
-                            showMeridian: false
-                        });
-
-                    </script>-->
-
-                    <input type="submit" class="btn" value="Buscar">
+                        <?php $h = new \DateTime(); $h->modify('+7 day');?>
+                        <input id="fechaHasta" name="fechaHasta" class="span2 search-query" type="text" value="<?php echo $h->format("d-m-Y");?>">   
+                    </fieldset>
+                    <br>
+                    <button type="submit" class="btn btn-info btn-small" value="Buscar turno ">Buscar turno <i class="icon-search icon-white"></i></button>
                 </form>
-            </h3>
             <table id="tabla" class="table table-striped table-bordered table-condensed">  
                 <thead>  
                     <tr>   
@@ -96,6 +61,7 @@
                     $query = "SELECT p2.nombre as nomPaciente,p1.nombre as nomMedico,
                         p2.apellido as apePaciente, p1.apellido as apeMedico,
                         t.fecha_desde, t.asistencia, t.id, t.eliminado , os.nombre as osocial, t.fecha_hasta
+                        , t.obrasocial_id
                         FROM turno t
                         INNER JOIN medico AS m ON ( m.id = t.medico_id ) 
                         INNER JOIN paciente AS pa ON ( pa.id = t.paciente_id ) 
@@ -124,10 +90,14 @@
                                     echo $mensaje;
                                     ?></td>
                                 <td class ="span3" id="centrado">
-                                    <?php if ($row["asistencia"] == false) { ?>
+                                    <?php $hoy = $today->format("d-m-Y");
+                                    $fechaString = $fechayhora->format("d-m-Y")?>
+                                    <?php if( ($row["asistencia"] == false) && ($hoy === $fechaString)){
+                                        ?>
                                         <a href="cancelar.php?id=<?php echo $row["id"] ?>" class="btn btn-danger btn-small">Cancelar <i class="icon-remove"></i></a></a>
                                         <a href="asistir.php?id=<?php echo $row["id"] ?>" class="btn btn-success btn-small">Asistió <i class="icon-ok"></i>
                                         </a>
+     
                                     <?php } else { ?><button class="btn btn-danger btn-small disabled">Cancelar <i class="icon-remove"></i></button> <button class="btn btn-success btn-small disabled">Asistió <i class="icon-ok"></i></button><?php } ?>
                                 </td>
                             </tr> <?php

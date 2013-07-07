@@ -4,7 +4,6 @@ include '../conectar.php';
 
 $errormatricula = $_GET["matricula"];
 
-echo $errormatricula;
 
 $sqlExiste = "Select persona.id AS id from persona inner join medico on (persona.id = medico.id) where matricula ='".$errormatricula."' and eliminado = false" ;
 //
@@ -28,22 +27,22 @@ $telefono = $_GET["telefono"];
 $matricula = $_GET["matricula"];
 $idEspecialidad = $_GET["especialidad"];
 
-//Inserto una nueva persona
-$updatePersona = "UPDATE persona SET  nombre='$nombre', apellido='$apellido', dni='$dni', numero='$numero', calle='$calle', telefono='$telefono', email='$email', localidad_id='$localidad'
-                   WHERE id='$id'";
+//modifico una  persona
+$updatePersona = "UPDATE persona SET dni='$dni', nombre='$nombre', apellido='$apellido', localidad_id='$localidad', calle='$calle', numero='$numero', telefono='$telefono', email='$email'
+                  WHERE id = $id";
 
 mysql_query($updatePersona);
 
-//Inserto esa persona en la tabla medico
-$updateMedico = "UPDATE medico SET id='$id', matricula='$matricula'
+//modifico esa persona en la tabla medico
+$updateMedico = "UPDATE medico SET matricula='$matricula'
                   WHERE id= '$id'";
 mysql_query($updateMedico);
 
-//Inserto el medico en la tabla medicos_especialidades
-$updateMedicoEnEspecialidad = "UPDATE medicos_especialidades SET medico_id='$id', especialidad_id='$idEspecialidad' WHERE medico_id='$id'";
+//modifico el medico en la tabla medicos_especialidades
+$updateMedicoEnEspecialidad = "UPDATE medicos_especialidades SET especialidad_id='$idEspecialidad'
+                                WHERE medico_id='$id'";
                                
 mysql_query($updateMedicoEnEspecialidad);
-
 
 
 header('location: listar.php');

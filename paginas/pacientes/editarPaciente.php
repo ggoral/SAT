@@ -110,6 +110,7 @@ $result1 = mysql_query($query1);
                         <br><br>
                         <a href='#'id="botonGuardar"class="btn btn-warning" onClick="">Guardar <i class="icon-plus icon-white"></i></a>
                         <a class="btn" href="/SAT/paginas/pacientes/listar.php">Cancelar</a>
+                        <input type="hidden" name="idPaciente" value="<?php echo $idPaciente ?>">
                     <?php } ?>    
                     </form>
                 </fieldset>      

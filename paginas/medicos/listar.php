@@ -58,7 +58,7 @@ include "procesarFiltro.php";?>
             </thead>
             <tbody>   
               <?php 
-              $query = "SELECT medico.id, pe.nombre AS nombreP, pe.apellido, pe.calle, pe.numero, pe.telefono, matricula, l.nombre AS localidad, especialidad.nombre AS nombreE, pro.nombre AS provincia ,
+              $query = "SELECT medico.id, pe.nombre AS nombreP, pe.apellido, pe.calle, pe.numero, pe.telefono, matricula, l.nombre AS localidad, especialidad.nombre AS nombreE,especialidad.habilitada as espHabilitada, pro.nombre AS provincia ,
                         os.id as osID, os.nombre as osNombre
                         FROM medico
                         INNER JOIN persona AS pe ON ( medico.id = pe.id ) 
@@ -76,14 +76,14 @@ include "procesarFiltro.php";?>
                  
               ?>
               <tr class="<?php echo $estilo ?>">  
-                <td id="centrado" class="span3"><?php echo $row["matricula"]; ?></td>  
-                <td id="centrado" class="span3"><?php echo $row["osNombre"]; ?></td>
+                <td id="centrado" class="span2"><?php echo $row["matricula"]; ?></td>  
+                <td id="centrado" class="span2"><?php echo $row["osNombre"]; ?></td>
                 <td id="centrado" class="span3"><?php echo $row['apellido']." ".$row["nombreP"]; ?></td>
-                <td id="centrado" class="span3"><?php echo $row["nombreE"]; ?></td>      
+                <td id="centrado" class="span3 <?php $mensaje="";if ($row['espHabilitada'] == 0){echo "text-error";$mensaje="(deshabilitada)";}?>"><?php echo $row["nombreE"]." ".$mensaje; ?></td>      
                 <td id="centrado" class="span3"><?php echo $row["provincia"]; ?></td>
                 <td id="centrado" class="span3"><?php echo $row["localidad"]; ?></td>
-                <td id="centrado" class="span3"><?php echo $row["calle"]."  #".$row['numero']; ?></td>
-                <td id="centrado" class="span3"><?php echo $row["telefono"]; ?></td>
+                <td id="centrado" class="span2"><?php echo $row["calle"]."  #".$row['numero']; ?></td>
+                <td id="centrado" class="span2"><?php echo $row["telefono"]; ?></td>
                 <td id="centrado" class="span10">
         
                     <a id="borrar" class="btn btn-danger btn-mini" href="procesarBorrarMedico.php?id=<?php echo $row["id"]?>">

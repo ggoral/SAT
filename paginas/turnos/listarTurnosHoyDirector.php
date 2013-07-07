@@ -13,30 +13,29 @@
         <!-- Fin NavBar-->
         <div class="container">
             <h3>
-                Turnos para el día de hoy <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br>
-                <form action="listarTurnosHoyDirector.php"<?php ?> class="form-inline">
-
-                    
+                Turnos para el día de hoy <small><em>(<?php echo date("d\/m\/y"); ?>)</em></small><br></h3>
+            <hr>
+            <!-- Buscador-->
+            <h5 class="text-info">Buscador:</h5>
+                <form action="listarTurnosHoyDirector.php" class="form-inline form-search">        
                     <?php $queryOS = "select * from obrasocial where habilitada=true and eliminado=false";
                       $resultado = mysql_query($queryOS);      
                     ?>
-                    
-                    <div class="controls-row">
-                        <label> Paciente </label>    
-                        <input name="paciente" class="input-medium" type="text"> 
-                        <label> Medico </label>
-                        <input name="medico" class="input-medium" type="text"> 
-                        <label> Obra Social </label>
+                    <fieldset> 
+                        <input name="paciente" placeholder="Paciente" class="span2 search-query" type="text"> 
+                        <input name="medico" placeholder="Médico" class="span2 search-query" type="text"> 
                         <select name="obrasocial">
-                            <option value="">Ninguna</option>
+                            <option value="">Obra Social</option>
                             <?php while($OS = mysql_fetch_array($resultado)){?>
                             <option value="<?php echo $OS['id']?>"><?php echo $OS['nombre']?></option>
                             <?php }?>
                         </select>
-                    </div>
-                    <input type="submit" class="btn" value="Buscar">
+                    
+                    <button type="submit" class="btn btn-info btn-small" value="Buscar turno ">Buscar turno <i class="icon-search icon-white"></i></button>
+                    </fieldset>
                 </form>
-            </h3>
+            <hr>
+            <!-- Buscador-->
             <table id="tabla" class="table table-striped table-bordered table-condensed">  
                 <thead>  
                     <tr>   

@@ -1,18 +1,14 @@
 <?php
-
 $fechaHOY = new \DateTime();
 $strfecha = $fechaHOY->format('Y-m-d');
 //$strfecha = $fechaHOY->format('Y-m-d H:i:s');
-
-$buscador = "t.fecha_desde > '".$strfecha."'";
+$buscador = "(t.fecha_desde > '".$strfecha."') AND (t.obrasocial_id = os.id)";
 $linkBuscador = "";
 
 if (array_key_exists('fechaDesde', $_GET)) {
     if ($_GET['fechaDesde'] != "") {
-
         $fechaD = new \DateTime($_GET["fechaDesde"]);
         $fechaD = $fechaD->format("Y-m-d");
-
 //        $buscador = "t.fecha_desde >= '" . $fechaD->format("Y-m-d") . "' ";
         $buscador = "DATE(t.fecha_desde) >= DATE(".$fechaD.") ";
         $linkBuscador = $linkBuscador . "&fechaDesde=" . $_GET['fechaDesde'];
