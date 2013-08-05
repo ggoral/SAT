@@ -23,7 +23,7 @@
                     <li class="<?php echo ($activo == "paciente") ? 'active' : ''; ?>"><a href="/SAT/paginas/pacientes/listarDirector.php">Pacientes</a></li>
                     <li class="<?php echo ($activo == "medico") ? 'active' : ''; ?>"><a href="/SAT/paginas/medicos/listar.php">Medicos</a></li>
                     <li class="<?php echo ($activo == "secretaria") ? 'active' : ''; ?>"><a href="/SAT/paginas/secretarias/listar.php">Secretarias</a></li>
-                    <li class="<?php echo ($activo == "reporte") ? 'active' : ''; ?>"><a href="/SAT/paginas/reportes/reportes.php">Reporte</a></li>
+                    <li class="<?php echo ($activo == "reportes") ? 'active' : ''; ?>"><a href="/SAT/paginas/reportes/reportes.php">Reporte</a></li>
                 </ul>
             </div>
         </div>

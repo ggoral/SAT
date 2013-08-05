@@ -69,6 +69,7 @@
                         INNER JOIN obrasocial as os ON (os.id = po.obrasocial_id)
                         WHERE " .$buscador."
                         ORDER BY " . $filtro;
+                    
                     $result = mysql_query($query);
                     while ($row = mysql_fetch_array($result) or die(mysql_error())) {
                         $fechayhora = new \DateTime($row["fecha_desde"]);
