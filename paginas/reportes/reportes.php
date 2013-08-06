@@ -1,4 +1,5 @@
-
+<?php include "../conectar.php";
+        include 'procesarSeguridad.php'?>
 <?php  $activo = "reportes" ?>
 <!DOCTYPE html>
 <html>
