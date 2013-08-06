@@ -56,7 +56,7 @@ include '../conectar.php';include "procesarSeguridad.php";
                     <br>
                     <br>
                     <a href='#'id="botonCrear"class="btn btn-warning" onClick="">Agregar <i class="icon-plus icon-white"></i></a>
-                    <a class="btn" href="/SAT/paginas/medicos/listar.php">
+                    <a class="btn" href="/SAT/paginas/pacientes/listar.php">
                     Cancelar
                     </a>
                 </form>
